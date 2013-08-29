@@ -1,4 +1,1 @@
-lab-template
-============
-
-Starting code for EECS150
+EECS150 test team
