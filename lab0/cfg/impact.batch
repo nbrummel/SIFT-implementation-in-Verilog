@@ -1,0 +1,6 @@
+setMode -bscan
+setCable -port auto
+identify
+assignFile -p 5 -file ##BITFILE##
+program -p 5
+quit
