@@ -1,4 +1,8 @@
 fa13_template
-=============
+========
 
-CS150 Fall 2013 project template.
+Fall 2013 project reference implementation
+
+Team members (cs150 login):
+
+FILL THIS OUT.

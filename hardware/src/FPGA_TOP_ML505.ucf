@@ -1,0 +1,65 @@
+NET "USER_CLK" TNM_NET = USER_CLK;
+TIMESPEC TS_USER_CLK = PERIOD "USER_CLK" 10.0 ns HIGH 50%;
+
+################################################################################
+# USER_CLK
+################################################################################
+NET  "USER_CLK"                                 IOSTANDARD="LVCMOS33";
+NET  "USER_CLK"                                 LOC="AH15";
+
+################################################################################
+# GPIO_LED
+################################################################################
+NET  "GPIO_LED[*]"                              IOSTANDARD="LVCMOS25";
+NET  "GPIO_LED[0]"                              LOC="H18";
+NET  "GPIO_LED[1]"                              LOC="L18";
+NET  "GPIO_LED[2]"                              LOC="G15";
+NET  "GPIO_LED[3]"                              LOC="AD26";
+NET  "GPIO_LED[4]"                              LOC="G16";
+NET  "GPIO_LED[5]"                              LOC="AD25";
+NET  "GPIO_LED[6]"                              LOC="AD24";
+NET  "GPIO_LED[7]"                              LOC="AE24";
+
+################################################################################
+# GPIO_SW
+################################################################################
+NET  "GPIO_SW_C"                                IOSTANDARD="LVCMOS33";
+NET  "GPIO_SW_C"                                LOC="AJ6";
+
+################################################################################
+# DVI
+################################################################################
+NET  "DVI_D[*]"               IOSTANDARD="LVCMOS33";
+NET  "DVI_D[0]"               LOC="AB8";
+NET  "DVI_D[1]"               LOC="AC8";
+NET  "DVI_D[2]"               LOC="AN12";
+NET  "DVI_D[3]"               LOC="AP12";
+NET  "DVI_D[4]"               LOC="AA9";
+NET  "DVI_D[5]"               LOC="AA8";
+NET  "DVI_D[6]"               LOC="AM13";
+NET  "DVI_D[7]"               LOC="AN13";
+NET  "DVI_D[8]"               LOC="AA10";
+NET  "DVI_D[9]"               LOC="AB10";
+NET  "DVI_D[10]"              LOC="AP14";
+NET  "DVI_D[11]"              LOC="AN14";
+
+NET  "DVI_DE"                 LOC="AE8";
+NET  "DVI_DE"                 IOSTANDARD="LVCMOS33";
+NET  "DVI_H"                  LOC="AM12";
+NET  "DVI_H"                  IOSTANDARD="LVCMOS33";
+NET  "DVI_RESET_B"            LOC="AK6";
+NET  "DVI_RESET_B"            IOSTANDARD="LVCMOS33";
+NET  "DVI_V"                  LOC="AM11";
+NET  "DVI_V"                  IOSTANDARD="LVCMOS33";
+NET  "DVI_XCLK_N"             LOC="AL10";
+NET  "DVI_XCLK_N"             IOSTANDARD="LVCMOS33";
+NET  "DVI_XCLK_P"             LOC="AL11";
+NET  "DVI_XCLK_P"             IOSTANDARD="LVCMOS33";
+
+################################################################################
+# Video I2C Bus
+################################################################################
+NET "IIC_SCL_VIDEO"           LOC="U27";
+NET "IIC_SCL_VIDEO"           IOSTANDARD="LVCMOS18";
+NET "IIC_SDA_VIDEO"           LOC="T29";
+NET "IIC_SDA_VIDEO"           IOSTANDARD="LVCMOS18";

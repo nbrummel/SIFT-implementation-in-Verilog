@@ -1,0 +1,11 @@
+#!/bin/sh
+
+function usage() {
+  echo "usage: $0 <wlf file>"
+  exit 1
+}
+
+[ -f $1 ] || usage
+
+cd build
+vsim ../$1
