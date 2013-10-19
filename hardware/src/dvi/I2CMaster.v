@@ -41,7 +41,9 @@
 //==============================================================================
 //	Section:	Includes
 //==============================================================================
-`ifndef MACROSAFE `define MACROSAFE `endif // required to get this to compile...
+`ifndef MACROSAFE
+  `define MACROSAFE 
+`endif // required to get this to compile...
 `include "Const.v"
 //==============================================================================
 
