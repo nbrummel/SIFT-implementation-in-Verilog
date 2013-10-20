@@ -9,7 +9,7 @@ INC := $(shell find $(SRCDIR) -type d -exec echo -n '+incdir+../'{} \;)
 STATUS := build/.status
 XILINX_LIBS := unisims_ver unimacro_ver xilinxcorelib_ver secureip
 XILINX_LIB_INC := $(foreach lib,$(XILINX_LIBS),$(addprefix -L ,$(lib)))
-XILINX_LIBS_MAP := $(wildcard /opt/Xilinx/14.1/ISE_DS/ISE/verilog/mti_se/10.1b_2/lin64/*)
+XILINX_LIBS_MAP := $(wildcard /opt/Xilinx/$(XILINX_VERSION)/ISE_DS/ISE/verilog/mti_se/$(XILINX_LIBS_VERSION)/lin64/*)
 all: $(TRANSCRIPT)
 
 compile: $(STATUS)
@@ -25,7 +25,7 @@ build/Makefile:
 	vmap $$(basename $$file) $$file || exit 1; done)
 	(cd build; \
 	vlog +acc -vopt -source -nocovercells  \
-	/opt/Xilinx/14.1/ISE_DS/ISE/verilog/src/glbl.v \
+	/opt/Xilinx/$(XILINX_VERSION)/ISE_DS/ISE/verilog/src/glbl.v \
 	|| exit 1)
 	(cd build; for file in $(SRCS); do \
 	vlog +acc -vopt -source -nocovercells $(INC) ../$$file || exit 1; done)
