@@ -52,11 +52,15 @@
 `ifdef synthesis                // if Synplify
 	`define SYNPLIFY
 	`define SYNTHESIS
-	`ifndef MACROSAFE `define MACROSAFE `endif
+	`ifndef MACROSAFE
+		`define MACROSAFE
+	`endif
 `else                           // if not Synplify
 	`ifdef MODELSIM
 		`define SIMULATION
-		`ifndef MACROSAFE `define MACROSAFE `endif
+		`ifndef MACROSAFE
+			`define MACROSAFE
+		`endif
 	`else
 		`define XST
 		// synthesis translate_off    // if XST then stop compiling
@@ -66,7 +70,9 @@
 		// synthesis translate_on     // if XST then resume compiling
 		`ifdef XST
 			`define SYNTHESIS
-			`ifndef MACROSAFE `define MACROSAFE `endif
+			`ifndef MACROSAFE
+				`define MACROSAFE
+			`endif
 		`endif
 	`endif
 `endif
