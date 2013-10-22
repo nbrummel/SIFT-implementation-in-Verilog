@@ -8,6 +8,14 @@ NET  "USER_CLK"                                 IOSTANDARD="LVCMOS33";
 NET  "USER_CLK"                                 LOC="AH15";
 
 ################################################################################
+# UART
+################################################################################
+NET  "FPGA_SERIAL_RX"                           IOSTANDARD="LVCMOS33";
+NET  "FPGA_SERIAL_RX"                           LOC="G10";
+NET  "FPGA_SERIAL_TX"                           IOSTANDARD="LVCMOS33";
+NET  "FPGA_SERIAL_TX"                           LOC="F10";
+
+################################################################################
 # GPIO_LED
 ################################################################################
 NET  "GPIO_LED[*]"                              IOSTANDARD="LVCMOS25";
@@ -25,6 +33,113 @@ NET  "GPIO_LED[7]"                              LOC="AE24";
 ################################################################################
 NET  "GPIO_SW_C"                                IOSTANDARD="LVCMOS33";
 NET  "GPIO_SW_C"                                LOC="AJ6";
+
+################################################################################
+# GPIO_DIP
+################################################################################
+
+NET "GPIO_DIP[0]" LOC="U25"   | IOSTANDARD="LVCMOS18";
+NET "GPIO_DIP[1]" LOC="AG27"  | IOSTANDARD="LVCMOS25";
+NET "GPIO_DIP[2]" LOC="AF25"  | IOSTANDARD="LVCMOS25";
+NET "GPIO_DIP[3]" LOC="AF26"  | IOSTANDARD="LVCMOS25";
+NET "GPIO_DIP[4]" LOC="AE27"  | IOSTANDARD="LVCMOS25";
+NET "GPIO_DIP[5]" LOC="AE26"  | IOSTANDARD="LVCMOS25";
+NET "GPIO_DIP[6]" LOC="AC25"  | IOSTANDARD="LVCMOS25";
+NET "GPIO_DIP[7]" LOC="AC24"  | IOSTANDARD="LVCMOS25";
+
+################################################################################
+# SRAM
+################################################################################
+NET  "SRAM_CLK"             SLEW="FAST" | DRIVE="12" | IOSTANDARD="LVCMOS33";
+NET  "SRAM_CLK"             LOC="G8";    # Bank 20, Vcco=3.3V,  DCI 49.9ohm
+
+NET  "SRAM_CLK_FB"          IOSTANDARD="LVCMOS33";
+NET  "SRAM_CLK_FB"          LOC="AG21";  # Bank 4, Vcco=3.3V, No DCI      
+
+NET  "SRAM_CS_B"            IOSTANDARD="LVDCI_33";
+NET  "SRAM_CS_B"            LOC="J10";   # Bank 20, Vcco=3.3V,  DCI 49.9ohm      
+
+NET  "SRAM_WE_B"            SLEW="FAST" | DRIVE="12" | IOSTANDARD="LVCMOS33";
+NET  "SRAM_WE_B"            LOC="AF20";  # Bank 2, Vcco=3.3V
+
+NET  "SRAM_ADV_LD_B"        IOSTANDARD="LVDCI_33";
+NET  "SRAM_ADV_LD_B"        LOC="H8";    # Bank 20, Vcco=3.3V,  DCI 49.9ohm      
+
+NET  "SRAM_MODE"            IOSTANDARD="LVDCI_33";
+NET  "SRAM_MODE"            LOC="A13";   # Bank 20, Vcco=3.3V,  DCI 49.9ohm
+
+NET  "SRAM_OE_B"            IOSTANDARD="LVDCI_33";
+NET  "SRAM_OE_B"            LOC="B12";   # Bank 20, Vcco=3.3V,  DCI 49.9ohm
+
+NET  "SRAM_BW[*]"           IOSTANDARD="LVDCI_33";
+NET  "SRAM_BW[0]"           LOC="D10";   # Bank 20, Vcco=3.3V,  DCI 49.9ohm      
+NET  "SRAM_BW[1]"           LOC="D11";   # Bank 20, Vcco=3.3V,  DCI 49.9ohm      
+NET  "SRAM_BW[2]"           LOC="J11";   # Bank 20, Vcco=3.3V,  DCI 49.9ohm      
+NET  "SRAM_BW[3]"           LOC="K11";   # Bank 20, Vcco=3.3V,  DCI 49.9ohm      
+
+NET  "SRAM_A[*]"           SLEW="FAST" | DRIVE="8" | IOSTANDARD="LVCMOS33";
+NET  "SRAM_A[0]"           LOC="K13";   # Bank 1, Vcco=3.3V
+NET  "SRAM_A[1]"           LOC="H23";   # Bank 1, Vcco=3.3V
+NET  "SRAM_A[2]"           LOC="G23";   # Bank 1, Vcco=3.3V
+NET  "SRAM_A[3]"           LOC="H12";   # Bank 1, Vcco=3.3V
+NET  "SRAM_A[4]"           LOC="J12";   # Bank 1, Vcco=3.3V
+NET  "SRAM_A[5]"           LOC="K22";   # Bank 1, Vcco=3.3V
+NET  "SRAM_A[6]"           LOC="K23";   # Bank 1, Vcco=3.3V
+NET  "SRAM_A[7]"           LOC="K14";   # Bank 1, Vcco=3.3V
+NET  "SRAM_A[8]"           LOC="L14";   # Bank 1, Vcco=3.3V
+NET  "SRAM_A[9]"           LOC="H22";   # Bank 1, Vcco=3.3V
+NET  "SRAM_A[10]"          LOC="G22";   # Bank 1, Vcco=3.3V
+NET  "SRAM_A[11]"          LOC="J15";   # Bank 1, Vcco=3.3V
+NET  "SRAM_A[12]"          LOC="K16";   # Bank 1, Vcco=3.3V
+NET  "SRAM_A[13]"          LOC="K21";   # Bank 1, Vcco=3.3V
+NET  "SRAM_A[14]"          LOC="J22";   # Bank 1, Vcco=3.3V
+NET  "SRAM_A[15]"          LOC="L16";   # Bank 1, Vcco=3.3V
+NET  "SRAM_A[16]"          LOC="L15";   # Bank 1, Vcco=3.3V
+NET  "SRAM_A[17]"          LOC="L20";   # Bank 1, Vcco=3.3V
+
+# Bank 2, Vcco=3.3V
+NET  "SRAM_D[0]"   PULLDOWN | SLEW="FAST" | DRIVE="12" | IOSTANDARD="LVCMOS33" | LOC="AD19";
+NET  "SRAM_D[1]"   PULLDOWN | SLEW="FAST" | DRIVE="12" | IOSTANDARD="LVCMOS33" | LOC="AE19";
+NET  "SRAM_D[2]"   PULLDOWN | SLEW="FAST" | DRIVE="12" | IOSTANDARD="LVCMOS33" | LOC="AE17";
+NET  "SRAM_D[3]"   PULLDOWN | SLEW="FAST" | DRIVE="12" | IOSTANDARD="LVCMOS33" | LOC="AF16";
+NET  "SRAM_D[4]"   PULLDOWN | SLEW="FAST" | DRIVE="12" | IOSTANDARD="LVCMOS33" | LOC="AD20";
+NET  "SRAM_D[5]"   PULLDOWN | SLEW="FAST" | DRIVE="12" | IOSTANDARD="LVCMOS33" | LOC="AE21";
+NET  "SRAM_D[6]"   PULLDOWN | SLEW="FAST" | DRIVE="12" | IOSTANDARD="LVCMOS33" | LOC="AE16";
+NET  "SRAM_D[7]"   PULLDOWN | SLEW="FAST" | DRIVE="12" | IOSTANDARD="LVCMOS33" | LOC="AF15";
+
+# Bank 4, Vcco=3.3V, No DCI
+NET  "SRAM_D[8]"   PULLDOWN | SLEW="FAST" | DRIVE="12" | IOSTANDARD="LVCMOS33" | LOC="AH13";
+NET  "SRAM_D[9]"   PULLDOWN | SLEW="FAST" | DRIVE="12" | IOSTANDARD="LVCMOS33" | LOC="AH14";
+NET  "SRAM_D[10]"  PULLDOWN | SLEW="FAST" | DRIVE="12" | IOSTANDARD="LVCMOS33" | LOC="AH19";
+NET  "SRAM_D[11]"  PULLDOWN | SLEW="FAST" | DRIVE="12" | IOSTANDARD="LVCMOS33" | LOC="AH20";
+NET  "SRAM_D[12]"  PULLDOWN | SLEW="FAST" | DRIVE="12" | IOSTANDARD="LVCMOS33" | LOC="AG13";
+NET  "SRAM_D[13]"  PULLDOWN | SLEW="FAST" | DRIVE="12" | IOSTANDARD="LVCMOS33" | LOC="AH12";
+NET  "SRAM_D[14]"  PULLDOWN | SLEW="FAST" | DRIVE="12" | IOSTANDARD="LVCMOS33" | LOC="AH22";
+NET  "SRAM_D[15]"  PULLDOWN | SLEW="FAST" | DRIVE="12" | IOSTANDARD="LVCMOS33" | LOC="AG22";
+
+# Bank 20, Vcco=3.3V,  DCI 49.9ohm
+NET  "SRAM_D[16]"  PULLDOWN | IOSTANDARD="LVDCI_33" | LOC="N10";
+NET  "SRAM_D[17]"  PULLDOWN | IOSTANDARD="LVDCI_33" | LOC="E13";
+NET  "SRAM_D[18]"  PULLDOWN | IOSTANDARD="LVDCI_33" | LOC="E12";
+NET  "SRAM_D[19]"  PULLDOWN | IOSTANDARD="LVDCI_33" | LOC="L9";
+NET  "SRAM_D[20]"  PULLDOWN | IOSTANDARD="LVDCI_33" | LOC="M10";
+NET  "SRAM_D[21]"  PULLDOWN | IOSTANDARD="LVDCI_33" | LOC="E11";
+NET  "SRAM_D[22]"  PULLDOWN | IOSTANDARD="LVDCI_33" | LOC="F11";
+NET  "SRAM_D[23]"  PULLDOWN | IOSTANDARD="LVDCI_33" | LOC="L8";
+NET  "SRAM_D[24]"  PULLDOWN | IOSTANDARD="LVDCI_33" | LOC="M8";
+NET  "SRAM_D[25]"  PULLDOWN | IOSTANDARD="LVDCI_33" | LOC="G12";
+NET  "SRAM_D[26]"  PULLDOWN | IOSTANDARD="LVDCI_33" | LOC="G11";
+NET  "SRAM_D[27]"  PULLDOWN | IOSTANDARD="LVDCI_33" | LOC="C13";
+NET  "SRAM_D[28]"  PULLDOWN | IOSTANDARD="LVDCI_33" | LOC="B13";
+NET  "SRAM_D[29]"  PULLDOWN | IOSTANDARD="LVDCI_33" | LOC="K9";
+NET  "SRAM_D[30]"  PULLDOWN | IOSTANDARD="LVDCI_33" | LOC="K8";
+NET  "SRAM_D[31]"  PULLDOWN | IOSTANDARD="LVDCI_33" | LOC="J9";
+
+# Data parity bits are unused
+#NET  "SRAM_DQP[0]"           LOC="D12";   # Bank 20, Vcco=3.3V,  DCI 49.9ohm
+#NET  "SRAM_DQP[1]"           LOC="C12";   # Bank 20, Vcco=3.3V,  DCI 49.9ohm
+#NET  "SRAM_DQP[2]"           LOC="H10";   # Bank 20, Vcco=3.3V,  DCI 49.9ohm
+#NET  "SRAM_DQP[3]"           LOC="H9";    # Bank 20, Vcco=3.3V,  DCI 49.9ohm
 
 ################################################################################
 # DVI
