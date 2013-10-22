@@ -1,8 +1,8 @@
 CASES := $(wildcard tests/*.do)
-TESTINPUTS := $(wildcard tests/*.hex)
+TESTINPUTS := $(wildcard tests/data/*.hex)
 TRANSCRIPT := $(patsubst tests/%.do,results/%.transcript,$(CASES))
 DOFILES := $(patsubst tests/%.do,build/%.do,$(CASES))
-TESTINPUTSBUILD := $(patsubst tests/%.hex,build/%.hex,$(TESTINPUTS))
+TESTINPUTSBUILD := $(patsubst tests/data/%.hex,build/%.hex,$(TESTINPUTS))
 SRCDIR := ../src
 SRCS := $(shell find $(SRCDIR) -name '*.v' -type f)
 INC := $(shell find $(SRCDIR) -type d -exec echo -n '+incdir+../'{} \;)
@@ -10,6 +10,7 @@ STATUS := build/.status
 XILINX_LIBS := unisims_ver unimacro_ver xilinxcorelib_ver secureip
 XILINX_LIB_INC := $(foreach lib,$(XILINX_LIBS),$(addprefix -L ,$(lib)))
 XILINX_LIBS_MAP := $(wildcard /opt/Xilinx/$(XILINX_VERSION)/ISE_DS/ISE/verilog/mti_se/$(XILINX_LIBS_VERSION)/lin64/*)
+
 all: $(TRANSCRIPT)
 
 compile: $(STATUS)
@@ -39,7 +40,7 @@ $(DOFILES) : build/%.do : tests/%.do
 	echo 'proc start {m} {vsim $(XILINX_LIB_INC) work.glbl $$m}' \
 	| cat - $< > $@ 
 
-$(TESTINPUTSBUILD) : build/% : tests/%
+$(TESTINPUTSBUILD) : build/% : tests/data/%
 	cp $< $@
 	
 $(TRANSCRIPT) : results/%.transcript : build/%.do $(STATUS) $(TESTINPUTSBUILD) | results
