@@ -1,2 +1,4 @@
 *.do
-*.input
+*.hex
+!src/*.do
+!data/*.hex

@@ -1,8 +1,8 @@
 CASES := $(wildcard tests/*.do)
-TESTINPUTS := $(wildcard tests/*.input)
+TESTINPUTS := $(wildcard tests/*.hex)
 TRANSCRIPT := $(patsubst tests/%.do,results/%.transcript,$(CASES))
 DOFILES := $(patsubst tests/%.do,build/%.do,$(CASES))
-TESTINPUTSBUILD := $(patsubst tests/%.input,build/%.input,$(TESTINPUTS))
+TESTINPUTSBUILD := $(patsubst tests/%.hex,build/%.hex,$(TESTINPUTS))
 SRCDIR := ../src
 SRCS := $(shell find $(SRCDIR) -name '*.v' -type f)
 INC := $(shell find $(SRCDIR) -type d -exec echo -n '+incdir+../'{} \;)
