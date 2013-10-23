@@ -17,16 +17,13 @@ reg [6:0] row_counter;
 reg [2:0] RowState;
 reg [2:0] NextRow;
 
-reg [6:0] column_counter;
-reg [2:0] ColumnState;
-reg [2:0] NextColumn;
+reg [9:0] column_counter;
 
 always@(posedge Clock) begin 
 	if (Reset) begin
 		RowState <= STATE_1;
 		row_counter <= 7'd0;
-		ColumnState <= STATE_1;
-		column_counter <= 7'd0;
+		column_counter <= 10'd0;
 	end
 	else if (VideoReady) begin
 		if (row_counter == 7'b1001111) begin
@@ -40,32 +37,14 @@ always@(posedge Clock) begin
 end
 
 always@(*) begin
-	case (ColumnState)
+	case (RowState)
 		STATE_1: begin
-			case (RowState)
-				STATE_1: begin
-					video = TURQUOISE;
-					NextRow = STATE_2;
-				end
-				STATE_2: begin
-					video = CARROT;
-					NextRow = STATE_1;
-				end
-			endcase
-			NextColumn = STATE_2;
+			video = TURQUOISE;
+			NextRow = STATE_2;
 		end
 		STATE_2: begin
-			case (RowState)
-				STATE_1: begin
-					video = SUNFLOWER;
-					NextRow = STATE_2;
-				end
-				STATE_2: begin
-					video = POMEGRANATE;
-					NextRow = STATE_1;
-				end
-			endcase
-			NextColumn = STATE_1;
+			video = CARROT;
+			NextRow = STATE_1;
 		end
 	endcase
 end
