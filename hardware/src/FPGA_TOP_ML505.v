@@ -96,8 +96,15 @@ module FPGA_TOP_ML505(
     wire video_ready,video_valid;
     
     // REMOVE THESE WHEN TEST PATTERN GENERATOR IS DONE
-    assign video = {8'h0, 8'h0, 8'hFF};
+    //assign video = {8'h0, 8'h0, 8'hFF};
     assign video_valid = 1'b1;
+
+    PatternGenerator pg (
+        .Clock(clk_50M),
+        .VideoReady(video_ready),
+        .video(video),
+        .Reset(Reset)
+      );
 
     DVI #(
      .ClockFreq(                 50000000),
