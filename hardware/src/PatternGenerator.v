@@ -13,22 +13,22 @@ localparam STATE_BLUE = 3'b000,
 		   POMEGRANATE = {8'd192, 8'd57, 8'd43};
 
 
-reg [5:0] counter;
+reg [6:0] counter;
 reg [2:0] CurrentState;
 reg [2:0] NextState;
 
 always@(posedge Clock) begin 
 	if (Reset) begin
 		CurrentState <= STATE_BLUE;
-		counter <= 6'd0;
+		counter <= 7'd0;
 	end
 	else if (VideoReady) begin
-		if (counter == 6'b111111) begin
-			counter <= 6'd0;
+		if (counter == 7'b1111111) begin
+			counter <= 7'd0;
 			CurrentState <= NextState;
 		end
 		else begin 
-			counter <= counter + 6'd1;
+			counter <= counter + 7'd1;
 		end
 	end
 end
