@@ -22,7 +22,10 @@ localparam STATE_1 = 3'b000,
 		   SUNFLOWER = {8'd241, 8'd196, 8'd15},
 		   EMERALD = {8'd46, 8'd204, 8'd113};
 
+//10000011110101011111111111 <- new page after 1 second
+//34559999
 
+reg [31:0] page_counter;
 reg [6:0] row_counter;
 reg [2:0] RowState;
 reg [2:0] NextRow;
@@ -36,23 +39,33 @@ always@(posedge Clock) begin
 		RowState <= STATE_1;
 		row_counter <= 7'd0;
 		column_counter <= 10'd0;
+		page_counter <= 32'd0;
 	end
 	else if (VideoReady) begin
-		if (row_counter == 7'b1001111) begin
+		if (page_counter == 32'd34559999) begin
+			RowState <= NextPage;
+			column_counter <= 10'd0;
 			row_counter <= 7'd0;
-
-			if (column_counter == 10'd499) begin
-				RowState <= NextColumn;
-				column_counter <= 10'd0;
-			end
-			else begin
-				RowState <= NextRow;
-				column_counter <= column_counter + 10'd1;
-			end
-
+			page_counter <= 26'd0;
 		end
-		else begin 
-			row_counter <= row_counter + 7'd1;
+		else begin
+			if (row_counter == 7'b1001111) begin
+				row_counter <= 7'd0;
+
+				if (column_counter == 10'd499) begin
+					RowState <= NextColumn;
+					column_counter <= 10'd0;
+				end
+				else begin
+					RowState <= NextRow;
+					column_counter <= column_counter + 10'd1;
+				end
+
+			end
+			else begin 
+				row_counter <= row_counter + 7'd1;
+			end
+			page_counter <= page_counter + 32'd1;
 		end
 	end
 end
