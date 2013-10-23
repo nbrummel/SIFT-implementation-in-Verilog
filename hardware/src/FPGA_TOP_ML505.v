@@ -7,10 +7,6 @@ module FPGA_TOP_ML505(
 
   output [7:0] GPIO_LED,
 
-  // UART Connections
-  input   FPGA_SERIAL_RX,
-  output  FPGA_SERIAL_TX,
-
   // DVI Controller
   output [11:0] DVI_D,
   output        DVI_DE,

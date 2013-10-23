@@ -8,14 +8,6 @@ NET  "USER_CLK"                                 IOSTANDARD="LVCMOS33";
 NET  "USER_CLK"                                 LOC="AH15";
 
 ################################################################################
-# UART
-################################################################################
-NET  "FPGA_SERIAL_RX"                           IOSTANDARD="LVCMOS33";
-NET  "FPGA_SERIAL_RX"                           LOC="G10";
-NET  "FPGA_SERIAL_TX"                           IOSTANDARD="LVCMOS33";
-NET  "FPGA_SERIAL_TX"                           LOC="F10";
-
-################################################################################
 # GPIO_LED
 ################################################################################
 NET  "GPIO_LED[*]"                              IOSTANDARD="LVCMOS25";
