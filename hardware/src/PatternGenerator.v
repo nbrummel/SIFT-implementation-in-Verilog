@@ -31,8 +31,14 @@ always@(posedge Clock) begin
 	else if (VideoReady) begin
 		if (row_counter == 7'b1001111) begin
 			row_counter <= 7'd0;
-			RowState <= NextRow;
-			column_counter <= column_counter + 10'd1;
+			if (column_counter == 10'd4) begin
+				RowState <= NextColumn;
+				column_counter <= 10'd0;
+			end
+			else begin
+				RowState <= NextRow;
+				column_counter <= column_counter + 10'd1;
+			end
 		end
 		else begin 
 			row_counter <= row_counter + 7'd1;
