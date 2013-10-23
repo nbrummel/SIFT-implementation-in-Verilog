@@ -23,7 +23,7 @@ always@(posedge Clock) begin
 		counter <= 7'd0;
 	end
 	else if (VideoReady) begin
-		if (counter == 7'b1111111) begin
+		if (counter == 7'b1001111) begin
 			counter <= 7'd0;
 			CurrentState <= NextState;
 		end
