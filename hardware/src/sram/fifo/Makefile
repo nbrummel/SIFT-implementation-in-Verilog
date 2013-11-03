@@ -1,4 +1,7 @@
-all: SRAM_WRITE_FIFO.v SRAM_READ_FIFO.v SRAM_DATA_FIFO.v
+XCO_SRC = $(wildcard *.xco)
+V_SRC := $(patsubst %.xco,%.v,$(XCO_SRC))
+
+all: $(V_SRC)
 
 %.v: %.xco
 	coregen -p coregen.cgp -b $*.xco
