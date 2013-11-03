@@ -1,7 +1,7 @@
 ##############################################################
 #
 # Xilinx Core Generator version 14.6
-# Date: Sun Nov  3 22:03:25 2013
+# Date: Sun Nov  3 22:14:00 2013
 #
 ##############################################################
 #
@@ -51,7 +51,7 @@ CSET axis_type=FIFO
 CSET buser_width=1
 CSET clock_enable_type=Slave_Interface_Clock_Enable
 CSET clock_type_axi=Common_Clock
-CSET component_name=SRAM_WRITE_FIFO
+CSET component_name=SRAM_DATA_FIFO
 CSET data_count=false
 CSET data_count_width=4
 CSET disable_timing_violations=true
@@ -210,4 +210,4 @@ CSET wuser_width=1
 MISC pkg_timestamp=2012-11-19T12:39:56Z
 # END Extra information
 GENERATE
-# CRC: cf91b3b3
+# CRC: b685e524
