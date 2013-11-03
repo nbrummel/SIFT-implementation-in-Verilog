@@ -1,8 +1,12 @@
-Nathan Brummel
-cs150-ba
+Logins
+===
 
-Tyler McAtee
-cs150-ar
+Nathan Brummel, cs150-ba
+
+Tyler McAtee, cs150-ar
+
+Checkpoint Progress
+===
 
 Checkpoint 1:
 PatternGenerator.v and PatternGeneratorTest.v up to date and working
@@ -12,7 +16,7 @@ Make for checkpoint 1 no longer working due to new files.
 Checkpoint 2:
 Starting. 
 
-
+Rules
+===
 Please keep commits to a minimum and ONLY commit working compilable code. 
-Use a SFTP to transfer code between computers, not 100 commits with commit messages such as ":(". 
-Please write detailed and useful commit messages.
+Please write detailed and useful commit messages that explain everything that is included in the new working update.
