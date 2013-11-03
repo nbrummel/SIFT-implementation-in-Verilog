@@ -1,9 +1,9 @@
-module PatternGenerator (Clock, Reset, VideoReady, video);
+module PatternGenerator (Clock, Reset, VideoReady, Video);
 
 input Clock;
 input Reset;
 input VideoReady;
-output reg[23:0] video;
+output reg[23:0] Video;
 
 localparam STATE_1 = 3'b000,
 		   STATE_2 = 3'b001,
@@ -73,49 +73,49 @@ end
 always@(*) begin
 	case (RowState)
 		STATE_1: begin
-			video = WISTERIA;
+			Video = WISTERIA;
 			NextRow = STATE_2;
 			NextColumn = STATE_3;
 			NextPage = STATE_5;
 		end
 		STATE_2: begin
-			video = MIDNIGHTBLUE;
+			Video = MIDNIGHTBLUE;
 			NextRow = STATE_1;
 			NextColumn = STATE_3;
 			NextPage = STATE_5;
 		end
 		STATE_3: begin
-			video = GREENSEA;
+			Video = GREENSEA;
 			NextRow = STATE_4;
 			NextColumn = STATE_1;
 			NextPage = STATE_5;
 		end
 		STATE_4: begin
-			video = BELIZE;
+			Video = BELIZE;
 			NextRow = STATE_3;
 			NextColumn = STATE_1;
 			NextPage = STATE_5;
 		end
 		STATE_5: begin
-			video = TURQUOISE;
+			Video = TURQUOISE;
 			NextRow = STATE_6;
 			NextColumn = STATE_7;
 			NextPage = STATE_1;
 		end
 		STATE_6: begin
-			video = CARROT;
+			Video = CARROT;
 			NextRow = STATE_5;
 			NextColumn = STATE_7;
 			NextPage = STATE_1;
 		end
 		STATE_7: begin
-			video = SUNFLOWER;
+			Video = SUNFLOWER;
 			NextRow = STATE_8;
 			NextColumn = STATE_5;
 			NextPage = STATE_1;
 		end
 		STATE_8: begin
-			video = EMERALD;
+			Video = EMERALD;
 			NextRow = STATE_7;
 			NextColumn = STATE_5;
 			NextPage = STATE_1;

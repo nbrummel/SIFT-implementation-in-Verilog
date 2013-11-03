@@ -1,11 +1,5 @@
 # TOP, SRC, TEMPLATES are passed in
 SRCS := $(shell find $(SRC) -type f -name '*.v')
-#SRCS := $(wildcard $(SRC)/*.v)
-#SRCS := $(SRCS) $(wildcard $(SRC)/uart/*.v)
-#SRCS := $(SRCS) $(wildcard $(SRC)/chipscope/*.v)
-#SRCS := $(SRCS) $(wildcard $(SRC)/dvi/*.v)
-#SRCS := $(SRCS) $(wildcard $(SRC)/sram/*.v)
-#SRCS := $(SRCS) $(wildcard $(SRC)/util/*.v)
 UCF := $(wildcard $(SRC)/$(TOP).ucf)
 
 PART := xc5vlx110t-ff1136-1
