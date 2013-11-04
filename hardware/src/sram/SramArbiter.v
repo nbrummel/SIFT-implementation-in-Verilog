@@ -42,36 +42,56 @@ module SramArbiter(
   input  [31:0] sram_data_out,
   input         sram_data_out_valid);
 
+  reg w0_full_signal;
+  reg w1_full_sgnal;
+
+  assign w0_din_ready = ~w0_full_signal;
+  assign w1_din_ready = ~w1_full_signal;
+
+  //Signals from w0_fifo to the arbiter
+  reg rd_en_w0; //input
+  reg valid_w0; //output
+  reg dout_w0; //output
+  reg empty_w0; //output
+
+  //Signals from w1_fifo to the arbiter
+  reg rd_en_w1; //input
+  reg valid_w1; //output
+  reg dout_w1; //output
+  reg empty_w1; //output
+
 // Clock crossing FIFOs --------------------------------------------------------
 
 // The SRAM_WRITE_FIFOis have been instantiated for you, but you must wire it
 // correctly
 
 SRAM_WRITE_FIFO w0_fifo(
-  .rst(),
-  .wr_clk(),
-  .din(),
-  .wr_en(),
-  .full(),
+  .rst(reset), //global reset
+  .wr_clk(w0_clock),
+  .din(w0_din),
+  .wr_en(w0_din_valid),
+  .full(w0_full_signal), //Assign the full to a register so the inverted output
+                         //can be sent out as w0_din_ready
 
-  .rd_clk(),
-  .rd_en(),
-  .valid(),
-  .dout(),
-  .empty());
+  .rd_clk(sram_clock),
+  .rd_en(rd_en_w0),
+  .valid(valid_w0),
+  .dout(dout_w0),
+  .empty(empty_w0));
 
 SRAM_WRITE_FIFO w1_fifo(
-  .rst(),
-  .wr_clk(),
-  .din(),
-  .wr_en(),
-  .full(),
+  .rst(reset), //global reset
+  .wr_clk(w1_clock),
+  .din(w1_din),
+  .wr_en(w1_din_valid),
+  .full(w1_full_signal), //Assign the full to a register so the inverted output
+                         //can be sent out as w1_din_ready
 
-  .rd_clk(),
-  .rd_en(),
-  .valid(),
-  .dout(),
-  .empty());
+  .rd_clk(sram_clock),
+  .rd_en(rd_en_w1),
+  .valid(valid_w1),
+  .dout(dout_w1),
+  .empty(empty_w1));
 
 // Instantiate the Read FIFOs here
 
