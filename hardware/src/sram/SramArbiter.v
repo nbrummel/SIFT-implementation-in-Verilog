@@ -38,9 +38,9 @@ output [31:0] r1_dout, // data
 input         sram_clock,
 output        sram_addr_valid,
 input         sram_ready,
-output [17:0] sram_addr,
-output [31:0] sram_data_in,
-output  [3:0] sram_write_mask,
+output reg [17:0] sram_addr,
+output reg [31:0] sram_data_in,
+output reg  [3:0] sram_write_mask,
 input  [31:0] sram_data_out,
 input         sram_data_out_valid);
 
@@ -64,19 +64,19 @@ assign r0_din_ready = ~r0_addr_full;
 assign r1_din_ready = ~r1_addr_full;
 
 //Signals from w0_fifo to the arbiter
-reg rd_en_w0; //output
+wire rd_en_w0; //output
 wire valid_w0; //input
 wire [53:0] dout_w0; //input
 wire empty_w0; //input
 
 //Signals from w1_fifo to the arbiter
-reg rd_en_w1; //output
+wire rd_en_w1; //output
 wire valid_w1; //input
 wire [53:0] dout_w1; //input
 wire empty_w1; //input
 
 //Signals from r0_addr_fifo to arbiter
-reg rd_en_r0; //output
+wire rd_en_r0; //output
 wire valid_r0; //input
 wire [17:0] dout_r0; //input
 wire empty_r0; //input
@@ -87,7 +87,7 @@ reg r0_data_wr_en; //output
 wire r0_data_full; //input
 
 //Signals from r1_addr_fifo to arbiter
-reg rd_en_r1; //output
+wire rd_en_r1; //output
 wire valid_r1; //input
 wire [17:0] dout_r1; //input
 wire empty_r1; //input
@@ -218,6 +218,19 @@ always@(posedge sram_clock) begin
     else CurrentState <= NextState;
 end
 
+//Handling returning the data to r0 and r1
+//CURRENTLY FORCED TO WORK, NOT SET UP RIGHT.
+always@(*) begin
+    if (sram_data_out_valid) begin
+        r0_data_wr_en = 1;
+        r1_data_din = sram_data_out;
+    end
+    else begin
+        r0_data_wr_en = 0;
+    end
+end
+    
+
 //Next state handling
 always@(*) begin
     NextState = CurrentState;
@@ -313,27 +326,33 @@ always@(*) begin
     endcase
 end
 
+assign rd_en_w0 = (CurrentState == STATE_W0);
+assign rd_en_w1 = (CurrentState == STATE_W1);
+assign rd_en_r0 = (CurrentState == STATE_R0);
+assign rd_en_r1 = (CurrentState == STATE_R1);
+assign sram_addr_valid = ~(CurrentState == STATE_IDLE);
+
+
 //Output Signals handling
 always@(*) begin
-    NextState = CurrentState;
     case (CurrentState)
-        STATE_IDLE: begin
-            //Do stuff
-        end
         STATE_W0: begin
-            //Do stuff
+            sram_write_mask = dout_w0[53:50];
+            sram_addr = dout_w0[49:32];
+            sram_data_in = dout_w0[31:0];
         end
         STATE_W1: begin
-            //Do stuff
+            sram_write_mask = dout_w1[53:50];
+            sram_addr = dout_w1[49:32];
+            sram_data_in = dout_w1[31:0];
         end
         STATE_R0: begin
-            //Do stuff
+            sram_write_mask = 4'b0000;
+            sram_addr = dout_r0;
         end
         STATE_R1: begin
-            //Do stuff
-        end
-        default: begin
-            NextState = STATE_IDLE;
+            sram_write_mask = 4'b0000;
+            sram_addr = dout_r0;
         end
     endcase
 end
