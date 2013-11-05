@@ -89,6 +89,11 @@ wire [17:0] r1_addr; //input
 wire r1_data_wr_en; //output
 wire r1_data_full; //input
 
+reg delay0;
+reg delay1;
+reg delay2;
+reg outputreg;
+
 
 // Clock crossing FIFOs --------------------------------------------------------
 
@@ -203,9 +208,15 @@ reg [2:0] NextState;
 always@(posedge sram_clock) begin
     if (reset) begin
         CurrentState <= STATE_IDLE;
+        delay1 <= 1'b0;
+        delay2 <= 1'b0;
+        outputreg <= 1'b0;
     end
     else begin
         CurrentState <= NextState;
+        delay1 <= delay0;
+        delay2 <= delay1;
+        outputreg <= delay2;
     end
 end 
 
@@ -264,6 +275,8 @@ always@(*) begin
             end
         end
         STATE_R0: begin
+            delay0 = 1'b0;
+
             if (valid_r1 & ~r1_data_full) begin
                 NextState = STATE_R1;
             end
@@ -281,6 +294,8 @@ always@(*) begin
             end
         end
         STATE_R1: begin
+            delay0 = 1'b1;
+
             if (valid_w0) begin
                 NextState = STATE_W0;
             end
@@ -305,7 +320,8 @@ end
 
 //Handling returning the data to r0 and r1
 //CURRENTLY FORCED TO WORK, NOT SET UP RIGHT.
-assign r0_data_wr_en = sram_data_out_valid;
+assign r0_data_wr_en = (sram_data_out_valid && !outputreg);
+assign r1_data_wr_en = (sram_data_out_valid && outputreg);
 
 assign rd_en_w0 = (CurrentState == STATE_W0);
 assign rd_en_w1 = (CurrentState == STATE_W1);
