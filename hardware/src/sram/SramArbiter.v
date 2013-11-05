@@ -19,7 +19,6 @@ input         r0_clock,
 output        r0_din_ready,
 input         r0_din_valid,
 input  [17:0] r0_din, // addr
-
 input         r0_dout_ready,
 output        r0_dout_valid,
 output [31:0] r0_dout, // data
@@ -29,18 +28,17 @@ input         r1_clock,
 output        r1_din_ready,
 input         r1_din_valid,
 input  [17:0] r1_din, // addr
-
 input         r1_dout_ready,
 output        r1_dout_valid,
 output [31:0] r1_dout, // data
 
 // SRAM Interface
 input         sram_clock,
-output reg        sram_addr_valid,
+output        sram_addr_valid,
 input         sram_ready,
-output reg [17:0] sram_addr,
-output reg [31:0] sram_data_in,
-output reg  [3:0] sram_write_mask,
+output [17:0] sram_addr,
+output [31:0] sram_data_in,
+output  [3:0] sram_write_mask,
 input  [31:0] sram_data_out,
 input         sram_data_out_valid);
 
@@ -60,8 +58,8 @@ wire r1_dout_empty;
 // all times.)
 wire r0_addr_full;
 wire r1_addr_full;
-assign r0_din_ready = ~r0_addr_full;
-assign r1_din_ready = ~r1_addr_full;
+assign r0_din_ready = !r0_addr_full;
+assign r1_din_ready = !r1_addr_full;
 
 //Signals from w0_fifo to the arbiter
 wire rd_en_w0; //output
@@ -76,19 +74,19 @@ wire [53:0] dout_w1; //input
 //Signals from r0_addr_fifo to arbiter
 wire rd_en_r0; //output
 wire valid_r0; //input
-wire [17:0] dout_r0; //input
+wire [17:0] r0_addr; //input
 
 //Signals from arbiter to r0_data_fifo
-reg r0_data_wr_en; //output
+wire r0_data_wr_en; //output
 wire r0_data_full; //input
 
 //Signals from r1_addr_fifo to arbiter
 wire rd_en_r1; //output
 wire valid_r1; //input
-wire [17:0] dout_r1; //input
+wire [17:0] r1_addr; //input
 
 //Signals from arbiter to r1_data_fifo
-reg r1_data_wr_en; //output
+wire r1_data_wr_en; //output
 wire r1_data_full; //input
 
 
@@ -139,7 +137,7 @@ SRAM_ADDR_FIFO r0_addr_fifo (
     .rd_clk(sram_clock),
     .rd_en(rd_en_r0),
     .valid(valid_r0),
-    .dout(dout_r0),
+    .dout(r0_addr),
     .empty());
 
 SRAM_DATA_FIFO r0_data_fifo (
@@ -155,7 +153,7 @@ SRAM_DATA_FIFO r0_data_fifo (
     .rd_en(r0_dout_ready),
     .valid(r0_dout_valid),
     .dout(r0_dout),
-    .empty(r0_dout_empty)); 
+    .empty()); 
 
 SRAM_ADDR_FIFO r1_addr_fifo (
     //On Read side
@@ -169,7 +167,7 @@ SRAM_ADDR_FIFO r1_addr_fifo (
     .rd_clk(sram_clock),
     .rd_en(rd_en_r1),
     .valid(valid_r1),
-    .dout(dout_r1),
+    .dout(r1_addr),
     .empty());
 
 SRAM_DATA_FIFO r1_data_fifo (
@@ -185,7 +183,7 @@ SRAM_DATA_FIFO r1_data_fifo (
     .rd_en(r1_dout_ready),
     .valid(r1_dout_valid),
     .dout(r1_dout),
-    .empty(r1_dout_empty));
+    .empty());
 
 // Arbiter Logic ---------------------------------------------------------------
 
@@ -203,13 +201,16 @@ reg [2:0] CurrentState;
 reg [2:0] NextState;
 
 always@(posedge sram_clock) begin
-    if (reset) CurrentState <= STATE_IDLE;
-    else CurrentState <= NextState;
+    if (reset) begin
+        CurrentState <= STATE_IDLE;
+    end
+    else begin
+        CurrentState <= NextState;
+    end
 end 
 
 //Next state handling
 always@(*) begin
-    NextState = CurrentState;
     case (CurrentState)
         STATE_IDLE: begin
             if (valid_w0) begin
@@ -218,10 +219,10 @@ always@(*) begin
             else if (valid_w1) begin
                 NextState = STATE_W1;
             end
-            else if (valid_r0 && ~r0_data_full) begin
+            else if (valid_r0 & ~r0_data_full) begin
                 NextState = STATE_R0;
             end
-            else if (valid_r1) begin
+            else if (valid_r1 & ~r1_data_full) begin
                 NextState = STATE_R1;
             end
             else begin
@@ -232,10 +233,10 @@ always@(*) begin
             if (valid_w1) begin
                 NextState = STATE_W1;
             end
-            else if (valid_r0 && ~r0_data_full) begin
+            else if (valid_r0 & ~r0_data_full) begin
                 NextState = STATE_R0;
             end
-            else if (valid_r1) begin
+            else if (valid_r1 & ~r1_data_full) begin
                 NextState = STATE_R1;
             end
             else if (valid_w0) begin
@@ -246,10 +247,10 @@ always@(*) begin
             end
         end
         STATE_W1: begin
-            if (valid_r0 && ~r0_data_full) begin
+            if (valid_r0 & ~r0_data_full) begin
                 NextState = STATE_R0;
             end
-            else if (valid_r1) begin
+            else if (valid_r1 & ~r1_data_full) begin
                 NextState = STATE_R1;
             end
             else if (valid_w0) begin
@@ -263,7 +264,7 @@ always@(*) begin
             end
         end
         STATE_R0: begin
-            if (valid_r1) begin
+            if (valid_r1 & ~r1_data_full) begin
                 NextState = STATE_R1;
             end
             else if (valid_w0) begin
@@ -272,7 +273,7 @@ always@(*) begin
             else if (valid_w1) begin
                 NextState = STATE_W1;
             end
-            else if (valid_r0 && ~r0_data_full) begin
+            else if (valid_r0 & ~r0_data_full) begin
                 NextState = STATE_R0;
             end
             else begin
@@ -286,10 +287,10 @@ always@(*) begin
             else if (valid_w1) begin
                 NextState = STATE_W1;
             end
-            else if (valid_r0 && ~r0_data_full) begin
+            else if (valid_r0 & ~r0_data_full) begin
                 NextState = STATE_R0;
             end
-            else if (valid_r1) begin
+            else if (valid_r1 & ~r1_data_full) begin
                 NextState = STATE_R1;
             end
             else begin
@@ -302,53 +303,19 @@ always@(*) begin
     endcase
 end
 
+//Handling returning the data to r0 and r1
+//CURRENTLY FORCED TO WORK, NOT SET UP RIGHT.
+assign r0_data_wr_en = sram_data_out_valid;
+
 assign rd_en_w0 = (CurrentState == STATE_W0);
 assign rd_en_w1 = (CurrentState == STATE_W1);
 assign rd_en_r0 = (CurrentState == STATE_R0);
 assign rd_en_r1 = (CurrentState == STATE_R1);
+assign sram_addr_valid = (CurrentState == STATE_W0 || CurrentState == STATE_W1 || CurrentState == STATE_R0 || CurrentState == STATE_R1);
 
-//Output Signals handling
-always@(*) begin
-    case (CurrentState)
-        STATE_IDLE: begin
-            sram_addr_valid = 0;
-        end
-        STATE_W0: begin
-            sram_addr_valid = 1;
-            sram_write_mask = dout_w0[53:50];
-            sram_addr = dout_w0[49:32];
-            sram_data_in = dout_w0[31:0];
-        end
-        STATE_W1: begin 
-            sram_addr_valid = 1;
-            sram_write_mask = dout_w1[53:50];
-            sram_addr = dout_w1[49:32];
-            sram_data_in = dout_w1[31:0];
-        end
-        STATE_R0: begin
-            sram_addr_valid = 1;
-            sram_data_in = dout_w0[31:0];
-            sram_write_mask = 4'b0000;
-            sram_addr = dout_r0;
-        end
-        STATE_R1: begin
-            sram_addr_valid = 1;
-            sram_data_in = dout_w1[31:0];
-            sram_write_mask = 4'b0000;
-            sram_addr = dout_r1;
-        end
-    endcase
-end
+assign sram_data_in = (CurrentState == STATE_W0) ? dout_w0[31:0] : dout_w1[31:0];
+assign sram_write_mask = (CurrentState == STATE_W0) ? dout_w0[53:50] : ((CurrentState == STATE_W1) ? dout_w1[53:50] : 4'b0000);
+assign sram_addr = (CurrentState == STATE_W0) ? dout_w0[49:32] : ((CurrentState == STATE_W1) ? dout_w1[49:32] : ((CurrentState == STATE_R0) ? r0_addr : ((CurrentState == STATE_R1) ? r1_addr : 0)));
 
-//Handling returning the data to r0 and r1
-//CURRENTLY FORCED TO WORK, NOT SET UP RIGHT.
-always@(*) begin
-    if (sram_data_out_valid) begin
-        r0_data_wr_en = 1;
-    end
-    else begin
-        r0_data_wr_en = 0;
-    end
-end
 
 endmodule
