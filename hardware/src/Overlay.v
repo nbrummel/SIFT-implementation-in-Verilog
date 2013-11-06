@@ -2,7 +2,7 @@ module Overlay #(
   parameter N_ROW = 300,
             N_COL = 400,
             N_PIXEL = N_COL * N_ROW * 256,
-            MASK_MAP = "mask.binary")
+            MASK_MAP = "mask.hex")
   (
     input clock,
     input reset,
