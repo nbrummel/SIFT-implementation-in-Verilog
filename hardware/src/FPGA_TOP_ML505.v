@@ -112,12 +112,14 @@ module FPGA_TOP_ML505(
 
   wire reset;
   assign reset = reset_in | ~pll_lock;
-  
+
   // -- |Swap Controller| ------------------------------------------------------
   
   wire dvi_swap, dvi_swap_ack;
   wire bg_start, bg_start_ack;
   wire bg_done, bg_done_ack;
+  wire ol_start, ol_start_ack;
+  wire ol_done, ol_done_ack;
 
   SwapController sc(
     .clock(clk_10M),
@@ -127,7 +129,11 @@ module FPGA_TOP_ML505(
     .bg_start(bg_start),
     .bg_start_ack(bg_start_ack),
     .bg_done(bg_done),
-    .bg_done_ack(bg_done_ack));
+    .bg_done_ack(bg_done_ack),
+    .ol_start(ol_start),
+    .ol_start_ack(ol_start_ack),
+    .ol_done(ol_done),
+    .ol_done_ack(ol_done_ack));
 
   // -- |Image Buffer Writer| --------------------------------------------------
   `define IMAGE_WRITER_ENABLE
@@ -192,6 +198,31 @@ module FPGA_TOP_ML505(
       .data(dvi_data),
       .data_valid(dvi_data_valid));
   `endif
+
+  // -- |Overlay Writer| --------------------------------------------------
+  `define OVERLAY_ENABLE
+  
+  `ifdef OVERLAY_ENABLE
+
+    wire ol_clock;
+    assign ol_clock = clk_10M;
+
+    wire [53:0] ol_dout;
+    wire ol_valid,ol_ready;
+
+    Overlay ol (
+      .clock(ol_clock),
+      .reset(reset),
+      .scroll(GPIO_DIP[1]),
+      .start(ol_start),
+      .start_ack(ol_start_ack),
+      .done(ol_done),
+      .done_ack(ol_done_ack),
+      .dout(ol_dout),
+      .valid(ol_valid),
+      .ready(ol_ready));
+
+  `endif // OVERLAY_ENABLE
   
   // -- |SRAM Arbiter| ---------------------------------------------------------
   `define SRAM_ARBITER_ENABLE
@@ -218,10 +249,10 @@ module FPGA_TOP_ML505(
       .w0_din(bg_dout),// {mask,addr,data}
 
       // W1: Overlay Writer
-      .w1_clock(1'b0),
-      .w1_din_ready(),
-      .w1_din_valid(),
-      .w1_din(),// {mask,addr,data}
+      .w1_clock(ol_clock),
+      .w1_din_ready(ol_ready),
+      .w1_din_valid(ol_valid),
+      .w1_din(ol_dout),// {mask,addr,data}
 
       // R0: Image Buffer Reader
       .r0_clock(dvi_clock),
