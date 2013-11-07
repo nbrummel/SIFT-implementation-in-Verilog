@@ -14,7 +14,7 @@ module SramArbiterTest();
         initial begin
                 component_clock = 0;
                 sram_clock = 0;
-                Reset = 1;
+                reset = 1;
                 #(CCycle);
                 #(SCycle);
                 reset = 0;
@@ -23,7 +23,7 @@ module SramArbiterTest();
         always #(component_hl) component_clock = ~component_clock;
         always #(sram_hl) sram_clock = ~sram_clock;
 
-	    wire 	w0_din_ready,
+	    reg 	w0_din_ready,
 	         	w1_din_ready,
 	         	r0_din_ready,
 	         	r1_din_ready,
@@ -34,26 +34,26 @@ module SramArbiterTest();
 	        	r1_din_valid,
 	        	sram_addr_valid;
         
-        wire 	r1_dout_valid,
+        reg 	r1_dout_valid,
         		r0_dout_valid,
         		r0_dout_ready,
          		r1_dout_ready,
         		sram_data_out_valid;
 
-        wire [53:0]	w0_din,
+        reg [53:0]	w0_din,
 					w1_din;
 
-		wire [17:0]	sram_addr,
+		reg [17:0]	sram_addr,
 					r0_din,
 					r1_din;
 
-		wire [31:0]	sram_data_in;
+		reg [31:0]	sram_data_in;
 
-		wire [31:0]	r0_dout,
+		reg [31:0]	r0_dout,
 					r1_dout,
 					sram_data_out;
 
-		wire [3:0]	sram_write_mask;
+		reg [3:0]	sram_write_mask;
 
         SramArbiter(
                 .reset(reset),
@@ -126,6 +126,8 @@ module SramArbiterTest();
 			input  [31:0] sram_data_outTest;
 			input         sram_data_out_validTest;
 
+			integer cst;
+
 
 	        begin
 			  	// Initialize test case signals here
@@ -159,63 +161,62 @@ module SramArbiterTest();
 			  	$display("%c[1;34m",27);	
       			$display("************************** COMPLETE SEQUENCE TEST ****************************\n");
 		  		$display("%c[0m",27);
-			  	integer cst;
 			  	cst = 0;
 			  	while (cst < 2) begin
 			  		#(SCycle)
 				  	if (sram_data_in != w0_dinTest) begin
 				  		$display("%c[1;31m",27);
 					  	$display("FAIL: Sweep 0x%d for w0_din 0x%h",
-							cst, w0_dinTest;
+							cst, w0_dinTest);
 					  	$display("\tExpected w0_dinTest: 0x%h,\n\tResulting sram_data_in: 0x%h ",
 							w0_dinTest, sram_data_in);
 					  	$display("%c[0m",27);
 					end else begin 
 						$display("%c[1;31m",27);
 					  	$display("PASSED: Sweep 0x%d for w0_din 0x%h",
-							cst, w0_dinTest;
+							cst, w0_dinTest);
 					  	$display("%c[0m",27);
 					end
 					#(SCycle)
 					if (sram_data_in != w1_dinTest) begin
 				  		$display("%c[1;31m",27);
 					  	$display("FAIL: Sweep 0x%d for w1_din 0x%h",
-							cst, w1_dinTest;
+							cst, w1_dinTest);
 					  	$display("\tExpected w1_dinTest: 0x%h,\n\tResulting sram_data_in: 0x%h ",
 							w1_dinTest, sram_data_in);
 					  	$display("%c[0m",27);
 					end else begin 
 						$display("%c[1;31m",27);
 					  	$display("PASSED: Sweep 0x%d for w1_din 0x%h",
-							cst, w1_dinTest;
+							cst, w1_dinTest);
 					  	$display("%c[0m",27);
 					end
 					#(SCycle)
 					if (sram_data_outTest != r0_dout) begin
 				  		$display("%c[1;31m",27);
 					  	$display("FAIL: Sweep 0x%d for r0_dout 0x%h",
-							cst, sram_data_outTest;
+							cst, sram_data_outTest);
 					  	$display("\tExpected sram_data_outTest: 0x%h,\n\tResulting r0_dout: 0x%h ",
 							sram_data_outTest, r0_dout);
 					  	$display("%c[0m",27);
 					end else begin 
 						$display("%c[1;31m",27);
 					  	$display("PASSED: Sweep 0x%d for r0_dout 0x%h",
-							cst, sram_data_outTest;
+							cst, sram_data_outTest);
 					  	$display("%c[0m",27);
 					end
 					#(SCycle)
 					if (sram_data_outTest != r1_dout) begin
 				  		$display("%c[1;31m",27);
 					  	$display("FAIL: Sweep 0x%d for r1_dout 0x%h",
-							cst, sram_data_outTest;
+							cst, sram_data_outTest);
 					  	$display("\tExpected sram_data_outTest: 0x%h,\n\tResulting r1_dout: 0x%h ",
 							sram_data_outTest, r1_dout);
 					  	$display("%c[0m",27);
 					end else begin 
 						$display("%c[1;31m",27);
 					  	$display("PASSED: Sweep 0x%d for r1_dout 0x%h",
-							cst, sram_data_outTest;
+							cst, sram_data_outTest);
 					  	$display("%c[0m",27);
 					end
 					cst = cst + 1;
@@ -293,14 +294,14 @@ module SramArbiterTest();
 			  	if (sram_data_in != w0_dinTest) begin
 			  		$display("%c[1;31m",27);
 				  	$display("FAIL: Sweep 0x%d for w0_din 0x%h",
-						cst, w0_dinTest;
+						cst, w0_dinTest);
 				  	$display("\tExpected w0_dinTest: 0x%h,\n\tResulting sram_data_in: 0x%h ",
 						w0_dinTest, sram_data_in);
 				  	$display("%c[0m",27);
 				end else begin 
 					$display("%c[1;31m",27);
 				  	$display("PASSED: Sweep 0x%d for w0_din 0x%h",
-						cst, w0_dinTest;
+						cst, w0_dinTest);
 				  	$display("\tExpected w0_dinTest: 0x%h,\n\tResulting sram_data_in: 0x%h ",
 						w0_dinTest, sram_data_in);
 				  	$display("%c[0m",27);
@@ -309,14 +310,14 @@ module SramArbiterTest();
 				if (sram_data_in != w1_dinTest) begin
 			  		$display("%c[1;31m",27);
 				  	$display("FAIL: Sweep 0x%d for w1_din 0x%h",
-						cst, w1_dinTest;
+						cst, w1_dinTest);
 				  	$display("\tExpected w1_dinTest: 0x%h,\n\tResulting sram_data_in: 0x%h ",
 						w1_dinTest, sram_data_in);
 				  	$display("%c[0m",27);
 				end else begin 
 					$display("%c[1;31m",27);
 				  	$display("PASSED: Sweep 0x%d for w1_din 0x%h",
-						cst, w1_dinTest;
+						cst, w1_dinTest);
 				  	$display("\tExpected w1_dinTest: 0x%h,\n\tResulting sram_data_in: 0x%h ",
 						w1_dinTest, sram_data_in);
 				  	$display("%c[0m",27);
@@ -325,14 +326,14 @@ module SramArbiterTest();
 				if (sram_data_outTest != r0_dout) begin
 			  		$display("%c[1;31m",27);
 				  	$display("FAIL: Sweep 0x%d for r0_dout 0x%h",
-						cst, sram_data_outTest;
+						cst, sram_data_outTest);
 				  	$display("\tExpected sram_data_outTest: 0x%h,\n\tResulting r0_dout: 0x%h ",
 						sram_data_outTest, r0_dout);
 				  	$display("%c[0m",27);
 				end else begin 
 					$display("%c[1;31m",27);
 				  	$display("PASSED: Sweep 0x%d for r0_dout 0x%h",
-						cst, sram_data_outTest;
+						cst, sram_data_outTest);
 				  	$display("\tExpected sram_data_outTest: 0x%h,\n\tResulting r0_dout: 0x%h ",
 						sram_data_outTest, r0_dout);
 				  	$display("%c[0m",27);
@@ -341,14 +342,14 @@ module SramArbiterTest();
 				if (sram_data_outTest != r1_dout) begin
 			  		$display("%c[1;31m",27);
 				  	$display("FAIL: Sweep 0x%d for r1_dout 0x%h",
-						cst, sram_data_outTest;
+						cst, sram_data_outTest);
 				  	$display("\tExpected sram_data_outTest: 0x%h,\n\tResulting r1_dout: 0x%h ",
 						sram_data_outTest, r1_dout);
 				  	$display("%c[0m",27);
 				end else begin 
 					$display("%c[1;31m",27);
 				  	$display("PASSED: Sweep 0x%d for r1_dout 0x%h",
-						cst, sram_data_outTest;
+						cst, sram_data_outTest);
 				  	$display("\tExpected sram_data_outTest: 0x%h,\n\tResulting r1_dout: 0x%h ",
 						sram_data_outTest, r1_dout);
 				  	$display("%c[0m",27);
@@ -385,6 +386,8 @@ module SramArbiterTest();
 			input  [31:0] sram_data_outTest;
 			input         sram_data_out_validTest;
 
+			integer cst;
+
 
 	        begin
 			  	// Initialize test case signals here
@@ -418,34 +421,33 @@ module SramArbiterTest();
 			  	$display("%c[1;34m",27);	
       			$display("************************** STOP REQUEST TEST ****************************\n");
 		  		$display("%c[0m",27);
-			  	integer cst;
-			  	cst = 0
+			  	cst = 0;
 			  	while (cst < 2) begin
-			  		#(SCycle)
+			  		#(SCycle);
 				  	if (sram_data_in != w0_dinTest) begin
 				  		if (r1_din_ready == 1'b0) begin
 					  		$display("%c[1;31m",27);
-						  	$display("FAIL: r1_din_ready 0x%b", 1'b0;
+						  	$display("FAIL: r1_din_ready 0x%b", 1'b0);
 						  	$display("\tExpected r1_din_readyTest: 0x%b,\n\tResulting r1_din_ready: 0x%b ",
 								1'b0, r1_din_ready);
 						  	$display("%c[0m",27);
 						end else begin 
 							$display("%c[1;31m",27);
-						  	$display("PASSED: r1_din_ready 0x%b", 1'b0;
+						  	$display("PASSED: r1_din_ready 0x%b", 1'b0);
 						  	$display("%c[0m",27);
 						end
 					end else begin 
 						$display("%c[1;31m",27);
-					  	$display("PASSED: r1_din_ready via w0_din 0x%b", 1'b0;
+					  	$display("PASSED: r1_din_ready via w0_din 0x%b", 1'b0);
 					  	$display("%c[0m",27);
 					end
 					#(SCycle)
 					$display("%c[1;31m",27);
-				  	$display("w1_din";
+				  	$display("w1_din");
 				  	$display("%c[0m",27);
 					#(SCycle)
 					$display("%c[1;31m",27);
-				  	$display("r1_din";
+				  	$display("r1_din");
 				  	$display("%c[0m",27);
 					cst = cst + 1;
 				end
@@ -513,49 +515,49 @@ module SramArbiterTest();
 			  	#(SCycle)
 			  	if (w0_din_ready != 1'b0) begin
 			  		$display("%c[1;31m",27);
-				  	$display("FAIL: w0_din 0x%b", 1'b0;
+				  	$display("FAIL: w0_din 0x%b", 1'b0);
 				  	$display("\tExpected w0_din_readyTest: 0x%b,\n\tResulting w0_din_ready: 0x%b ",
 						1'b0, w0_din_ready);
 				  	$display("%c[0m",27);
 				end else begin 
 					$display("%c[1;31m",27);
-				  	$display("PASSED: w0_din 0x%b", 1'b0;
+				  	$display("PASSED: w0_din 0x%b", 1'b0);
 				  	$display("%c[0m",27);
 				end
 				#(SCycle)
 				if (w1_din_ready!= 1'b0) begin
 			  		$display("%c[1;31m",27);
-				  	$display("FAIL: w1_din 0x%b", 1'b0;
+				  	$display("FAIL: w1_din 0x%b", 1'b0);
 				  	$display("\tExpected w1_din_readyTest: 0x%b,\n\tResulting w1_din_ready: 0x%b ",
 						1'b0, w1_din_ready);
 				  	$display("%c[0m",27);
 				end else begin 
 					$display("%c[1;31m",27);
-				  	$display("PASSED: w1_din 0x%b", 1'b0;
+				  	$display("PASSED: w1_din 0x%b", 1'b0);
 				  	$display("%c[0m",27);
 				end
 				#(SCycle)
 				if (r0_din_ready!= 1'b0) begin
 			  		$display("%c[1;31m",27);
-				  	$display("FAIL: r0_din 0x%b", 1'b0;
+				  	$display("FAIL: r0_din 0x%b", 1'b0);
 				  	$display("\tExpected r0_din_readyTest: 0x%b,\n\tResulting r0_din_ready: 0x%b ",
 						1'b0, r0_din_ready);
 				  	$display("%c[0m",27);
 				end else begin 
 					$display("%c[1;31m",27);
-				  	$display("PASSED: r0_din 0x%b", 1'b0;
+				  	$display("PASSED: r0_din 0x%b", 1'b0);
 				  	$display("%c[0m",27);
 				end
 				#(SCycle)
 				if (r1_din_ready!= 1'b0) begin
 			  		$display("%c[1;31m",27);
-				  	$display("FAIL: r1_din 0x%b", 1'b0;
+				  	$display("FAIL: r1_din 0x%b", 1'b0);
 				  	$display("\tExpected r1_din_readyTest: 0x%b,\n\tResulting r1_din_ready: 0x%b ",
 						1'b0, r1_din_ready);
 				  	$display("%c[0m",27);
 				end else begin 
 					$display("%c[1;31m",27);
-				  	$display("PASSED: r1_din 0x%b", 1'b0;
+				  	$display("PASSED: r1_din 0x%b", 1'b0);
 				  	$display("%c[0m",27);
 				end
 			end	
