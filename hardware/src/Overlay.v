@@ -21,7 +21,7 @@ input clock,
   output valid,
   input ready);
 
-  reg [7:0] mask_map [47:0];
+  reg [7:0] mask_map [63:0];
   initial begin
     $readmemh(MASK_MAP, mask_map);
   end
@@ -40,7 +40,7 @@ input clock,
   reg [8:0] i;
 
   assign addr = ((ROW_P + Y) * N_ROW) + (COL_P + X);
-  assign pixel = count + 32'h020103;
+  assign pixel = count + 32'h02020202;
   /*assign pixel = {count + {2'h01, 2'd3},
                   count + {2'h01, 2'd2},
                   count + {2'h01, 2'd1},
@@ -96,8 +96,8 @@ input clock,
       start_ack_r <= start_ack;
       // Use edge signal so we don't submit multiple at the same addr
       if (start_edge) begin
-        Y <= mask_map[8'd0][7:4];
-        X <= mask_map[8'd0][3:0];
+        Y <= mask_map[i][7:4];
+        X <= mask_map[i][3:0];
         mask <= mask_map[i][3:0];
         i <= i + 8'd1;
       end else if (inc) begin
