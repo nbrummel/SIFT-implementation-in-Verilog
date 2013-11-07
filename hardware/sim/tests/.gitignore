@@ -1,4 +1,0 @@
-*.do
-*.hex
-!src/*.do
-!data/*.hex
