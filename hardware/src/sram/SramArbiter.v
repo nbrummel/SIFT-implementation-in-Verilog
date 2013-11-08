@@ -1,6 +1,7 @@
 module SramArbiter(
 // Application interface
 input reset,
+output [2:0]  theState,
 
 // W0
 input         w0_clock,
@@ -204,6 +205,8 @@ localparam  STATE_IDLE = 3'd0,
 //State reg declarations
 reg [2:0] CurrentState;
 reg [2:0] NextState;
+
+assign theState = CurrentState;
 
 always@(posedge sram_clock) begin
     if (reset) begin
