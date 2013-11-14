@@ -14,7 +14,12 @@ All tests for PatternGenerator in sim folder working
 Make for checkpoint 1 no longer working due to new files.
 
 Checkpoint 2:
-Starting. 
+Finished and working. Does the Overlay work?
+
+Checkpoint 3:
+Finished the block diagrams. Basically there is some minimal work left to do 
+to list all the control signals (not all of them are shown).
+I will explain it all to you when I see you next. We are presenting tomorrow at 7pm ish.
 
 Rules
 ===
