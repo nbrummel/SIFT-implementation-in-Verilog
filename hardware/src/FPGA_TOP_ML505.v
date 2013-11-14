@@ -28,7 +28,13 @@ module FPGA_TOP_ML505(
   output  SRAM_OE_B,
   output  [3:0] SRAM_BW,
   output [17:0] SRAM_A,
-  inout  [31:0] SRAM_D);
+  inout  [31:0] SRAM_D,
+  
+  // VGA Capture
+  input [7:0] VGA_RED, VGA_GREEN, VGA_BLUE,
+  input VGA_DATA_CLK,
+  input VGA_HSOUT,
+  input VGA_VSOUT);
 
   //--|Parameters|--------------------------------------------------------------
 
@@ -129,6 +135,34 @@ module FPGA_TOP_ML505(
     .bg_done(bg_done),
     .bg_done_ack(bg_done_ack));
 
+  // -- |VGA Capture| ----------------------------------------------------------
+  `define VGA_ENABLE
+
+  wire vga_clock;
+  wire vga_start, vga_start_ack;
+  wire vga_done, vga_done_ack;
+  wire [7:0] vga_video;
+  wire vga_video_valid;
+
+  `ifdef VGA_ENABLE
+    VGA vga (
+      .reset(reset),
+      .clock(vga_clock),
+      .start(vga_start),
+      .start_ack(vga_start_ack),
+      .done(vga_done),
+      .done_ack(vga_done_ack),
+      .video(vga_video),
+      .video_valid(vga_video_valid),
+
+      .vga_red(VGA_RED),
+      .vga_green(VGA_GREEN),
+      .vga_blue(VGA_BLUE),
+      .vga_data_clk(VGA_DATA_CLK),
+      .vga_hsout(VGA_HSOUT),
+      .vga_vsout(VGA_VSOUT));
+  `endif
+
   // -- |Image Buffer Writer| --------------------------------------------------
   `define IMAGE_WRITER_ENABLE
   
@@ -136,7 +170,12 @@ module FPGA_TOP_ML505(
     localparam N_PIXEL = 480000;
 
     wire bg_clock;
+
+  `ifdef VGA_ENABLE
+    assign bg_clock = vga_clock;
+  `else
     assign bg_clock = clk_10M;
+  `endif
 
     wire [53:0] bg_dout;
     wire bg_valid,bg_ready;
@@ -147,13 +186,20 @@ module FPGA_TOP_ML505(
       .clock(bg_clock),
       .reset(reset),
       .scroll(GPIO_DIP[0]),
+      .vga_enable(GPIO_DIP[1]),
+
       .start(bg_start),
       .start_ack(bg_start_ack),
       .done(bg_done),
       .done_ack(bg_done_ack),
       .dout(bg_dout),
       .valid(bg_valid),
-      .ready(bg_ready));
+      .ready(bg_ready),
+
+      .vga_start(vga_start),
+      .vga_start_ack(vga_start_ack),
+      .vga_video(vga_video),
+      .vga_video_valid(vga_video_valid));
 
   `endif // IMAGE_WRITER_ENABLE
 
@@ -220,8 +266,8 @@ module FPGA_TOP_ML505(
       // W1: Overlay Writer
       .w1_clock(1'b0),
       .w1_din_ready(),
-      .w1_din_valid(),
-      .w1_din(),// {mask,addr,data}
+      .w1_din_valid(1'b0),
+      .w1_din(54'd0),// {mask,addr,data}
 
       // R0: Image Buffer Reader
       .r0_clock(dvi_clock),
@@ -235,9 +281,9 @@ module FPGA_TOP_ML505(
       // R1
       .r1_clock(1'b0),
       .r1_din_ready(),
-      .r1_din_valid(),
-      .r1_din(), // addr
-      .r1_dout_ready(),
+      .r1_din_valid(1'b0),
+      .r1_din(18'd0), // addr
+      .r1_dout_ready(1'b0),
       .r1_dout_valid(),
       .r1_dout(), // data
 
