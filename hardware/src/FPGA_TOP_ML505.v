@@ -148,7 +148,7 @@ module FPGA_TOP_ML505(
     VGA vga (
       .reset(reset),
       .clock(vga_clock),
-      .start(vga_start),
+      .start(vga_start & GPIO_DIP[1] & ~GPIO_DIP[0]),
       .start_ack(vga_start_ack),
       .done(vga_done),
       .done_ack(vga_done_ack),
@@ -161,6 +161,29 @@ module FPGA_TOP_ML505(
       .vga_data_clk(VGA_DATA_CLK),
       .vga_hsout(VGA_HSOUT),
       .vga_vsout(VGA_VSOUT));
+  `endif
+  
+  // -- |Static Image| ---------------------------------------------------------
+  `define STATIC_IMAGE_ENABLE
+
+  wire stc_img_enable;
+  assign stc_img_enable = GPIO_DIP[1] & GPIO_DIP[0];
+
+  wire stc_img_start_ack;
+  wire stc_img_valid;
+  wire [7:0] stc_img_video;
+
+  `ifdef STATIC_IMAGE_ENABLE
+    StaticImage stc_img(
+      .clock(vga_clock),
+      .reset(reset),
+
+      .start(vga_start & stc_img_enable),
+      .start_ack(stc_img_start_ack),
+
+      .ready(1'b1),
+      .valid(stc_img_valid),
+      .pixel(stc_img_video));
   `endif
 
   // -- |Image Buffer Writer| --------------------------------------------------
@@ -197,9 +220,9 @@ module FPGA_TOP_ML505(
       .ready(bg_ready),
 
       .vga_start(vga_start),
-      .vga_start_ack(vga_start_ack),
-      .vga_video(vga_video),
-      .vga_video_valid(vga_video_valid));
+      .vga_start_ack(GPIO_DIP[0] ? stc_img_start_ack : vga_start_ack),
+      .vga_video(GPIO_DIP[0] ? stc_img_video : vga_video),
+      .vga_video_valid(GPIO_DIP[0] ? stc_img_valid : vga_video_valid));
 
   `endif // IMAGE_WRITER_ENABLE
 
