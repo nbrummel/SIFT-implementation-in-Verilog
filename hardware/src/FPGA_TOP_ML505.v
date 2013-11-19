@@ -112,88 +112,6 @@ module FPGA_TOP_ML505(
 
   wire reset;
   assign reset = reset_in | ~pll_lock;
-<<<<<<< HEAD
-  
-  // -- |Swap Controller| ------------------------------------------------------
-  
-  wire dvi_swap, dvi_swap_ack;
-  wire bg_start, bg_start_ack;
-  wire bg_done, bg_done_ack;
-
-  SwapController sc(
-    .clock(clk_10M),
-    .reset(reset),
-    .swap(dvi_swap),
-    .swap_ack(dvi_swap_ack),
-    .bg_start(bg_start),
-    .bg_start_ack(bg_start_ack),
-    .bg_done(bg_done),
-    .bg_done_ack(bg_done_ack));
-
-  // -- |Image Buffer Writer| --------------------------------------------------
-  `define IMAGE_WRITER_ENABLE
-  
-  `ifdef IMAGE_WRITER_ENABLE
-    localparam N_PIXEL = 480000;
-
-    wire bg_clock;
-    assign bg_clock = clk_10M;
-
-    wire [53:0] bg_dout;
-    wire bg_valid,bg_ready;
-
-    ImageBufferWriter #(
-      .N_PIXEL(N_PIXEL))
-    ibw (
-      .clock(bg_clock),
-      .reset(reset),
-      .scroll(GPIO_DIP[0]),
-      .start(bg_start),
-      .start_ack(bg_start_ack),
-      .done(bg_done),
-      .done_ack(bg_done_ack),
-      .dout(bg_dout),
-      .valid(bg_valid),
-      .ready(bg_ready));
-
-  `endif // IMAGE_WRITER_ENABLE
-
-  // -- |Image Buffer Reader| --------------------------------------------------
-  `define IMAGE_READER_ENABLE
-
-  `ifdef IMAGE_READER_ENABLE
-    wire dvi_clock;
-    assign dvi_clock = clk_50M;
-
-    wire [23:0] dvi_video;
-    wire dvi_video_valid, dvi_video_ready;
-
-    wire [17:0] dvi_addr;
-    wire dvi_addr_valid, dvi_addr_ready;
-
-    wire [31:0] dvi_data;
-    wire dvi_data_valid, dvi_data_ready;
-
-    ImageBufferReader #(
-      .N_PIXEL(N_PIXEL))
-    ibr (
-      .clock(dvi_clock),
-      .reset(reset),
-      .swap(dvi_swap),
-      .swap_ack(dvi_swap_ack),
-
-      .video(dvi_video),
-      .video_valid(dvi_video_valid),
-      .video_ready(dvi_video_ready),
-
-      .addr_valid(dvi_addr_valid),
-      .addr(dvi_addr),
-      .addr_ready(dvi_addr_ready),
-      .data_ready(dvi_data_ready),
-      .data(dvi_data),
-      .data_valid(dvi_data_valid));
-  `endif
-=======
 
   // -- |Swap Controller| ------------------------------------------------------
   
@@ -305,7 +223,6 @@ module FPGA_TOP_ML505(
       .ready(ol_ready));
 
   `endif // OVERLAY_ENABLE
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
   
   // -- |SRAM Arbiter| ---------------------------------------------------------
   `define SRAM_ARBITER_ENABLE
@@ -324,21 +241,6 @@ module FPGA_TOP_ML505(
     SramArbiter sram_arbiter(
       // Application interface
       .reset(reset),
-<<<<<<< HEAD
-
-      // W0: Image Buffer Writer
-      .w0_clock(bg_clock),
-      .w0_din_ready(bg_ready),
-      .w0_din_valid(bg_valid),
-      .w0_din(bg_dout),// {mask,addr,data}
-
-      // W1: Overlay Writer
-      .w1_clock(1'b0),
-      .w1_din_ready(),
-      .w1_din_valid(),
-      .w1_din(),// {mask,addr,data}
-
-=======
 
       // W0: Image Buffer Writer
       .w0_clock(bg_clock),
@@ -352,7 +254,6 @@ module FPGA_TOP_ML505(
       .w1_din_valid(ol_valid),
       .w1_din(ol_dout),// {mask,addr,data}
 
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
       // R0: Image Buffer Reader
       .r0_clock(dvi_clock),
       .r0_din_ready(dvi_addr_ready),

@@ -6,10 +6,6 @@
    <spirit:version>1.0</spirit:version>
    <spirit:componentInstances>
       <spirit:componentInstance>
-<<<<<<< HEAD
-         <spirit:instanceName>SRAM_WRITE_FIFO</spirit:instanceName>
-         <spirit:displayName>FIFO Generator</spirit:displayName>
-=======
          <spirit:instanceName>SRAM_ADDR_FIFO</spirit:instanceName>
          <spirit:componentRef spirit:vendor="xilinx.com" spirit:library="ip" spirit:name="fifo_generator" spirit:version="9.3" />
          <spirit:configurableElementValues>
@@ -1811,7 +1807,6 @@
       </spirit:componentInstance>
       <spirit:componentInstance>
          <spirit:instanceName>SRAM_WRITE_FIFO</spirit:instanceName>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
          <spirit:componentRef spirit:vendor="xilinx.com" spirit:library="ip" spirit:name="fifo_generator" spirit:version="9.3" />
          <spirit:configurableElementValues>
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.COMPONENT_NAME">SRAM_WRITE_FIFO</spirit:configurableElementValue>
@@ -2152,11 +2147,7 @@
             <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.C_REG_SLICE_MODE_AXIS">0</spirit:configurableElementValue>
          </spirit:configurableElementValues>
          <spirit:vendorExtensions>
-<<<<<<< HEAD
-            <xilinx:instanceProperties>
-=======
             <xilinx:instanceProperties xmlns:xilinx="http://www.xilinx.com">
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                <xilinx:projectOptions>
                   <xilinx:projectName>coregen</xilinx:projectName>
                   <xilinx:outputDirectory>./</xilinx:outputDirectory>
@@ -2191,12 +2182,9 @@
             </xilinx:instanceProperties>
             <xilinx:generationHistory>
                <xilinx:fileSet>
-<<<<<<< HEAD
-=======
                   <xilinx:name>customization_generator</xilinx:name>
                </xilinx:fileSet>
                <xilinx:fileSet>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   <xilinx:name>model_parameter_resolution_generator</xilinx:name>
                </xilinx:fileSet>
                <xilinx:fileSet>
@@ -2204,15 +2192,9 @@
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO.xco</xilinx:name>
                      <xilinx:userFileType>xco</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:58 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0x019249B8</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0xBF8AC386</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                </xilinx:fileSet>
                <xilinx:fileSet>
@@ -2223,11 +2205,7 @@
                      <xilinx:userFileType>unknown</xilinx:userFileType>
                      <xilinx:timeStamp>Sat Jun 08 22:36:20 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0x9B56C5A6</xilinx:checkSum>
-<<<<<<< HEAD
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/fifo_generator_v9_3_readme.txt</xilinx:name>
@@ -2235,11 +2213,7 @@
                      <xilinx:userFileType>txt</xilinx:userFileType>
                      <xilinx:timeStamp>Sat Jun 08 22:36:20 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0x4A0AA28D</xilinx:checkSum>
-<<<<<<< HEAD
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                </xilinx:fileSet>
                <xilinx:fileSet>
@@ -2248,589 +2222,337 @@
                      <xilinx:name>./SRAM_WRITE_FIFO/example_design/SRAM_WRITE_FIFO_exdes.ucf</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>ucf</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0xB547BB7D</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0xB547BB7D</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/example_design/SRAM_WRITE_FIFO_exdes.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0x939A2C33</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0x939A2C33</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/implement/implement.bat</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0xB4B56803</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0xB4B56803</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/implement/implement.sh</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0x9AC9D3A8</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0x9AC9D3A8</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/implement/implement_synplify.bat</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0x3743B9CE</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0x3743B9CE</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/implement/implement_synplify.sh</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0xCDA5B248</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0xCDA5B248</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/implement/planAhead_ise.bat</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0x3AA1964C</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0x3AA1964C</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/implement/planAhead_ise.sh</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0xE81A0663</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0xE81A0663</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/implement/planAhead_ise.tcl</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>tcl</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0x6E68D739</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0x6E68D739</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/implement/xst.prj</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0xEA7BAC98</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0xEA7BAC98</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/implement/xst.scr</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0xAA296B0E</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0xAA296B0E</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/simulation/SRAM_WRITE_FIFO_dgen.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0xBAB578CF</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0xBAB578CF</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/simulation/SRAM_WRITE_FIFO_dverif.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0x069181EE</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0x069181EE</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/simulation/SRAM_WRITE_FIFO_pctrl.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0xB62089E0</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0xB62089E0</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/simulation/SRAM_WRITE_FIFO_pkg.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0xE0586972</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0xE0586972</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/simulation/SRAM_WRITE_FIFO_rng.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0xF27F32BA</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0xF27F32BA</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/simulation/SRAM_WRITE_FIFO_synth.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0x08708D8A</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0x08708D8A</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/simulation/SRAM_WRITE_FIFO_tb.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0x789E5502</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0x789E5502</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/simulation/functional/simulate_isim.bat</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0x9A50D840</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0x9A50D840</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/simulation/functional/simulate_isim.sh</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0x873816C4</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0x873816C4</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/simulation/functional/simulate_mti.bat</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0x0C3CDB0C</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0x0C3CDB0C</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/simulation/functional/simulate_mti.do</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0xCC1CCCB9</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0xCC1CCCB9</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/simulation/functional/simulate_mti.sh</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0x5FDBD750</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0x5FDBD750</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/simulation/functional/simulate_ncsim.sh</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0x65F3A3B9</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0x65F3A3B9</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/simulation/functional/simulate_vcs.sh</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0xD5E2150A</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0xD5E2150A</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/simulation/functional/ucli_commands.key</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0xD4FCF59C</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0xD4FCF59C</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/simulation/functional/vcs_session.tcl</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>tcl</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0xD7F4BB75</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0xD7F4BB75</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/simulation/functional/wave_isim.tcl</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>tcl</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0x5D2C83FF</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0x5D2C83FF</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/simulation/functional/wave_mti.do</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0xD35D4BDC</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0xD35D4BDC</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/simulation/functional/wave_ncsim.sv</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0x0C8D0A34</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0x0C8D0A34</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/simulation/timing/simulate_isim.bat</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0x96F776FE</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0x96F776FE</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/simulation/timing/simulate_isim.sh</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0xE50B8BAE</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0xE50B8BAE</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/simulation/timing/simulate_mti.bat</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0x0C3CDB0C</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0x0C3CDB0C</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/simulation/timing/simulate_mti.do</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0xACDC8A28</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0xACDC8A28</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/simulation/timing/simulate_mti.sh</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0x5FDBD750</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0x5FDBD750</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/simulation/timing/simulate_ncsim.sh</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0x56953637</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0x56953637</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/simulation/timing/simulate_vcs.sh</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0xE1412620</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0xE1412620</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/simulation/timing/ucli_commands.key</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0xD4FCF59C</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0xD4FCF59C</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/simulation/timing/vcs_session.tcl</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>tcl</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0xAF67ED67</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0xAF67ED67</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/simulation/timing/wave_isim.tcl</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>tcl</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0x5D2C83FF</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0x5D2C83FF</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/simulation/timing/wave_mti.do</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0xD35D4BDC</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0xD35D4BDC</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/simulation/timing/wave_ncsim.sv</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:36:59 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0x0C8D0A34</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:15:28 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0x0C8D0A34</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                </xilinx:fileSet>
                <xilinx:fileSet>
@@ -2838,15 +2560,9 @@
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO.ngc</xilinx:name>
                      <xilinx:userFileType>ngc</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:38:17 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0x414312FF</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:16:46 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0x37168C56</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                </xilinx:fileSet>
                <xilinx:fileSet>
@@ -2860,15 +2576,9 @@
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO.veo</xilinx:name>
                      <xilinx:userFileType>veo</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:38:17 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0xFFD0238D</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:16:47 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0xFFD0238D</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                </xilinx:fileSet>
                <xilinx:fileSet>
@@ -2876,15 +2586,9 @@
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO.v</xilinx:name>
                      <xilinx:userFileType>verilog</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:38:17 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0xD1BF3447</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:16:47 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0xD1BF3447</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                </xilinx:fileSet>
                <xilinx:fileSet>
@@ -2893,73 +2597,38 @@
                      <xilinx:name>./SRAM_WRITE_FIFO/doc/fifo_generator_v9_3_readme.txt</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>txt</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:38:17 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0x4A0AA28D</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:16:47 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0x4A0AA28D</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/doc/fifo_generator_v9_3_vinfo.html</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:38:17 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0x9B56C5A6</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:16:47 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0x9B56C5A6</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO/doc/pg057-fifo-generator.pdf</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>pdf</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:38:17 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0x90F23916</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:16:47 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0x90F23916</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                </xilinx:fileSet>
                <xilinx:fileSet>
                   <xilinx:name>readme_documents_generator</xilinx:name>
-<<<<<<< HEAD
-                  <xilinx:file>
-                     <xilinx:name>./SRAM_WRITE_FIFO/doc/fifo_generator_v9_3_readme.txt</xilinx:name>
-                     <xilinx:userFileType>ignore</xilinx:userFileType>
-                     <xilinx:userFileType>txt</xilinx:userFileType>
-                     <xilinx:timeStamp>Tue Oct 22 23:38:18 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0x4A0AA28D</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-                  </xilinx:file>
-=======
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                </xilinx:fileSet>
                <xilinx:fileSet>
                   <xilinx:name>asy_generator</xilinx:name>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO.asy</xilinx:name>
                      <xilinx:userFileType>asy</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:38:20 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0x49DED25F</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:16:50 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0x49DED25F</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                </xilinx:fileSet>
                <xilinx:fileSet>
@@ -2968,15 +2637,9 @@
                      <xilinx:name>./SRAM_WRITE_FIFO_xmdf.tcl</xilinx:name>
                      <xilinx:userFileType>tclXmdf</xilinx:userFileType>
                      <xilinx:userFileType>tcl</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:38:20 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0xA5C49251</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:16:50 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0xA5C49251</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                </xilinx:fileSet>
                <xilinx:fileSet>
@@ -2985,29 +2648,17 @@
                      <xilinx:name>./SRAM_WRITE_FIFO.gise</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>gise</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:38:23 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0x1CA56206</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:16:53 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0x1CA56206</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO.xise</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>xise</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:38:23 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0x4B5E3BDD</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:16:53 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0xB150CA3F</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                </xilinx:fileSet>
                <xilinx:fileSet>
@@ -3016,29 +2667,17 @@
                      <xilinx:name>./SRAM_WRITE_FIFO.gise</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>gise</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:38:26 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0xD47B7B04</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:16:56 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0xD47B7B04</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./SRAM_WRITE_FIFO.xise</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>xise</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:38:26 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0x3CBD5809</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:16:56 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0x4F1D58D1</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
                   </xilinx:file>
                </xilinx:fileSet>
                <xilinx:fileSet>
@@ -3051,13 +2690,6 @@
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>txtFlist</xilinx:userFileType>
                      <xilinx:userFileType>txt</xilinx:userFileType>
-<<<<<<< HEAD
-                     <xilinx:timeStamp>Tue Oct 22 23:38:27 GMT 2013</xilinx:timeStamp>
-                     <xilinx:checkSum>0xB827518D</xilinx:checkSum>
-                     <xilinx:generationId>generationID_1879581046</xilinx:generationId>
-                  </xilinx:file>
-               </xilinx:fileSet>
-=======
                      <xilinx:timeStamp>Tue Nov 05 06:16:56 GMT 2013</xilinx:timeStamp>
                      <xilinx:checkSum>0xB827518D</xilinx:checkSum>
                      <xilinx:generationId>generationID_152152107</xilinx:generationId>
@@ -3066,7 +2698,6 @@
                <xilinx:fileSet>
                   <xilinx:name>view_readme_generator</xilinx:name>
                </xilinx:fileSet>
->>>>>>> 3f2d1fe029965e5f63a88006b56e02b5fc2c4137
             </xilinx:generationHistory>
          </spirit:vendorExtensions>
       </spirit:componentInstance>
