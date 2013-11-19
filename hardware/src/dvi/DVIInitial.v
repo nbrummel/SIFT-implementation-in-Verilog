@@ -118,13 +118,57 @@ module	DVIInitial(//------------------------------------------------------------
 	//--------------------------------------------------------------------------
 	//	Parameters
 	//--------------------------------------------------------------------------
-	parameter				ClockFreq =				100000000,
-							I2CRate =				100000,
-							I2CAddress =			7'h76;
-	
-	localparam				I2CInitVals =			(ClockFreq < 65000000) ?
-														{8'hC0, 8'h09, 8'h08, 8'h16, 8'h60} :
-														{8'hC0, 8'h09, 8'h06, 8'h26, 8'hA0} ;
+	parameter		ClockFreq = 100000000,
+							I2CRate =      100000,
+							I2CAddress =    7'h76;
+  
+  localparam  DviAddr = I2CAddress,
+              VgaAddr = 7'h4C;
+
+
+  localparam  VgaCmd  = {
+    VgaAddr, 8'h01, // PLL MSb
+    VgaAddr, 8'h02, // PLL LSb
+    VgaAddr, 8'h03, // VCO Range
+    VgaAddr, 8'h12, //HSync Control
+    VgaAddr, 8'h14, // VSync Control
+    VgaAddr, 8'h1F}; // Output Select
+    //VgaAddr, 8'h20}; // OutSel 2
+
+	localparam  VgaData = {
+    8'h42, // PLL[11:4]: 1056 for 75Hz refresh, 49.5MHz pixel clk
+    8'h00, // PLL[3:0]: Last 4 bits are don't care
+    8'b10100000, // VCO: VC-10, Curr-100, 2LSb are xx
+    8'h18, // HSync Ctrl: AutoSel Src, Apos in = neg out
+    8'h1E, // VSync Ctrl: pos in = pos out, filter on
+    8'h14}; // OutSel: 444 mode, Out0 En, Out1 Dis, MedHigh Drive, NonInv clk 
+    //8'h0F};// OutSel2: Normal Output, Enable filtered Hsync, regenerated Hsync
+
+  localparam  DviCmd  =	{
+                DviAddr, 8'h49,
+                DviAddr, 8'h21, 
+                DviAddr, 8'h33, 
+                DviAddr, 8'h34, 
+                DviAddr, 8'h36};
+
+  localparam	DviData =			(ClockFreq < 65000000) ?
+							  {8'hC0, 8'h09, 8'h08, 8'h16, 8'h60} :
+								{8'hC0, 8'h09, 8'h06, 8'h26, 8'hA0} ;
+
+  `define VGA_INIT
+
+  `ifdef VGA_INIT
+    localparam I2CCmdVec  = {VgaCmd,DviCmd},
+             I2CDataVec = {VgaData,DviData};
+
+    localparam N_I2C_CMD = 11;
+  `else
+    localparam I2CCmdVec  = {DviCmd},
+             I2CDataVec = {DviData};
+
+    localparam N_I2C_CMD = 5;
+  `endif
+
 	//--------------------------------------------------------------------------
 	
 	//--------------------------------------------------------------------------
@@ -150,7 +194,7 @@ module	DVIInitial(//------------------------------------------------------------
 	//--------------------------------------------------------------------------
 	//	Wire & Regs
 	//--------------------------------------------------------------------------
-	wire	[7:0]			I2CCommand;
+	wire	[14:0]			I2CCommand;
 	wire					I2CCommandReady, I2CCommandValid, I2CCommandDone;
 	wire	[7:0]			I2CData;
 	wire					I2CDataReady, I2CDataValid, I2CDataDone;
@@ -215,9 +259,9 @@ module	DVIInitial(//------------------------------------------------------------
 	//--------------------------------------------------------------------------
 	
 	
-	FIFOInitial		#(			.Width(			8),
-								.Depth(			5),
-								.Value(			{8'h49, 8'h21, 8'h33, 8'h34, 8'h36} ))
+	FIFOInitial		#(			.Width(15),
+								.Depth(N_I2C_CMD),
+								.Value(I2CCmdVec))
 					I2CCmdInit(	.Clock(			Clock),
 								.Reset(			Reset),
 								.Done(			I2CCommandDone),
@@ -226,8 +270,8 @@ module	DVIInitial(//------------------------------------------------------------
 								.OutReady(		I2CCommandReady));
 	
 	FIFOInitial		#(			.Width(			8),
-								.Depth(			5),
-								.Value(			I2CInitVals))
+								.Depth(N_I2C_CMD),
+								.Value(			I2CDataVec))
 					I2CDatInit(	.Clock(			Clock),
 								.Reset(			Reset),
 								.Done(			I2CDataDone),
@@ -238,8 +282,8 @@ module	DVIInitial(//------------------------------------------------------------
 	I2CDRAMMaster	#(			.ClockFreq(		ClockFreq),
 								.I2CRate(		I2CRate),
 								.WAWidth(		8),
-								.SingleSlave(	1),
-								.SlaveAddress(	I2CAddress))
+								.SingleSlave(0),
+								.SlaveAddress())
 				I2CControl(		.Clock(			Clock),
 								.Reset(			Reset),
 								.SDA(			I2C_SDA_DVI),

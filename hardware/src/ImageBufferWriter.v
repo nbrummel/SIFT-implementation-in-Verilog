@@ -5,6 +5,7 @@ module ImageBufferWriter #(
   input reset,
 
   input scroll,
+  input vga_enable,
 
   input start,
   output reg start_ack,
@@ -14,7 +15,51 @@ module ImageBufferWriter #(
 
   output [53:0] dout,
   output valid,
-  input ready);
+  input ready,
+  
+  output  reg vga_start,
+  input   vga_start_ack,
+  input [7:0] vga_video,
+  input   vga_video_valid);
+
+
+reg vga_enable_r;
+reg [1:0] pixel_idx;
+reg [23:0] pixel_store;
+wire [31:0] vga_pixel_data;
+wire vga_pixel_data_valid;
+
+assign vga_pixel_data = {vga_video, pixel_store};
+assign vga_pixel_data_valid = (pixel_idx == 2'd3);
+
+wire start_edge;
+
+always @(posedge clock) begin
+  if (reset) begin
+    vga_enable_r <= 1'b0;
+    pixel_idx <= 2'd0;
+    vga_start <= 1'b0;
+  end else begin
+    if(start_edge)
+      vga_enable_r <= vga_enable;
+    
+    if (vga_start & vga_start_ack)
+      vga_start <= 1'b0;
+    else if (start_edge)
+      vga_start <= 1'b1;
+
+    if(start_edge)
+      pixel_idx <= 3'd0;
+    else if (vga_video_valid)
+      pixel_idx <= pixel_idx + 1;
+
+    case (pixel_idx)
+      2'd0: pixel_store[7:0]    <= vga_video;
+      2'd1: pixel_store[15:8]   <= vga_video;
+      2'd2: pixel_store[23:16]  <= vga_video; 
+    endcase
+  end
+end
 
 localparam MAX_ADDR = (N_PIXEL/4)-1;
 
@@ -32,9 +77,9 @@ assign pixel = {count + {video[5:0], 2'd3},
                 count + {video[5:0], 2'd0}};
 
 // Concatenate mask, frame, addr, and pixel data
-assign dout = {4'hF, frame, addr, pixel};
+assign dout = {4'hF, frame, addr, vga_enable_r ? vga_pixel_data : pixel};
 
-assign valid = addr <= MAX_ADDR;
+assign valid = vga_enable_r ? vga_pixel_data_valid : addr <= MAX_ADDR;
 
 reg start_ack_r;
 
@@ -43,7 +88,6 @@ wire inc;
 assign inc = valid & ready;
 
 // Simple edge dector on start condition
-wire start_edge;
 assign start_edge = start_ack & ~start_ack_r;
 
 always @(posedge clock) begin

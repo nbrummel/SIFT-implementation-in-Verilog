@@ -1,0 +1,8 @@
+*
+!.gitignore
+!Makefile
+!*.xco
+!*.cgp
+!*.cgc
+!*.py
+!*.jpg

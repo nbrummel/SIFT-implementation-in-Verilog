@@ -40,6 +40,45 @@ NET "GPIO_DIP[6]" LOC="AC25"  | IOSTANDARD="LVCMOS25";
 NET "GPIO_DIP[7]" LOC="AC24"  | IOSTANDARD="LVCMOS25";
 
 ################################################################################
+# VGA
+################################################################################
+NET "VGA_DATA_CLK"  LOC="AH18"  | IOSTANDARD="LVCMOS33";
+NET "VGA_HSOUT"     LOC="AE7"   | IOSTANDARD="LVCMOS33";
+NET "VGA_VSOUT"     LOC="Y6"    | IOSTANDARD="LVCMOS33";
+
+NET "VGA_RED[*]" IOSTANDARD="LVCMOS33";
+NET "VGA_RED[7]"   LOC="W11";
+NET "VGA_RED[6]"   LOC="Y11";
+NET "VGA_RED[5]"   LOC="AG6";
+NET "VGA_RED[4]"   LOC="AH5";
+NET "VGA_RED[3]"   LOC="V7";
+NET "VGA_RED[2]"   LOC="W7";
+NET "VGA_RED[1]"   LOC="AF5";
+NET "VGA_RED[0]"   LOC="AG5";
+
+
+NET "VGA_GREEN[*]" IOSTANDARD="LVCMOS33";
+NET "VGA_GREEN[7]" LOC="AE6";
+NET "VGA_GREEN[6]" LOC="AD6";
+NET "VGA_GREEN[5]" LOC="Y7";
+NET "VGA_GREEN[4]" LOC="AA6";
+NET "VGA_GREEN[3]" LOC="AD5";
+NET "VGA_GREEN[2]" LOC="AD4";
+NET "VGA_GREEN[1]" LOC="Y9";
+NET "VGA_GREEN[0]" LOC="Y8";
+
+
+NET "VGA_BLUE[*]" IOSTANDARD="LVCMOS33";
+NET "VGA_BLUE[7]" LOC="AD7";
+NET "VGA_BLUE[6]" LOC="AC7";
+NET "VGA_BLUE[5]" LOC="AB5";
+NET "VGA_BLUE[4]" LOC="AA5";
+NET "VGA_BLUE[3]" LOC="AB7";
+NET "VGA_BLUE[2]" LOC="AB6";
+NET "VGA_BLUE[1]" LOC="AC5";
+NET "VGA_BLUE[0]" LOC="AC4";
+
+################################################################################
 # SRAM
 ################################################################################
 NET  "SRAM_CLK"             SLEW="FAST" | DRIVE="12" | IOSTANDARD="LVCMOS33";

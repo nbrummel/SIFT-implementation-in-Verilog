@@ -318,12 +318,17 @@ module FPGA_TOP_ML505(
       .w0_din(bg_dout),// {mask,addr,data}
 
       // W1: Overlay Writer
-
+<<<<<<< HEAD
+      .w1_clock(ol_clock),
+      .w1_din_ready(ol_ready),
+      .w1_din_valid(ol_valid),
+      .w1_din(ol_dout),// {mask,addr,data}
+=======
       .w1_clock(1'b0),
       .w1_din_ready(),
       .w1_din_valid(1'b0),
       .w1_din(54'd0),// {mask,addr,data}
-
+>>>>>>> 1cde1b3a8a412066d5335291f9767b9b570d72a1
 
       // R0: Image Buffer Reader
       .r0_clock(dvi_clock),
