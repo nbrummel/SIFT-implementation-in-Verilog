@@ -1,0 +1,23 @@
+SET_PARAMETER ce true
+SET_PARAMETER cepriority CE_Overrides_Sync
+SET_PARAMETER asyncinitradix 2
+SET_PARAMETER syncctrlpriority Reset_Overrides_Set
+SET_PARAMETER depth 800
+SET_PARAMETER meminitfile no_coe_file_loaded
+SET_PARAMETER syncinitradix 2
+SET_PARAMETER syncinitval 0000000000000000
+SET_PARAMETER defaultdata 0000000000000000
+SET_PARAMETER sset false
+SET_PARAMETER defaultdataradix 2
+SET_PARAMETER component_name shift_ram
+SET_PARAMETER optgoal Resources
+SET_PARAMETER sclr true
+SET_PARAMETER asyncinitval 0000000000000000
+SET_PARAMETER width 16
+SET_PARAMETER shiftregtype Variable_Length_Lossless
+SET_PARAMETER readmiffile false
+SET_PARAMETER sinit false
+SET_PARAMETER reglastbit true
+SET_ERROR_CODE 2
+SET_ERROR_MSG  CANCEL: Customization cancelled.
+SET_ERROR_TEXT Finished initializing IP model.	
