@@ -19,9 +19,20 @@ Checkpoint 2:
 Finished and working. Does the Overlay work?
 
 Checkpoint 3:
-Finished the block diagrams. Basically there is some minimal work left to do 
-to list all the control signals (not all of them are shown).
-I will explain it all to you when I see you next. We are presenting tomorrow at 7pm ish.
+Finished and working.
+
+Checkpoint 4:
+Nate:
+	Down Sampler Module
+	Gaussian Module
+	Up Sampler Module
+
+Tyler:
+	Logic
+
+Together:
+	Testing
+
 
 Rules
 ===
