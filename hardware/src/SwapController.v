@@ -45,7 +45,7 @@ module SwapController(
       else if(ol_start & ol_start_ack)
         ol_start <= 1'b0;
       else if(bg_done_edge) begin
-        bg_done_ack <= 1'b1;
+        //bg_done_ack <= 1'b1;
       	ol_start <= 1'b1;
       end
       else if(swap & swap_ack)
@@ -60,7 +60,7 @@ module SwapController(
       if(swap & swap_ack)
         swap <= 1'b0; 
       else if (ol_done_edge) begin
-        ol_done_ack <= 1'b1;
+        //ol_done_ack <= 1'b1;
       	swap <= 1'b1; 
       end
     end

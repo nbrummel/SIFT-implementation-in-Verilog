@@ -217,7 +217,7 @@ always@(posedge sram_clock) begin
     end
     else begin
         CurrentState <= NextState;
-        delay1 <= delay0;
+	delay1 <= delay0;
         delay2 <= delay1;
         outputreg <= delay2;
     end
@@ -253,9 +253,6 @@ always@(*) begin
             else if (valid_r1 & ~r1_data_full) begin
                 NextState = STATE_R1;
             end
-            else if (valid_w0) begin
-                NextState = STATE_W0;
-            end
             else begin
                 NextState = STATE_IDLE;
             end
@@ -269,9 +266,6 @@ always@(*) begin
             end
             else if (valid_w0) begin
                 NextState = STATE_W0;
-            end
-            else if (valid_w1) begin
-                NextState = STATE_W1;
             end
             else begin
                 NextState = STATE_IDLE;
@@ -289,10 +283,7 @@ always@(*) begin
             else if (valid_w1) begin
                 NextState = STATE_W1;
             end
-            else if (valid_r0 & ~r0_data_full) begin
-                NextState = STATE_R0;
-            end
-            else begin
+	    else begin
                 NextState = STATE_IDLE;
             end
         end
@@ -307,9 +298,6 @@ always@(*) begin
             end
             else if (valid_r0 & ~r0_data_full) begin
                 NextState = STATE_R0;
-            end
-            else if (valid_r1 & ~r1_data_full) begin
-                NextState = STATE_R1;
             end
             else begin
                 NextState = STATE_IDLE;
