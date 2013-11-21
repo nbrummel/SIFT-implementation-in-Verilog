@@ -307,15 +307,31 @@ module FPGA_TOP_ML505(
     wire [31:0] sram_data_in,sram_data_out;
     wire [3:0] sram_write_mask;
 
+    wire [53:0] ds_dout;
+    wire ds_empty;
+    wire ds_rd_en;
+    wire ds_valid;
+
+    DownSampler ds(
+        .rst(reset),
+        .clk(bg_clock),
+        .din(bg_dout),
+        .valid(bg_valid),
+        .ready(bg_ready),
+        .valid_out(ds_valid),
+        .dout(ds_dout),
+        .empty(ds_empty),
+        .rd_en(ds_rd_en));
+
     SramArbiter sram_arbiter(
       // Application interface
       .reset(reset),
 
       // W0: Image Buffer Writer
       .w0_clock(bg_clock),
-      .w0_din_ready(bg_ready),
-      .w0_din_valid(bg_valid),
-      .w0_din(bg_dout),// {mask,addr,data}
+      .w0_din_ready(ds_rd_en),
+      .w0_din_valid(ds_valid),
+      .w0_din(ds_dout),// {mask,addr,data}
 
       // W1: Overlay Writer
 
