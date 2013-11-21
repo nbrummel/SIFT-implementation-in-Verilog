@@ -217,7 +217,7 @@ always@(posedge sram_clock) begin
     end
     else begin
         CurrentState <= NextState;
-	delay1 <= delay0;
+	    delay1 <= delay0;
         delay2 <= delay1;
         outputreg <= delay2;
     end

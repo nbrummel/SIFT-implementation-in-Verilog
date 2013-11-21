@@ -1,5 +1,0 @@
-module GaussianControl(
-
-	);
-
-endmodule
