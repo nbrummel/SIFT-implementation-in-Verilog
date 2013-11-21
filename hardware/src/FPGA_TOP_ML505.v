@@ -291,8 +291,8 @@ module FPGA_TOP_ML505(
 
       .vga_start(vga_start),
       .vga_start_ack(GPIO_DIP[0] ? stc_img_start_ack : vga_start_ack),
-      .vga_video(GPIO_DIP[0] ? stc_img_video : vga_video),
-      .vga_video_valid(GPIO_DIP[0] ? stc_img_valid : vga_video_valid));
+      .vga_video(GPIO_DIP[0] ? ds_dout: vga_video),
+      .vga_video_valid(GPIO_DIP[0] ? ds_ready : vga_video_valid));
 
   `endif // IMAGE_WRITER_ENABLE
 
@@ -370,22 +370,6 @@ module FPGA_TOP_ML505(
     wire [17:0] sram_addr;
     wire [31:0] sram_data_in,sram_data_out;
     wire [3:0] sram_write_mask;
-
-    wire [53:0] ds_dout;
-    wire ds_empty;
-    wire ds_rd_en;
-    wire ds_valid;
-
-    DownSampler ds(
-        .rst(reset),
-        .clk(bg_clock),
-        .din(bg_dout),
-        .valid(bg_valid),
-        .ready(bg_ready),
-        .valid_out(ds_valid),
-        .dout(ds_dout),
-        .empty(ds_empty),
-        .rd_en(ds_rd_en));
 
     SramArbiter sram_arbiter(
       // Application interface
