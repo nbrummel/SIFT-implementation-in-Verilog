@@ -192,6 +192,12 @@ module FPGA_TOP_ML505(
       .pixel(stc_img_video));
   `endif
 
+  wire [7:0] ds_out;
+  wire ds_valid;
+  wire [7:0] us_out;
+  wire us_valid;
+  wire us_rd_en;
+
   // -- |Image Buffer Writer| --------------------------------------------------
   `define IMAGE_WRITER_ENABLE
   
@@ -227,10 +233,44 @@ module FPGA_TOP_ML505(
 
       .vga_start(vga_start),
       .vga_start_ack(GPIO_DIP[0] ? stc_img_start_ack : vga_start_ack),
-      .vga_video(GPIO_DIP[0] ? stc_img_video : vga_video),
-      .vga_video_valid(GPIO_DIP[0] ? stc_img_valid : vga_video_valid));
+      .vga_video(GPIO_DIP[0] ? us_out : vga_video),
+      .vga_video_valid(GPIO_DIP[0] ? us_valid : vga_video_valid));
 
   `endif // IMAGE_WRITER_ENABLE
+
+  // -- |Down Sample| ---------------------------------------------------------
+  `define DOWN_SAMPLE_ENABLE
+
+  `ifdef DOWN_SAMPLE_ENABLE
+  DownSampler ds(
+    .rst(reset),
+    .wr_clk(vga_clock),
+    .rd_clk(bg_clock),
+    .din(stc_img_video),
+    .valid(stc_img_valid),
+    .ready(),
+    .valid_out(ds_valid),
+    .dout(ds_out),
+    .empty(),
+    .rd_en(us_rd_en));
+
+  `endif
+
+  // -- |Up Sample| ---------------------------------------------------------
+  `define UP_SAMPLE_ENABLE
+
+  `ifdef UP_SAMPLE_ENABLE
+  UpSampler us(
+    .rst(reset),
+    .clk(vga_clock),
+    .valid(ds_valid),
+    .din(ds_out),
+    .empty(),
+    .rd_en(us_rd_en),
+    .dout(us_out),
+    .valid_out(us_valid));
+
+  `endif
 
   // -- |Image Buffer Reader| --------------------------------------------------
   `define IMAGE_READER_ENABLE
@@ -321,7 +361,7 @@ module FPGA_TOP_ML505(
 
       .w1_clock(ol_clock),
       .w1_din_ready(ol_ready),
-      .w1_din_valid(0'b0),
+      .w1_din_valid(1'b0),
       .w1_din(ol_out),// {mask,addr,data}
 
 

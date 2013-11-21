@@ -1,0 +1,4 @@
+ERROR:encore:120 - Could not read specified project:
+   /home/cc/cs150/fa013/class/cs150-ar/fa13_team06/hardware/src/sram/coregen.cgp
+   .
+ERROR:encore - Cannot identify project.
