@@ -5,7 +5,7 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="info" file="NetListWriters" num="633" delta="new" >The generated Verilog netlist contains Xilinx <arg fmt="%s" index="1">UNISIM</arg> simulation primitives and has to be used with <arg fmt="%s" index="2">UNISIM</arg> simulation library for correct compilation and simulation. 
+<msg type="info" file="NetListWriters" num="633" delta="old" >The generated Verilog netlist contains Xilinx <arg fmt="%s" index="1">UNISIM</arg> simulation primitives and has to be used with <arg fmt="%s" index="2">UNISIM</arg> simulation library for correct compilation and simulation. 
 </msg>
 
 </messages>

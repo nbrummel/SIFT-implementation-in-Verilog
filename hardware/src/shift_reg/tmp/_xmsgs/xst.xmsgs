@@ -5,58 +5,64 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="warning" file="Xst" num="795" delta="new" >&quot;<arg fmt="%s" index="1">/home/cc/cs150/fa013/class/cs150-ba/project/hardware/src/shift_reg/tmp/./_cg/_dbg/./c_shift_ram_v11_0/c_shift_ram_v11_0.vhd</arg>&quot; line <arg fmt="%d" index="2">55</arg>: Size of operands are different : result is &lt;false&gt;.
+<msg type="warning" file="Xst" num="795" delta="old" >&quot;<arg fmt="%s" index="1">/home/cc/cs150/fa013/class/cs150-ba/project/hardware/src/shift_reg/tmp/./_cg/_dbg/./c_shift_ram_v11_0/c_shift_ram_v11_0.vhd</arg>&quot; line <arg fmt="%d" index="2">55</arg>: Size of operands are different : result is &lt;false&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="752" delta="new" >&quot;<arg fmt="%s" index="1">/home/cc/cs150/fa013/class/cs150-ba/project/hardware/src/shift_reg/tmp/./_cg/_dbg/shift_ram.vhd</arg>&quot; line <arg fmt="%d" index="2">118</arg>: Unconnected input port &apos;<arg fmt="%s" index="3">sset</arg>&apos; of component &apos;<arg fmt="%s" index="4">c_shift_ram_v11_0</arg>&apos; is tied to default value.
+<msg type="warning" file="Xst" num="752" delta="new" >&quot;<arg fmt="%s" index="1">/home/cc/cs150/fa013/class/cs150-ba/project/hardware/src/shift_reg/tmp/./_cg/_dbg/shift_ram_800.vhd</arg>&quot; line <arg fmt="%d" index="2">116</arg>: Unconnected input port &apos;<arg fmt="%s" index="3">a</arg>&apos; of component &apos;<arg fmt="%s" index="4">c_shift_ram_v11_0</arg>&apos; is tied to default value.
 </msg>
 
-<msg type="warning" file="Xst" num="752" delta="new" >&quot;<arg fmt="%s" index="1">/home/cc/cs150/fa013/class/cs150-ba/project/hardware/src/shift_reg/tmp/./_cg/_dbg/shift_ram.vhd</arg>&quot; line <arg fmt="%d" index="2">118</arg>: Unconnected input port &apos;<arg fmt="%s" index="3">sinit</arg>&apos; of component &apos;<arg fmt="%s" index="4">c_shift_ram_v11_0</arg>&apos; is tied to default value.
+<msg type="warning" file="Xst" num="752" delta="new" >&quot;<arg fmt="%s" index="1">/home/cc/cs150/fa013/class/cs150-ba/project/hardware/src/shift_reg/tmp/./_cg/_dbg/shift_ram_800.vhd</arg>&quot; line <arg fmt="%d" index="2">116</arg>: Unconnected input port &apos;<arg fmt="%s" index="3">sset</arg>&apos; of component &apos;<arg fmt="%s" index="4">c_shift_ram_v11_0</arg>&apos; is tied to default value.
 </msg>
 
-<msg type="warning" file="Xst" num="752" delta="new" >&quot;<arg fmt="%s" index="1">/home/cc/cs150/fa013/class/cs150-ba/project/hardware/src/shift_reg/tmp/./_cg/_dbg/./c_shift_ram_v11_0/c_shift_ram_v11_0_xst.vhd</arg>&quot; line <arg fmt="%d" index="2">115</arg>: Unconnected input port &apos;<arg fmt="%s" index="3">aclr</arg>&apos; of component &apos;<arg fmt="%s" index="4">c_shift_ram_v11_0_legacy</arg>&apos; is tied to default value.
+<msg type="warning" file="Xst" num="752" delta="new" >&quot;<arg fmt="%s" index="1">/home/cc/cs150/fa013/class/cs150-ba/project/hardware/src/shift_reg/tmp/./_cg/_dbg/shift_ram_800.vhd</arg>&quot; line <arg fmt="%d" index="2">116</arg>: Unconnected input port &apos;<arg fmt="%s" index="3">sinit</arg>&apos; of component &apos;<arg fmt="%s" index="4">c_shift_ram_v11_0</arg>&apos; is tied to default value.
 </msg>
 
-<msg type="warning" file="Xst" num="752" delta="new" >&quot;<arg fmt="%s" index="1">/home/cc/cs150/fa013/class/cs150-ba/project/hardware/src/shift_reg/tmp/./_cg/_dbg/./c_shift_ram_v11_0/c_shift_ram_v11_0_xst.vhd</arg>&quot; line <arg fmt="%d" index="2">115</arg>: Unconnected input port &apos;<arg fmt="%s" index="3">aset</arg>&apos; of component &apos;<arg fmt="%s" index="4">c_shift_ram_v11_0_legacy</arg>&apos; is tied to default value.
+<msg type="warning" file="Xst" num="752" delta="old" >&quot;<arg fmt="%s" index="1">/home/cc/cs150/fa013/class/cs150-ba/project/hardware/src/shift_reg/tmp/./_cg/_dbg/./c_shift_ram_v11_0/c_shift_ram_v11_0_xst.vhd</arg>&quot; line <arg fmt="%d" index="2">115</arg>: Unconnected input port &apos;<arg fmt="%s" index="3">aclr</arg>&apos; of component &apos;<arg fmt="%s" index="4">c_shift_ram_v11_0_legacy</arg>&apos; is tied to default value.
 </msg>
 
-<msg type="warning" file="Xst" num="752" delta="new" >&quot;<arg fmt="%s" index="1">/home/cc/cs150/fa013/class/cs150-ba/project/hardware/src/shift_reg/tmp/./_cg/_dbg/./c_shift_ram_v11_0/c_shift_ram_v11_0_xst.vhd</arg>&quot; line <arg fmt="%d" index="2">115</arg>: Unconnected input port &apos;<arg fmt="%s" index="3">ainit</arg>&apos; of component &apos;<arg fmt="%s" index="4">c_shift_ram_v11_0_legacy</arg>&apos; is tied to default value.
+<msg type="warning" file="Xst" num="752" delta="old" >&quot;<arg fmt="%s" index="1">/home/cc/cs150/fa013/class/cs150-ba/project/hardware/src/shift_reg/tmp/./_cg/_dbg/./c_shift_ram_v11_0/c_shift_ram_v11_0_xst.vhd</arg>&quot; line <arg fmt="%d" index="2">115</arg>: Unconnected input port &apos;<arg fmt="%s" index="3">aset</arg>&apos; of component &apos;<arg fmt="%s" index="4">c_shift_ram_v11_0_legacy</arg>&apos; is tied to default value.
 </msg>
 
-<msg type="warning" file="Xst" num="790" delta="new" >&quot;<arg fmt="%s" index="1">/home/cc/cs150/fa013/class/cs150-ba/project/hardware/src/shift_reg/tmp/./_cg/_dbg/./c_shift_ram_v11_0/c_shift_ram_v11_0_legacy.vhd</arg>&quot; line <arg fmt="%d" index="2">890</arg>: Index value(s) does not match array range, simulation mismatch.
+<msg type="warning" file="Xst" num="752" delta="old" >&quot;<arg fmt="%s" index="1">/home/cc/cs150/fa013/class/cs150-ba/project/hardware/src/shift_reg/tmp/./_cg/_dbg/./c_shift_ram_v11_0/c_shift_ram_v11_0_xst.vhd</arg>&quot; line <arg fmt="%d" index="2">115</arg>: Unconnected input port &apos;<arg fmt="%s" index="3">ainit</arg>&apos; of component &apos;<arg fmt="%s" index="4">c_shift_ram_v11_0_legacy</arg>&apos; is tied to default value.
 </msg>
 
-<msg type="warning" file="Xst" num="647" delta="new" >Input &lt;<arg fmt="%s" index="1">aset</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+<msg type="warning" file="Xst" num="647" delta="old" >Input &lt;<arg fmt="%s" index="1">aset</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 </msg>
 
-<msg type="warning" file="Xst" num="647" delta="new" >Input &lt;<arg fmt="%s" index="1">aclr</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+<msg type="warning" file="Xst" num="647" delta="old" >Input &lt;<arg fmt="%s" index="1">aclr</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 </msg>
 
-<msg type="warning" file="Xst" num="647" delta="new" >Input &lt;<arg fmt="%s" index="1">ainit</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+<msg type="warning" file="Xst" num="647" delta="old" >Input &lt;<arg fmt="%s" index="1">ainit</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 </msg>
 
-<msg type="warning" file="Xst" num="647" delta="new" >Input &lt;<arg fmt="%s" index="1">sinit</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+<msg type="warning" file="Xst" num="647" delta="old" >Input &lt;<arg fmt="%s" index="1">sinit</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 </msg>
 
-<msg type="warning" file="Xst" num="647" delta="new" >Input &lt;<arg fmt="%s" index="1">sset</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+<msg type="warning" file="Xst" num="647" delta="old" >Input &lt;<arg fmt="%s" index="1">sset</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 </msg>
 
-<msg type="warning" file="Xst" num="1780" delta="new" >Signal &lt;<arg fmt="%s" index="1">sset_lut</arg>&gt; is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+<msg type="warning" file="Xst" num="1780" delta="old" >Signal &lt;<arg fmt="%s" index="1">sset_lut</arg>&gt; is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="1780" delta="new" >Signal &lt;<arg fmt="%s" index="1">sinit_lut</arg>&gt; is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+<msg type="warning" file="Xst" num="1780" delta="old" >Signal &lt;<arg fmt="%s" index="1">sinit_lut</arg>&gt; is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="1780" delta="new" >Signal &lt;<arg fmt="%s" index="1">sclr_lut</arg>&gt; is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+<msg type="warning" file="Xst" num="1780" delta="old" >Signal &lt;<arg fmt="%s" index="1">sclr_lut</arg>&gt; is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="1780" delta="new" >Signal &lt;<arg fmt="%s" index="1">ce_lut</arg>&gt; is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+<msg type="warning" file="Xst" num="1780" delta="old" >Signal &lt;<arg fmt="%s" index="1">ce_lut</arg>&gt; is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 </msg>
 
-<msg type="info" file="Xst" num="738" delta="new" >HDL ADVISOR - <arg fmt="%d" index="1">12800</arg> flip-flops were inferred for signal &lt;<arg fmt="%s" index="2">srl_sig</arg>&gt;. You may be trying to describe a RAM in a way that is incompatible with block and distributed RAM resources available on Xilinx devices, or with a specific template that is not supported. Please review the Xilinx resources documentation and the XST user manual for coding guidelines. Taking advantage of RAM resources will lead to improved device usage and reduced synthesis time.
+<msg type="warning" file="Xst" num="647" delta="old" >Input &lt;<arg fmt="%s" index="1">a</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 </msg>
 
-<msg type="info" file="Xst" num="2169" delta="new" >HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
+<msg type="warning" file="Xst" num="1780" delta="new" >Signal &lt;<arg fmt="%s" index="1">link&lt;6&gt;</arg>&gt; is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1780" delta="old" >Signal &lt;<arg fmt="%s" index="1">ai</arg>&gt; is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="info" file="Xst" num="2169" delta="old" >HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
 </msg>
 
 </messages>
