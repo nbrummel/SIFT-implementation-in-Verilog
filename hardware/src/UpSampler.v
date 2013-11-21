@@ -16,53 +16,60 @@ module UpSampler(
 );
 
 localparam 	STATE_IDLE = 3'd0,
-			STATE_READ = 3'd1,
-			STATE_W1 = 3'd2,
-			STATE_W2 = 3'd3,
-			STATE_W3 = 3'd4;
+			STATE_WRITE = 3'd1,
+			STATE_SKIP = 3'd2,
+			STATE_ROW = 3'd3;
 
 reg [2:0] CurrentState;
 reg [2:0] NextState;
+reg [10:0] rowCounter;
 
-assign dout = din;
-assign valid_out = 1'b1;
-assign rd_en = 1'b1;
+assign dout = (CurrentState == STATE_WRITE) ? din : (CurrentState == STATE_SKIP) ? din : 8'd0;
+assign valid_out = (CurrentState != STATE_IDLE);
+assign rd_en = (CurrentState == STATE_WRITE);
 
 always@(posedge clk) begin
 	if (rst) begin
 		CurrentState <= STATE_IDLE;
+		rowCounter <= 11'd0;
 	end
 	else begin
 		CurrentState <= NextState;
+		if (valid)
+			if (rowCounter == 11'd1599)
+				rowCounter <= 11'd0;
+			else
+				rowCounter <= rowCounter + 11'd1;
 	end
 end
 
 always @(*) begin
 	case (CurrentState)
 		STATE_IDLE: begin
-			if (valid) begin
-				NextState = STATE_READ;
-			end
-			else begin
+			if (valid)
+				NextState = STATE_WRITE;
+			else
 				NextState = STATE_IDLE;
-			end
 		end
-		STATE_READ: begin
-			NextState = STATE_W1;
+		STATE_WRITE: begin
+			if (valid)
+				NextState = STATE_SKIP;
+			else
+				NextState = STATE_WRITE; //will check valid before asserting everything
 		end
-		STATE_W1: begin
-			NextState = STATE_W2;
+		STATE_SKIP: begin
+			if ((rowCounter < 11'd799) & valid)
+				NextState = STATE_WRITE;
+			else if (valid)
+				NextState = STATE_ROW;
+			else
+				NextState = STATE_SKIP;
 		end
-		STATE_W2: begin
-			NextState = STATE_W3;
-		end
-		STATE_W3: begin
-			if (valid) begin
-				NextState = STATE_READ;
-			end
-			else begin
-				NextState = STATE_IDLE;
-			end
+		STATE_ROW: begin
+			if (valid && (rowCounter == 11'd1599))
+				NextState = STATE_WRITE;
+			else
+				NextState = STATE_ROW;
 		end
 	endcase
 end
