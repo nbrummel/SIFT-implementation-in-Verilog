@@ -1,5 +1,5 @@
 //Up_Sample.v
-module DOWN_SAMPLE #(
+module UP_SAMPLE #(
 	parameter COL = 800)
 	(
 		input DOG_Clk,

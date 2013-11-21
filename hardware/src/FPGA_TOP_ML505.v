@@ -192,6 +192,70 @@ module FPGA_TOP_ML505(
       .pixel(stc_img_video));
   `endif
 
+  // -- |Down Sample| ---------------------------------------------------------
+  `define DOWN_SAMPLE_ENABLE
+
+  `ifdef VGA_ENABLE
+    assign ds_clock = vga_clock;
+    assign up_clock = vga_clock;
+  `else
+    assign ds_clock = clk_10M;
+    assign up_clock = clk_10M;
+  `endif
+    
+
+  `ifdef DOWN_SAMPLE_ENABLE
+
+  localparam COL = 800,
+             ROW = 600;
+  
+  wire [7:0] ds_dout;
+  wire ds_ready;
+
+    Down_sample #(
+      .COL(COL),
+      .ROW(ROW))
+      ds (
+      .VGA_Clk(ds_clock),
+      .DOG_Clk(up_clock),
+      .Din(stc_img_video),
+      .valid(stc_img_valid),
+      .Reset(reset),
+      .Clk_en(1'b1),
+      .Dout(ds_dout),
+      .Ready(ds_ready),
+      .Empty());
+  `endif
+
+  // -- |Up Sample| ---------------------------------------------------------
+ /* `define Up_SAMPLE_ENABLE
+
+  wire stc_img_enable;
+  assign stc_img_enable = GPIO_DIP[1] & GPIO_DIP[0];
+
+  wire stc_img_start_ack;
+  wire stc_img_valid;
+  wire [7:0] stc_img_video;
+
+  `ifdef Up_SAMPLE_ENABLE
+
+  localparam COL = 800;
+
+    UP_SAMPLE #(
+      .COL(COL))
+      ds (
+      .VGA_Clk(up_clock),
+      .DOG_Clk(vga_clock),
+      .Din(),
+      .valid(),
+      .Reset(),
+      .Clk_en(),
+      .Dout(),
+      .Ready(),
+      .Empty());
+  `endif
+*/
+
   // -- |Image Buffer Writer| --------------------------------------------------
   `define IMAGE_WRITER_ENABLE
   
