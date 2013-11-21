@@ -197,6 +197,9 @@ module FPGA_TOP_ML505(
   wire [7:0] us_out;
   wire us_valid;
   wire us_rd_en;
+  wire gauss_valid;
+  wire [7:0] gauss_out;
+  wire gauss_rd_en;
 
   // -- |Image Buffer Writer| --------------------------------------------------
   `define IMAGE_WRITER_ENABLE
@@ -252,7 +255,24 @@ module FPGA_TOP_ML505(
     .valid_out(ds_valid),
     .dout(ds_out),
     .empty(),
-    .rd_en(us_rd_en));
+    .rd_en(gauss_rd_en));
+
+  `endif
+
+  // -- |Gaussian| ---------------------------------------------------------
+  `define GAUSSIAN
+
+  `ifdef GAUSSIAN
+  GaussianWrapper gw(
+    .rst(reset),
+    .clk(vga_clock),
+    .valid(ds_valid),
+    .din(ds_out),
+    .rd_en_down(gauss_rd_en),
+    .valid_out(gauss_valid),
+    .dout(gauss_out),
+    .empty(),
+    .rd_en_up(us_rd_en));
 
   `endif
 
@@ -263,8 +283,8 @@ module FPGA_TOP_ML505(
   UpSampler us(
     .rst(reset),
     .clk(vga_clock),
-    .valid(ds_valid),
-    .din(ds_out),
+    .valid(gauss_valid),
+    .din(gauss_out),
     .empty(),
     .rd_en(us_rd_en),
     .dout(us_out),
