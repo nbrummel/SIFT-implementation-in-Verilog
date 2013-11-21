@@ -53,11 +53,11 @@
 
 //----------- Begin Cut here for INSTANTIATION Template ---// INST_TAG
 shift_ram_800 your_instance_name (
-  .d(d), // input [15 : 0] d
+  .d(d), // input [7 : 0] d
   .clk(clk), // input clk
   .ce(ce), // input ce
   .sclr(sclr), // input sclr
-  .q(q) // output [15 : 0] q
+  .q(q) // output [7 : 0] q
 );
 // INST_TAG_END ------ End INSTANTIATION Template ---------
 

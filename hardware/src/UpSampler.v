@@ -15,6 +15,17 @@ module UpSampler(
 	output valid_out
 );
 
+wire [7:0] shift_out;
+wire shift_en;
+
+shift_ram_800 srf (
+	.clk(clk),
+	.ce(shift_en),
+	.sclr(rst),
+	.q(shift_out),
+	.d(din)
+	);
+
 localparam 	STATE_IDLE = 3'd0,
 			STATE_WRITE = 3'd1,
 			STATE_SKIP = 3'd2,
@@ -24,8 +35,9 @@ reg [2:0] CurrentState;
 reg [2:0] NextState;
 reg [10:0] rowCounter;
 
-assign dout = (CurrentState == STATE_WRITE) ? din : (CurrentState == STATE_SKIP) ? din : 8'd0;
+assign dout = (CurrentState == STATE_WRITE) ? din : (CurrentState == STATE_SKIP) ? din : shift_out;
 assign valid_out = (CurrentState != STATE_IDLE);
+assign shift_en = (CurrentState != STATE_IDLE);
 assign rd_en = (CurrentState == STATE_WRITE);
 
 always@(posedge clk) begin
