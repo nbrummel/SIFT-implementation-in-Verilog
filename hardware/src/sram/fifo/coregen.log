@@ -1,144 +1,66 @@
-Welcome to Xilinx CORE Generator.
-Help system initialized.
-The IP Catalog has been reloaded.
-Opening project file
-/home/cc/cs150/fa013/class/cs150-ar/fa13_team06/hardware/src/sram/fifo/coregen.c
-gp.
-Recustomize and Generate (Under Original Project Settings)INFO:sim:172 - Generating IP...
-WARNING:sim - Verilog simulation file type 'Behavioral' is not valid for this
-   core. Overriding with simulation file type 'Structural'.
-WARNING:sim - A core named 'shift_ram_400' already exists in the project. Output
-   products for this core may be overwritten.
-Resolving generics for 'shift_ram_400'...
-WARNING:sim - Verilog simulation file type 'Behavioral' is not valid for this
-   core. Overriding with simulation file type 'Structural'.
-WARNING:sim - A core named 'shift_ram_400' already exists in the project. Output
-   products for this core may be overwritten.
-Applying external generics to 'shift_ram_400'...
-Delivering associated files for 'shift_ram_400'...
-Generating implementation netlist for 'shift_ram_400'...
-INFO:sim - Pre-processing HDL files for 'shift_ram_400'...
-Running synthesis for 'shift_ram_400'
+INFO:encore:314 - Created non-GUI application for batch mode execution.
+INFO:sim:172 - Generating IP...
+Resolving generics for 'SRAM_WRITE_FIFO'...
+WARNING:sim - A core named 'SRAM_WRITE_FIFO' already exists in the project.
+   Output products for this core may be overwritten.
+Applying external generics to 'SRAM_WRITE_FIFO'...
+Delivering associated files for 'SRAM_WRITE_FIFO'...
+Delivering EJava files for 'SRAM_WRITE_FIFO'...
+Generating implementation netlist for 'SRAM_WRITE_FIFO'...
+INFO:sim - Pre-processing HDL files for 'SRAM_WRITE_FIFO'...
+WARNING:sim - BlackBox generator run option '-ifmt' found multiple times. Only
+   the first occurence is considered.
+Running synthesis for 'SRAM_WRITE_FIFO'
 Running ngcbuild...
-Writing VEO instantiation template for 'shift_ram_400'...
-WARNING:sim - Verilog simulation file type 'Behavioral' is not valid for this
-   core. Overriding with simulation file type 'Structural'.
-Writing Verilog structural simulation model for 'shift_ram_400'...
-WARNING:sim - Verilog simulation file type 'Behavioral' is not valid for this
-   core. Overriding with simulation file type 'Structural'.
+Writing VEO instantiation template for 'SRAM_WRITE_FIFO'...
+Writing Verilog behavioral simulation model for 'SRAM_WRITE_FIFO'...
+WARNING:sim - Overwriting existing file
+   /home/cc/cs150/fa013/class/cs150-ba/project/hardware/src/sram/fifo/tmp/_cg/SR
+   AM_WRITE_FIFO/doc/fifo_generator_v9_3_vinfo.html with file from view
+   xilinx_documentation
 Delivered 3 files into directory
-/home/cc/cs150/fa013/class/cs150-ar/fa13_team06/hardware/src/sram/fifo/tmp/_cg/s
-hift_ram_400
+/home/cc/cs150/fa013/class/cs150-ba/project/hardware/src/sram/fifo/tmp/_cg/SRAM_
+WRITE_FIFO
 Delivered 1 file into directory
-/home/cc/cs150/fa013/class/cs150-ar/fa13_team06/hardware/src/sram/fifo/tmp/_cg/s
-hift_ram_400
+/home/cc/cs150/fa013/class/cs150-ba/project/hardware/src/sram/fifo/tmp/_cg/SRAM_
+WRITE_FIFO
 Generating ASY schematic symbol...
 INFO:sim:949 - Finished generation of ASY schematic symbol.
 Generating metadata file...
-Regenerating ISE project file for 'shift_ram_400'...
+Regenerating ISE project file for 'SRAM_WRITE_FIFO'...
 Generating ISE project...
-XCO file found: shift_ram_400.xco
-XMDF file found: shift_ram_400_xmdf.tcl
+XCO file found: SRAM_WRITE_FIFO.xco
+XMDF file found: SRAM_WRITE_FIFO_xmdf.tcl
 Adding
-/home/cc/cs150/fa013/class/cs150-ar/fa13_team06/hardware/src/sram/fifo/tmp/_cg/s
-hift_ram_400.asy -view all -origin_type imported
+/home/cc/cs150/fa013/class/cs150-ba/project/hardware/src/sram/fifo/tmp/_cg/SRAM_
+WRITE_FIFO.asy -view all -origin_type imported
 Adding
-/home/cc/cs150/fa013/class/cs150-ar/fa13_team06/hardware/src/sram/fifo/tmp/_cg/s
-hift_ram_400.ngc -view all -origin_type created
+/home/cc/cs150/fa013/class/cs150-ba/project/hardware/src/sram/fifo/tmp/_cg/SRAM_
+WRITE_FIFO.ngc -view all -origin_type created
 Checking file
-"/home/cc/cs150/fa013/class/cs150-ar/fa13_team06/hardware/src/sram/fifo/tmp/_cg/
-shift_ram_400.ngc" for project device match ...
+"/home/cc/cs150/fa013/class/cs150-ba/project/hardware/src/sram/fifo/tmp/_cg/SRAM
+_WRITE_FIFO.ngc" for project device match ...
 File
-"/home/cc/cs150/fa013/class/cs150-ar/fa13_team06/hardware/src/sram/fifo/tmp/_cg/
-shift_ram_400.ngc" device information matches project device.
+"/home/cc/cs150/fa013/class/cs150-ba/project/hardware/src/sram/fifo/tmp/_cg/SRAM
+_WRITE_FIFO.ngc" device information matches project device.
 Adding
-/home/cc/cs150/fa013/class/cs150-ar/fa13_team06/hardware/src/sram/fifo/tmp/_cg/s
-hift_ram_400.v -view all -origin_type created
+/home/cc/cs150/fa013/class/cs150-ba/project/hardware/src/sram/fifo/tmp/_cg/SRAM_
+WRITE_FIFO.v -view all -origin_type created
 INFO:HDLCompiler:1845 - Analyzing Verilog file
-   "/home/cc/cs150/fa013/class/cs150-ar/fa13_team06/hardware/src/sram/fifo/tmp/_
-   cg/shift_ram_400.v" into library work
+   "/home/cc/cs150/fa013/class/cs150-ba/project/hardware/src/sram/fifo/tmp/_cg/S
+   RAM_WRITE_FIFO.v" into library work
 INFO:ProjectMgmt - Parsing design hierarchy completed successfully.
 Adding
-/home/cc/cs150/fa013/class/cs150-ar/fa13_team06/hardware/src/sram/fifo/tmp/_cg/s
-hift_ram_400.veo -view all -origin_type imported
+/home/cc/cs150/fa013/class/cs150-ba/project/hardware/src/sram/fifo/tmp/_cg/SRAM_
+WRITE_FIFO.veo -view all -origin_type imported
 INFO:TclTasksC:2116 - The automatic calculation of top has been turned-off.
    Please set the new top explicitly by running the "project set top" command.
    To re-calculate the new top automatically, set the "Auto Implementation Top"
    property to true.
-Top level has been set to "/shift_ram_400"
+Top level has been set to "/SRAM_WRITE_FIFO"
 Generating README file...
 Generating FLIST file...
 INFO:sim:948 - Finished FLIST file generation.
-Launching README viewer...
-Moving files to output directory...
-Finished moving files to output directory
-Saved CGP file for project 'coregen'.
-Recustomize and Generate (Under Original Project Settings)INFO:sim:172 - Generating IP...
-WARNING:sim - Verilog simulation file type 'Behavioral' is not valid for this
-   core. Overriding with simulation file type 'Structural'.
-WARNING:sim - A core named 'shift_ram_800' already exists in the project. Output
-   products for this core may be overwritten.
-Resolving generics for 'shift_ram_800'...
-WARNING:sim - Verilog simulation file type 'Behavioral' is not valid for this
-   core. Overriding with simulation file type 'Structural'.
-WARNING:sim - A core named 'shift_ram_800' already exists in the project. Output
-   products for this core may be overwritten.
-Applying external generics to 'shift_ram_800'...
-Delivering associated files for 'shift_ram_800'...
-Generating implementation netlist for 'shift_ram_800'...
-INFO:sim - Pre-processing HDL files for 'shift_ram_800'...
-Running synthesis for 'shift_ram_800'
-Running ngcbuild...
-Writing VEO instantiation template for 'shift_ram_800'...
-WARNING:sim - Verilog simulation file type 'Behavioral' is not valid for this
-   core. Overriding with simulation file type 'Structural'.
-Writing Verilog structural simulation model for 'shift_ram_800'...
-WARNING:sim - Verilog simulation file type 'Behavioral' is not valid for this
-   core. Overriding with simulation file type 'Structural'.
-Delivered 3 files into directory
-/home/cc/cs150/fa013/class/cs150-ar/fa13_team06/hardware/src/sram/fifo/tmp/_cg/s
-hift_ram_800
-Delivered 1 file into directory
-/home/cc/cs150/fa013/class/cs150-ar/fa13_team06/hardware/src/sram/fifo/tmp/_cg/s
-hift_ram_800
-Generating ASY schematic symbol...
-INFO:sim:949 - Finished generation of ASY schematic symbol.
-Generating metadata file...
-Regenerating ISE project file for 'shift_ram_800'...
-Generating ISE project...
-XCO file found: shift_ram_800.xco
-XMDF file found: shift_ram_800_xmdf.tcl
-Adding
-/home/cc/cs150/fa013/class/cs150-ar/fa13_team06/hardware/src/sram/fifo/tmp/_cg/s
-hift_ram_800.asy -view all -origin_type imported
-Adding
-/home/cc/cs150/fa013/class/cs150-ar/fa13_team06/hardware/src/sram/fifo/tmp/_cg/s
-hift_ram_800.ngc -view all -origin_type created
-Checking file
-"/home/cc/cs150/fa013/class/cs150-ar/fa13_team06/hardware/src/sram/fifo/tmp/_cg/
-shift_ram_800.ngc" for project device match ...
-File
-"/home/cc/cs150/fa013/class/cs150-ar/fa13_team06/hardware/src/sram/fifo/tmp/_cg/
-shift_ram_800.ngc" device information matches project device.
-Adding
-/home/cc/cs150/fa013/class/cs150-ar/fa13_team06/hardware/src/sram/fifo/tmp/_cg/s
-hift_ram_800.v -view all -origin_type created
-INFO:HDLCompiler:1845 - Analyzing Verilog file
-   "/home/cc/cs150/fa013/class/cs150-ar/fa13_team06/hardware/src/sram/fifo/tmp/_
-   cg/shift_ram_800.v" into library work
-INFO:ProjectMgmt - Parsing design hierarchy completed successfully.
-Adding
-/home/cc/cs150/fa013/class/cs150-ar/fa13_team06/hardware/src/sram/fifo/tmp/_cg/s
-hift_ram_800.veo -view all -origin_type imported
-INFO:TclTasksC:2116 - The automatic calculation of top has been turned-off.
-   Please set the new top explicitly by running the "project set top" command.
-   To re-calculate the new top automatically, set the "Auto Implementation Top"
-   property to true.
-Top level has been set to "/shift_ram_800"
-Generating README file...
-Generating FLIST file...
-INFO:sim:948 - Finished FLIST file generation.
-Launching README viewer...
 Moving files to output directory...
 Finished moving files to output directory
 Saved CGP file for project 'coregen'.
