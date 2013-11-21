@@ -192,70 +192,6 @@ module FPGA_TOP_ML505(
       .pixel(stc_img_video));
   `endif
 
-  // -- |Down Sample| ---------------------------------------------------------
-  `define DOWN_SAMPLE_ENABLE
-
-  `ifdef VGA_ENABLE
-    assign ds_clock = vga_clock;
-    assign up_clock = vga_clock;
-  `else
-    assign ds_clock = clk_10M;
-    assign up_clock = clk_10M;
-  `endif
-    
-
-  `ifdef DOWN_SAMPLE_ENABLE
-
-  localparam COL = 800,
-             ROW = 600;
-  
-  wire [7:0] ds_dout;
-  wire ds_ready;
-
-    Down_sample #(
-      .COL(COL),
-      .ROW(ROW))
-      ds (
-      .VGA_Clk(ds_clock),
-      .DOG_Clk(up_clock),
-      .Din(stc_img_video),
-      .valid(stc_img_valid),
-      .Reset(reset),
-      .Clk_en(1'b1),
-      .Dout(ds_dout),
-      .Ready(ds_ready),
-      .Empty());
-  `endif
-
-  // -- |Up Sample| ---------------------------------------------------------
- /* `define Up_SAMPLE_ENABLE
-
-  wire stc_img_enable;
-  assign stc_img_enable = GPIO_DIP[1] & GPIO_DIP[0];
-
-  wire stc_img_start_ack;
-  wire stc_img_valid;
-  wire [7:0] stc_img_video;
-
-  `ifdef Up_SAMPLE_ENABLE
-
-  localparam COL = 800;
-
-    UP_SAMPLE #(
-      .COL(COL))
-      ds (
-      .VGA_Clk(up_clock),
-      .DOG_Clk(vga_clock),
-      .Din(),
-      .valid(),
-      .Reset(),
-      .Clk_en(),
-      .Dout(),
-      .Ready(),
-      .Empty());
-  `endif
-*/
-
   // -- |Image Buffer Writer| --------------------------------------------------
   `define IMAGE_WRITER_ENABLE
   
@@ -291,8 +227,8 @@ module FPGA_TOP_ML505(
 
       .vga_start(vga_start),
       .vga_start_ack(GPIO_DIP[0] ? stc_img_start_ack : vga_start_ack),
-      .vga_video(GPIO_DIP[0] ? ds_dout: vga_video),
-      .vga_video_valid(GPIO_DIP[0] ? ds_ready : vga_video_valid));
+      .vga_video(GPIO_DIP[0] ? stc_img_video : vga_video),
+      .vga_video_valid(GPIO_DIP[0] ? stc_img_valid : vga_video_valid));
 
   `endif // IMAGE_WRITER_ENABLE
 
@@ -377,16 +313,16 @@ module FPGA_TOP_ML505(
 
       // W0: Image Buffer Writer
       .w0_clock(bg_clock),
-      .w0_din_ready(ds_rd_en),
-      .w0_din_valid(ds_valid),
-      .w0_din(ds_dout),// {mask,addr,data}
+      .w0_din_ready(bg_ready),
+      .w0_din_valid(bg_valid),
+      .w0_din(bg_dout),// {mask,addr,data}
 
       // W1: Overlay Writer
 
-      .w1_clock(1'b0),
-      .w1_din_ready(),
-      .w1_din_valid(1'b0),
-      .w1_din(54'd0),// {mask,addr,data}
+      .w1_clock(ol_clock),
+      .w1_din_ready(ol_ready),
+      .w1_din_valid(0'b0),
+      .w1_din(ol_out),// {mask,addr,data}
 
 
       // R0: Image Buffer Reader
