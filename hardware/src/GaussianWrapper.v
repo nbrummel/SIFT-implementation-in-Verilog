@@ -12,131 +12,146 @@ module GaussianWrapper(
 	output empty,
 	input rd_en_up);
 
-wire [7:0] gauss_dout;
-wire [7:0] gauss_din;
-wire gauss_wr;
-wire isFull;
-wire gauss_reset;
-wire double_reset;
-wire gauss_enable;
+	wire [7:0] gauss_dout;
+	wire [7:0] gauss_din;
+	wire gauss_wr;
+	wire isFull;
+	wire gauss_reset;
+	reg counter_reset;
+	wire gauss_enable;
 
+	GAUSSIAN gauss(
+		.Clk(clk),
+		.din(gauss_din),
+		.Reset(double_reset),
+		.Clk_en(gauss_enable),
+		.dout(gauss_dout)
+		);
 
+	DOWN_SAMPLE_FIFO up_sample_fifo(
 
-GAUSSIAN gauss(
-	.Clk(clk),
-	.din(gauss_din),
-	.Reset(double_reset),
-	.Clk_en(gauss_enable),
-	.dout(gauss_dout)
-	);
+		//From Gaussian
+		.rst(rst),
+		.wr_clk(clk),
+		.din(gauss_dout),
+		.wr_en(gauss_wr), 
+		.full(isFull),
 
-DOWN_SAMPLE_FIFO gsf(
-	//From ImageBufferWriter
-	.rst(rst),
-	.wr_clk(clk),
-	.din(gauss_dout),
-	.wr_en(gauss_wr), 
-	.full(isFull),
-	//To Gaussian Module
-	.empty(empty),
-	.rd_clk(clk),
-	.rd_en(rd_en_up),
-	.dout(dout),
-	.valid(valid_out));
+		//To up sample module
+		.empty(empty),
+		.rd_clk(clk),
+		.rd_en(rd_en_up),
+		.dout(dout),
+		.valid(valid_out));
 
-assign double_reset = (rst)|(gauss_reset);
+	//constants
+	localparam 	PRE_BUFF_LENGTH = 18'd802,
+							DATA_OUT_LENGTH = 18'd400,
+							COL_BUFF_LENGTH = 2'd2,
+							ROW_BUFF_LENGTH = 18'd800,
+							FRAME_LENGTH = 18'd300;
 
-//constants
-localparam START_LENGTH = 18'd2411;
+	//state encoding for gaussian input
+	localparam  STATE_IDLE = 3'd0,
+							PRE_BUFF = 3'd1,
+							DATA_OUT = 3'd2,
+							COL_BUFF = 3'd3,
+							ROW_BUFF = 3'd4,
+							FRAME = 3'd5,
+							RESET = 3'd6;
 
-//state encoding for gaussian input
-localparam  STATE_IDLE = 3'd0,
-			STATE_ROW = 3'd1,
-			STATE_BUFFER_1 = 3'd2,
-			STATE_BUFFER_2 = 3'd3,
-			STATE_END = 3'd4,
-			STATE_RESET = 3'd5;
+	reg [2:0] CurrentState;
+	reg [2:0] NextState;
 
-reg [2:0] CurrentState;
-reg [2:0] NextState;
+	wire [] pre_buff_count,
+				pre_buff_valid,
+			 []	data_out_count,
+				data_out_valid,
+			  [] col_buff_count,
+			  col_buff_valid,
+			  [] row_buff_count,
+			  row_buff_valid,
+			  [] frame_count,
+			  frame_valid;
 
-//For counting the row
-reg [9:0] rowCounter;
-//For counting the frame
-reg [19:0] frameCounter;
+	assign gauss_dout = (CurrentState == DATA_OUT) ? din : 8'd0;
+	assign gauss_wr = (CurrentState != STATE_IDLE) & (CurrentState != RESET);
+	assign gauss_reset = (CurrentState == RESET);
+	assign rd_en_down = valid & (CurrentState == DATA_OUT);
 
-assign gauss_din = (CurrentState == STATE_ROW) ? din : 8'd0;
-assign gauss_wr = (CurrentState != STATE_IDLE) & (CurrentState != STATE_RESET);
-assign gauss_reset = (CurrentState == STATE_RESET);
-assign rd_en_down = valid & (CurrentState == STATE_ROW);
+	gauss_counter #(
+					.COUNT_TO(PRE_BUFF_LENGTH))
+					pre_buff_counter (
+					.clk(clk),
+					.reset(counter_reset),
+					.enable(pre_buff_valid),
+					.ctr_out(pre_buff_count));
 
-always@(posedge clk) begin
-	if (rst) begin
-		CurrentState <= STATE_IDLE;
-		rowCounter <= 10'd0;
-		frameCounter <= 20'd0;
+	gauss_counter #(
+        .COUNT_TO(DATA_OUT_LENGTH))
+        data_out_counter (
+        .clk(clk),
+        .reset(counter_reset),
+        .enable(data_out_valid),
+        .ctr_out(data_out_count));
+
+  gauss_counter #(
+        .COUNT_TO(COL_BUFF_LENGTH))
+        col_buff_counter (
+        .clk(clk),
+        .reset(counter_reset),
+        .enable(col_buff_valid),
+        .ctr_out(col_buff_count));
+
+  gauss_counter #(
+        .COUNT_TO(ROW_BUFF_LENGTH))
+        row_buff_counter (
+        .clk(clk),
+        .reset(counter_reset),
+        .enable(row_buff_valid),
+        .ctr_out(row_buff_count));      
+
+  gauss_counter #(
+        .COUNT_TO(FRAME_LENGTH))
+        frame_counter (
+        .clk(clk),
+        .reset(counter_reset),
+        .enable(frame_valid),
+        .ctr_out(frame_count));
+
+  assign pre_buff_valid = (CurrentState == PRE_BUFF);
+  assign data_out_valid = (currentState == DATA_OUT);
+  assign col_buff_valid = (currentState == COL_BUFF);
+  assign row_buff_valid = (currentState == ROW_BUFF);
+  assign frame_valid = (currentState == DATA_OUT) | (currentState == COL_BUFF);
+	always@(posedge clk) begin
+    if (rst) begin
+    	counter_reset <= 1'b1;
+      CurrentState <= RESET;    
+    end
+    else if (valid | ~rd_en_up) 
+    	
+    	CurrentState <= Nextstate;
+    else begin
+      CurrentState <= STATE_IDLE;
 	end
-	else if (CurrentState == STATE_RESET) begin
-		rowCounter <= 10'd0;
-		frameCounter <= 20'd0;
-	end
-	else if (CurrentState == STATE_BUFFER_2) begin
-		rowCounter <= 10'd0;
-	end
-	else begin
-		CurrentState <= NextState;
-	end
-end
 
-//Input logic
-always @(*) begin
-	case (CurrentState)
-		STATE_IDLE: begin
-			if (valid) begin
-				if (rowCounter == 10'd399)
-					NextState = STATE_BUFFER_1;
-				else
-					NextState = STATE_ROW;
-			end
-			else
-				NextState = STATE_IDLE;
-		end
-		STATE_ROW: begin
-			if (valid) begin
-				if (rowCounter == 10'd399)
-					NextState = STATE_BUFFER_1;
-				else
-					NextState = STATE_ROW;
-			end
-			else
-				NextState = STATE_IDLE;
-		end
-		STATE_BUFFER_1: begin
-			NextState = STATE_BUFFER_2;
-		end
-		STATE_BUFFER_2: begin
-			if (valid) begin
-				if (frameCounter == 20'd120599)
-					NextState = STATE_END;
-				else
-					NextState = STATE_ROW;
-			end
-			else
-				NextState = STATE_IDLE;
-		end
-		STATE_END: begin
-			if (rowCounter == 10'd803)
-				NextState = STATE_RESET;
-			else
-				NextState = STATE_END;
-		end
-		STATE_RESET: begin
-			if (valid)
-				NextState = STATE_ROW;
-			else
-				NextState = STATE_IDLE;
-		end
-	endcase
-end
+	//Input logic
+	always @(*) begin
+    case (CurrentState)
+      STATE_IDLE: begin
+
+			  end
+			PRE_BUFF : begin
+		
+  end
+
+  STATE_IDLE = 3'd0,
+							PRE_BUFF = 3'd1,
+							DATA_OUT = 3'd2,
+							COL_BUFF = 3'd3,
+							ROW_BUFF = 3'd4,
+							FRAME = 3'd5,
+							RESET = 3'd6;
 
 endmodule
