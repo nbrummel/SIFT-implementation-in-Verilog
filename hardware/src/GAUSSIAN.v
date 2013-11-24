@@ -63,28 +63,28 @@ module GAUSSIAN #(
 	assign d2 = src_2;
 	assign e2 = srd_2;
 
-	shiftreg8x400 srA2 (
+	ShiftReg_8x400 srA2 (
 		.clk(clock),
 		.ce(Clk_en),
 		.sclr(reset),
 		.d(out_stage_1),
 		.q(sra_2));
 
-	shiftreg16x400 srB2 (
+	ShiftReg_16x400 srB2 (
 		.clk(clock),
 		.ce(Clk_en),
 		.sclr(reset),
 		.d(shift_out_1_b),
 		.q(srb_2));
 
-	shiftreg16x800 srC2 (
+	ShiftReg_16x800 srC2 (
 		.clk(clock),
 		.ce(Clk_en),
 		.sclr(reset),
 		.d(b2),
 		.q(src_2));
 
-	shiftreg16x800 srD2 (
+	ShiftReg_16x800 srD2 (
 		.clk(clock),
 		.ce(Clk_en),
 		.sclr(reset),

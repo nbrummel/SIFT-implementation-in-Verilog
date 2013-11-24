@@ -1,0 +1,13 @@
+# Output products list for <ShiftReg_16x400>
+ShiftReg_16x400/doc/c_shift_ram_v11_0_readme.txt
+ShiftReg_16x400/doc/c_shift_ram_v11_0_vinfo.html
+ShiftReg_16x400/doc/ds228_shift_ram.pdf
+ShiftReg_16x400.asy
+ShiftReg_16x400.gise
+ShiftReg_16x400.ngc
+ShiftReg_16x400.v
+ShiftReg_16x400.veo
+ShiftReg_16x400.xco
+ShiftReg_16x400.xise
+ShiftReg_16x400_flist.txt
+ShiftReg_16x400_xmdf.tcl
