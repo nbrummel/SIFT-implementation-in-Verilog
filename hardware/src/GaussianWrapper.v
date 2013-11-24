@@ -14,7 +14,11 @@ module GaussianWrapper(
 
 assign rd_en_down = 1'b1;
 
-DOWN_SAMPLE_FIFO dsf(
+
+
+
+
+DOWN_SAMPLE_FIFO gwf(
 	//From ImageBufferWriter
 	.rst(rst),
 	.wr_clk(clk),
