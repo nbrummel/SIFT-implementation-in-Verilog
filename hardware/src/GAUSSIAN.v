@@ -1,94 +1,107 @@
 module GAUSSIAN #(
 	parameter 	K1 = 6,
 			  	K2 = 58,
-				K3 = 128)
-		   (input Clk,
-			input [7:0] din,
-			input Reset,
-			input Clk_en,
-			output [7:0] dout);
+				K3 = 128,
+				IDLE = 2'b0,
+				SHIFT_STATE = 2'b1)
+		( 	Clk, 
+			din, 
+			Reset, 
+			Clk_en, 
+			dout );
+		
+	input Clk;
+	input [7:0] din;
+	input Reset;
+	input Clk_en;
+	output [7:0] dout;
 
-	reg [7:0] sra;
-	reg [15:0] srb, src_a, src_b , srd_a, srd_b;
+	wire [15:0] A, B, C, D, E;
+	wire [7:0] horizontal_stage_out;
 	
-	wire [7:0] out_stage_1;
-	wire  [15:0] A, B, C, D, E;
-
-	
-	initial begin
-		sra <= 8'd0;
-		srb <= 16'd0;
-		src_a <= 16'd0;
-		src_b <= 16'd0;
-		srd_a <= 16'd0;
-		srd_b <= 16'd0;
-	end
+	reg [7:0] srA1, srB1;
+	reg [15:0] srC1a, srC1b, srD1a, srD1b;
+	reg Current_State;
 
 	assign A = din * K1;
-	assign B = sra * K2;
-	assign C = srb * K3;
-	assign D = src_b;
-	assign E = srd_b;
+	assign B = srA1 * K2;
+	assign C = srB1 * K3;
+	assign E = srD1b;
 
-	assign out_stage_1 = ( A + B + C + D + E ) >> 8;
+	assign horizontal_stage_out = (A + B + C + D + E) >> 8;
 
 	always @(posedge Clk) begin
-		if (Reset) begin
-			sra <= 8'd0;
-			srb <= 16'd0;
-			src_a <= 16'd0;
-			src_b <= 16'd0;
-			srd_a <= 16'd0;
-			srd_b <= 16'd0;
+		if(Reset) begin
+			srA1 <= 8'd0;
+			srB1 <= 8'd0;
+			srC1a <= 16'd0;
+			srC1b <= 16'd0;
+			srD1a <= 16'd0;
+			srD1b <= 16'd0;
+			if(~Clk_en) 
+				Current_State <= IDLE;
+			else
+				Current_State <= SHIFT_STATE;
 		end
+		else if(~Clk_en) 
+			Current_State <= IDLE; 
+		else
+			Current_State <= SHIFT_STATE;
+			srA1 <= din;
+			srB1 <= srA1;
+			srC1a <= B;
+			srC1b <= srC1a;
+			srD1a <= A;
+			srD1b <= srD1a;
+	end
+
+	always @(*) begin
+		if (Current_State == IDLE) begin
+		end	
 		else begin
-			if (Clk_en) begin
-				sra <= din;
-				srd_a <= A;
-				srd_b <= srd_a;
-				srb <= sra;
-				src_a <= B;
-				src_b <= src_a;
-			end
 		end
 	end
 
-	wire  [15:0] a2, b2, c2, d2, e2, sra_2, srb_2, src_2, srd_2;
 
-	assign dout = ( a2 + b2 + c2 + d2 + e2 ) >> 8;
-	
-	assign a2 = out_stage_1 * K1; 
-	assign b2 = sra_2 * K2;
-	assign c2 = srb_2 * K3;
-	assign d2 = src_2;
-	assign e2 = srd_2;
 
-	shiftreg8x400 srA2 (
+	wire [15:0] a_2, b_2, c_2, d_2, e_2, shift_out_1_b, shift_out_2_b;
+
+	assign a_2 = din * K1;
+	assign b_2 = shift_out_1_b * K2;
+	assign c_2 = shift_out_2_b * K3;
+	assign dout = (a_2 + b_2 + c_2 + d_2 + e_2) >> 8;
+
+
+	shift_ram_400 srA2 (
 		.clk(clock),
 		.ce(Clk_en),
 		.sclr(reset),
-		.d(out_stage_1),
-		.q(sra_2));
+		.d(horizontal_stage_out),
+		.q(shift_out_1_b));
 
-	shiftreg16x400 srB2 (
+
+	shift_ram_400 srB2 (
 		.clk(clock),
 		.ce(Clk_en),
 		.sclr(reset),
 		.d(shift_out_1_b),
-		.q(srb_2));
+		.q(shift_out_2_b));
 
-	shiftreg16x800 srC2 (
+
+	shift_ram_800 srC2 (
 		.clk(clock),
 		.ce(Clk_en),
 		.sclr(reset),
-		.d(b2),
-		.q(src_2));
+		.d(a_2),
+		.q(e_2));
 
-	shiftreg16x800 srD2 (
+
+
+	shift_ram_800 srD2 (
 		.clk(clock),
 		.ce(Clk_en),
 		.sclr(reset),
-		.d(a2),
-		.q(srd_2));
+		.d(b_2),
+		.q(d_2));
 
 endmodule
