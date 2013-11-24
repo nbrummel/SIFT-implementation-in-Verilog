@@ -172,6 +172,7 @@ module FPGA_TOP_ML505(
   // -- |Static Image| ---------------------------------------------------------
   `define STATIC_IMAGE_ENABLE
 
+  wire stc_img_clock;
   wire stc_img_enable;
   assign stc_img_enable = GPIO_DIP[1] & GPIO_DIP[0];
 
@@ -179,9 +180,15 @@ module FPGA_TOP_ML505(
   wire stc_img_valid;
   wire [7:0] stc_img_video;
 
+  `ifdef VGA_ENABLE
+    assign stc_img_clock = vga_clock;
+  `else
+    assign stc_img_clock = clk_10M;
+  `endif
+
   `ifdef STATIC_IMAGE_ENABLE
     StaticImage stc_img(
-      .clock(vga_clock),
+      .clock(stc_img_clock),
       .reset(reset),
 
       .start(vga_start & stc_img_enable),
@@ -251,8 +258,8 @@ module FPGA_TOP_ML505(
   `ifdef DOWN_SAMPLE_ENABLE
   DownSampler ds(
     .rst(reset),
-    .wr_clk(vga_clock),
-    .rd_clk(bg_clock),
+    .wr_clk(stc_img_clock),
+    .rd_clk(stc_img_clock),
     .din(stc_img_video),
     .valid(stc_img_valid),
     .ready(),
@@ -270,7 +277,7 @@ module FPGA_TOP_ML505(
 
   GaussianWrapper gw(
     .rst(reset),
-    .clk(vga_clock),
+    .clk(stc_img_clock),
     .valid(ds_valid),
     .din(ds_out),
     .rd_en_down(gauss_rd_en),
@@ -287,7 +294,7 @@ module FPGA_TOP_ML505(
   `ifdef UP_SAMPLE_ENABLE
   UpSampler us(
     .rst(reset),
-    .clk(vga_clock),
+    .clk(stc_img_clock),
     .valid(gauss_valid), //ds_valid / gauss_valid
     .din(gauss_out), //ds_out / gauss_out
     .empty(),
