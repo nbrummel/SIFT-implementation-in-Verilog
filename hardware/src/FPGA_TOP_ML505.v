@@ -208,19 +208,11 @@ module FPGA_TOP_ML505(
     localparam N_PIXEL = 480000;
 
     wire bg_clock;
-    wire bg_vga_start_ack,bg_vga_video_valid;
-    wire [7:0] bg_vga_video;
 
   `ifdef VGA_ENABLE
     assign bg_clock = vga_clock;
-    assign bg_vga_start_ack = GPIO_DIP[0] ? stc_img_start_ack : vga_start_ack;
-    assign bg_vga_video = GPIO_DIP[0] ? us_out : vga_video;
-    assign bg_vga_video_valid = GPIO_DIP[0] ? us_valid  : vga_video_valid;
   `else
     assign bg_clock = clk_10M;
-    assign bg_vga_start_ack = stc_img_start_ack;
-    assign bg_vga_video = stc_img_video;
-    assign bg_vga_video_valid = stc_img_valid ;
   `endif
 
     wire [53:0] bg_dout;
@@ -243,9 +235,9 @@ module FPGA_TOP_ML505(
       .ready(bg_ready),
 
       .vga_start(vga_start),
-      .vga_start_ack(bg_vga_start_ack),
-      .vga_video(bg_vga_video),
-      .vga_video_valid(bg_vga_video_valid));
+      .vga_start_ack(GPIO_DIP[0] ? stc_img_start_ack : vga_start_ack),
+      .vga_video(GPIO_DIP[0] ? us_out : GPIO_DIP[2] ? stc_img_video : vga_video),
+      .vga_video_valid(GPIO_DIP[0] ? us_valid : GPIO_DIP[2] ? stc_img_valid : vga_video_valid));
 
   `endif // IMAGE_WRITER_ENABLE
 
@@ -255,7 +247,7 @@ module FPGA_TOP_ML505(
   `ifdef DOWN_SAMPLE_ENABLE
   DownSampler ds(
     .rst(reset),
-    .wr_clk(vga_clock),
+    .wr_clk(bg_clock),
     .rd_clk(bg_clock),
     .din(stc_img_video),
     .valid(stc_img_valid),
@@ -263,17 +255,17 @@ module FPGA_TOP_ML505(
     .valid_out(ds_valid),
     .dout(ds_out),
     .empty(),
-    .rd_en(gauss_rd_en));
+    .rd_en(us_rd_en));
 
   `endif
 
   // -- |Gaussian| ---------------------------------------------------------
-  `define GAUSSIAN
+  //`define GAUSSIAN
 
   `ifdef GAUSSIAN
   GaussianWrapper gw(
     .rst(reset),
-    .clk(vga_clock),
+    .clk(bg_clock),
     .valid(ds_valid),
     .din(ds_out),
     .rd_en_down(gauss_rd_en),
@@ -290,9 +282,9 @@ module FPGA_TOP_ML505(
   `ifdef UP_SAMPLE_ENABLE
   UpSampler us(
     .rst(reset),
-    .clk(vga_clock),
-    .valid(gauss_valid),
-    .din(gauss_out),
+    .clk(bg_clock),
+    .valid(ds_valid),
+    .din(ds_out),
     .empty(),
     .rd_en(us_rd_en),
     .dout(us_out),
