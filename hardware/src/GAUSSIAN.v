@@ -32,12 +32,12 @@ module GAUSSIAN #(
 
 	always @(posedge Clk) begin
 		if(Reset) begin
-			srA1 <= 8'd0;
-			srB1 <= 8'd0;
-			srC1a <= 16'd0;
-			srC1b <= 16'd0;
-			srD1a <= 16'd0;
-			srD1b <= 16'd0;
+			srA1 <= 8'b0;
+			srB1 <= 8'b0;
+			srC1a <= 16'b0;
+			srC1b <= 16'b0;
+			srD1a <= 16'b0;
+			srD1b <= 16'b0;
 			if(~Clk_en) 
 				Current_State <= IDLE;
 			else
@@ -47,18 +47,24 @@ module GAUSSIAN #(
 			Current_State <= IDLE; 
 		else
 			Current_State <= SHIFT_STATE;
-			srA1 <= din;
-			srB1 <= srA1;
-			srC1a <= B;
-			srC1b <= srC1a;
-			srD1a <= A;
-			srD1b <= srD1a;
 	end
 
 	always @(*) begin
 		if (Current_State == IDLE) begin
+			srA1 = srA1;
+			srB1 = srB1;
+			srC1a = srC1a;
+			srC1b = srC1b;
+			srD1a = srD1a;
+			srD1b = srD1b;
 		end	
 		else begin
+			srA1 = din;
+			srB1 = srA1;
+			srC1a = B;
+			srC1b = srC1a;
+			srD1a = A;
+			srD1b = srD1a;
 		end
 	end
 
@@ -73,34 +79,34 @@ module GAUSSIAN #(
 
 
 	shift_ram_400 srA2 (
-		.clk(clock),
+		.Clk(clock),
 		.ce(Clk_en),
-		.sclr(reset),
+		.Sclr(reset),
 		.d(horizontal_stage_out),
 		.q(shift_out_1_b));
 
 
 	shift_ram_400 srB2 (
-		.clk(clock),
+		.Clk(clock),
 		.ce(Clk_en),
-		.sclr(reset),
+		.Sclr(reset),
 		.d(shift_out_1_b),
 		.q(shift_out_2_b));
 
 
 	shift_ram_800 srC2 (
-		.clk(clock),
+		.Clk(clock),
 		.ce(Clk_en),
-		.sclr(reset),
+		.Sclr(reset),
 		.d(a_2),
 		.q(e_2));
 
 
 
 	shift_ram_800 srD2 (
-		.clk(clock),
+		.Clk(clock),
 		.ce(Clk_en),
-		.sclr(reset),
+		.Sclr(reset),
 		.d(b_2),
 		.q(d_2));
 
