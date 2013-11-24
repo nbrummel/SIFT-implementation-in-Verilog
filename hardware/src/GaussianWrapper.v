@@ -21,9 +21,8 @@ reg [2:0] NextState;
 wire [7:0] gauss_data;
 reg [8:0] counter;
 wire write_gauss;
-
 assign rd_en_down = (CurrentState == STATE_WRITE) & valid;
-assign gauss_data = din;
+assign gauss_data = (CurrentState == STATE_BUFFER) ? 8'd0 : din;
 assign write_gauss = (CurrentState == STATE_WRITE) & valid;
 
 DOWN_SAMPLE_FIFO dsf(
@@ -47,20 +46,35 @@ always@(posedge clk) begin
 	end
 	else begin
 		CurrentState <= NextState;
-		counter <= counter + 9'd1;
+		if (counter == 9'd400)
+			counter <= 9'd0;
+		else if (NextState != STATE_IDLE)
+			counter <= counter + 9'd1;
 	end
 end
 
 always @(*) begin
 	case (CurrentState)
 		STATE_IDLE: begin
-			if (valid)
+			if (counter == 9'd399)
+				NextState = STATE_BUFFER;
+			else if (valid)
 				NextState = STATE_WRITE;
 			else
 				NextState = STATE_IDLE;
 		end
 		STATE_WRITE: begin
-			if (valid)
+			if (counter == 9'd399)
+				NextState = STATE_BUFFER;
+			else if (valid)
+				NextState = STATE_WRITE;
+			else
+				NextState = STATE_IDLE;
+		end
+		STATE_BUFFER: begin
+			if (counter == 9'd400)
+				NextState = STATE_BUFFER;
+			else if (valid)
 				NextState = STATE_WRITE;
 			else
 				NextState = STATE_IDLE;
