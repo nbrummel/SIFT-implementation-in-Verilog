@@ -20,16 +20,6 @@ wire gauss_reset;
 wire double_reset;
 wire gauss_enable;
 
-
-
-GAUSSIAN gauss(
-	.Clk(clk),
-	.din(gauss_din),
-	.Reset(double_reset),
-	.Clk_en(gauss_enable),
-	.dout(gauss_dout)
-	);
-
 DOWN_SAMPLE_FIFO gsf(
 	//From ImageBufferWriter
 	.rst(rst),
@@ -43,6 +33,14 @@ DOWN_SAMPLE_FIFO gsf(
 	.rd_en(rd_en_up),
 	.dout(dout),
 	.valid(valid_out));
+
+GAUSSIAN gauss(
+	.Clk(clk),
+	.din(gauss_din),
+	.Reset(double_reset),
+	.Clk_en(gauss_enable),
+	.dout(gauss_dout)
+	);
 
 assign double_reset = (rst)|(gauss_reset);
 
@@ -65,7 +63,7 @@ reg [9:0] rowCounter;
 //For counting the frame
 reg [19:0] frameCounter;
 
-assign gauss_din = (CurrentState == STATE_ROW) ? din : 8'd0;
+assign gauss_dout = (CurrentState == STATE_ROW) ? din : 8'd0;
 assign gauss_wr = (CurrentState != STATE_IDLE) & (CurrentState != STATE_RESET);
 assign gauss_reset = (CurrentState == STATE_RESET);
 assign rd_en_down = valid & (CurrentState == STATE_ROW);

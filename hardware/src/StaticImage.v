@@ -35,7 +35,7 @@ IMG_MEM img_mem(
   .addra(img_pxl),
   .douta(pixel_data));
 
-assign pixel = pxl_active ? pixel_data : 8'b01010101;
+assign pixel = pxl_active ? pixel_data : 8'd0;
 assign valid = (img_row < OUT_HEIGHT);
 
 wire start_edge;
