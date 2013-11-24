@@ -22,8 +22,8 @@ wire [7:0] gauss_data;
 reg [8:0] counter;
 wire write_gauss;
 assign rd_en_down = (CurrentState == STATE_WRITE) & valid;
-assign gauss_data = (CurrentState == STATE_BUFFER) ? 8'd0 : din;
-assign write_gauss = (CurrentState == STATE_WRITE) & valid;
+assign gauss_data = (CurrentState == STATE_BUFFER) ? 8'b11111111 : din;
+assign write_gauss = (CurrentState != STATE_IDLE) & valid;
 
 DOWN_SAMPLE_FIFO dsf(
 	//From ImageBufferWriter
