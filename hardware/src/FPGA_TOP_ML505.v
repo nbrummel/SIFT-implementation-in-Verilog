@@ -208,10 +208,6 @@ module FPGA_TOP_ML505(
   wire gauss_valid;
   wire [7:0] gauss_out;
 
-  assign gauss_rd_en = us_rd_en;
-  assign gauss_valid = ds_valid;
-  assign gauss_out = ds_out;
-
   // -- |Image Buffer Writer| --------------------------------------------------
   `define IMAGE_WRITER_ENABLE
   
@@ -271,7 +267,7 @@ module FPGA_TOP_ML505(
   `endif
 
   // -- |Gaussian Wrapper| ---------------------------------------------------------
-  //`define GAUSSIAN_WRAPPER_ENABLE
+  `define GAUSSIAN_WRAPPER_ENABLE
 
   `ifdef GAUSSIAN_WRAPPER_ENABLE
 
@@ -284,7 +280,7 @@ module FPGA_TOP_ML505(
     .valid_out(gauss_valid),
     .dout(gauss_out),
     .empty(),
-    .rd_en_up(us_valid));
+    .rd_en_up(us_rd_en));
 
   `endif
 
