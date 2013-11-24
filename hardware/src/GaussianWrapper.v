@@ -12,8 +12,20 @@ module GaussianWrapper(
 	output empty,
 	input rd_en_up);
 
-assign valid_out = valid;
-assign dout = din;
-assign rd_en_down = rd_en_up;
+assign rd_en_down = 1'b1;
+
+DOWN_SAMPLE_FIFO dsf(
+	//From ImageBufferWriter
+	.rst(rst),
+	.wr_clk(clk),
+	.din(din),
+	.wr_en(valid), //my logic
+	.full(), //need to take care of this
+	//To Gaussian Module
+	.empty(empty),
+	.rd_clk(clk),
+	.rd_en(rd_en_up),
+	.dout(dout),
+	.valid(valid_out));
 
 endmodule
