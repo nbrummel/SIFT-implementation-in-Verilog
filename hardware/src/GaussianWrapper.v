@@ -18,18 +18,26 @@ localparam 	STATE_IDLE = 3'd1,
 reg [2:0] CurrentState;
 reg [2:0] NextState;
 
-wire [7:0] gauss_data;
+wire [7:0] gauss_in;
+wire [7:0] gauss_out;
 reg [8:0] counter;
 wire write_gauss;
 assign rd_en_down = (CurrentState == STATE_WRITE) & valid;
-assign gauss_data = (CurrentState == STATE_BUFFER) ? 8'b11111111 : din;
+assign gauss_in = (CurrentState == STATE_BUFFER) ? 8'b11111111 : din;
 assign write_gauss = (CurrentState != STATE_IDLE) & valid;
+
+GAUSSIAN g(
+	.clk(clk),
+	.din(gauss_in),
+	.rst(rst),
+	.clk_en(1'b1),
+	.dout(gauss_out));
 
 DOWN_SAMPLE_FIFO dsf(
 	//From ImageBufferWriter
 	.rst(rst),
 	.wr_clk(clk),
-	.din(gauss_data),
+	.din(gauss_out),
 	.wr_en(write_gauss), //my logic
 	.full(), //need to take care of this
 	//To Gaussian Module
@@ -48,8 +56,8 @@ always@(posedge clk) begin
 		CurrentState <= NextState;
 		if (counter == 9'd400)
 			counter <= 9'd0;
-		else if (NextState != STATE_IDLE)
-			counter <= counter + 9'd1;
+		//else if (NextState != STATE_IDLE)
+			//counter <= counter + 9'd1;
 	end
 end
 
