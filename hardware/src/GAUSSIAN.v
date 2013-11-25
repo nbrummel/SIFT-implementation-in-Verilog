@@ -8,7 +8,7 @@ module GAUSSIAN(
 reg[7:0] testReg;
 reg[7:0] testReg2;
 
-assign dout = testReg2;
+assign dout = din;
 
 always@(posedge clk) begin
 	if (rst) begin
@@ -16,7 +16,7 @@ always@(posedge clk) begin
 		testReg2 <= 8'd0;
 	end
 	else begin
-		testReg <= din;
+		testReg <= din - 8'b10000000;
 		testReg2 <= testReg;
 	end
 end
