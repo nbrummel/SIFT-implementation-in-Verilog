@@ -243,8 +243,8 @@ module FPGA_TOP_ML505(
 
       .vga_start(vga_start),
       .vga_start_ack(GPIO_DIP[0] ? stc_img_start_ack : vga_start_ack),
-      .vga_video(GPIO_DIP[0] ? us_out : vga_video),
-      .vga_video_valid(GPIO_DIP[0] ? us_valid : vga_video_valid));
+      .vga_video(GPIO_DIP[0] ? GPIO_DIP[2] ? stc_img_video : us_out : vga_video),
+      .vga_video_valid(GPIO_DIP[0] ? GPIO_DIP[2] ? stc_img_valid : us_valid : vga_video_valid));
 
   `endif // IMAGE_WRITER_ENABLE
 
