@@ -16,7 +16,7 @@ localparam 	STATE_IDLE = 3'd1,
 			STATE_WRITE = 3'd2,
 			STATE_BUFFER = 3'd3;
 
-localparam shift_value = 10'd2;
+localparam shift_value = 10'd806;
 
 reg [2:0] CurrentState;
 reg [2:0] NextState;
@@ -30,7 +30,7 @@ wire write_FIFO;
 assign rd_en_down = (CurrentState == STATE_WRITE) & valid;
 assign gauss_in = (CurrentState == STATE_BUFFER) ? 8'd0 : din;
 assign write_gauss = (CurrentState != STATE_IDLE) & valid;// & (shiftCounter == shift_value);
-assign write_FIFO = write_gauss; // & (shiftCounter == shift_value);
+assign write_FIFO = write_gauss & (shiftCounter == shift_value);// & (counter > 8'd2);
 
 GAUSSIAN g(
 	.clk(clk),
