@@ -283,7 +283,7 @@ always@(*) begin
             else if (valid_w1) begin
                 NextState = STATE_W1;
             end
-	    else begin
+	        else begin
                 NextState = STATE_IDLE;
             end
         end
