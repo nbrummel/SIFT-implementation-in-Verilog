@@ -1,7 +1,7 @@
 ##############################################################
 #
 # Xilinx Core Generator version 14.6
-# Date: Thu Nov 21 03:59:26 2013
+# Date: Tue Dec  3 06:27:06 2013
 #
 ##############################################################
 #
@@ -56,7 +56,7 @@ CSET data_count=false
 CSET data_count_width=10
 CSET disable_timing_violations=false
 CSET disable_timing_violations_axi=false
-CSET dout_reset_value=0
+CSET dout_reset_value=1
 CSET empty_threshold_assert_value=4
 CSET empty_threshold_assert_value_axis=1022
 CSET empty_threshold_assert_value_rach=1022
@@ -210,4 +210,4 @@ CSET wuser_width=1
 MISC pkg_timestamp=2012-11-19T12:39:56Z
 # END Extra information
 GENERATE
-# CRC: d88d6a4c
+# CRC: b0077c7e

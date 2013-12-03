@@ -97,7 +97,7 @@ output valid;
     .C_DIN_WIDTH_WACH(32),
     .C_DIN_WIDTH_WDCH(64),
     .C_DIN_WIDTH_WRCH(2),
-    .C_DOUT_RST_VAL("0"),
+    .C_DOUT_RST_VAL("1"),
     .C_DOUT_WIDTH(8),
     .C_ENABLE_RLOCS(0),
     .C_ENABLE_RST_SYNC(1),
