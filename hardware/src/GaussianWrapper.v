@@ -12,7 +12,7 @@ module GaussianWrapper(
 	output empty,
 	input rd_en_up);
 
-localparam shift_value = 10'd4;
+localparam shift_value = 10'd806;
 
 wire [7:0] gauss_in;
 wire [7:0] gauss_out;

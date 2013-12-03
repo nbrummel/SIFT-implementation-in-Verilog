@@ -12,11 +12,11 @@ module GaussianWrapperTwo(
 	output empty,
 	input rd_en_up);
 
-localparam shift_value = 10'd4;
+localparam shift_value = 11'd1612;
 
 wire [7:0] gauss_in;
 wire [7:0] gauss_out;
-reg [9:0] shiftCounter;
+reg [10:0] shiftCounter;
 wire write_gauss;
 wire write_FIFO;
 assign rd_en_down = valid;
@@ -55,11 +55,11 @@ DOWN_SAMPLE_FIFO dsf(
 
 always@(posedge clk) begin
 	if (rst) begin
-		shiftCounter <= 10'd0;
+		shiftCounter <= 11'd0;
 	end
 	else begin
 		if ((shiftCounter < shift_value) & valid)
-			shiftCounter <= shiftCounter + 10'd1;
+			shiftCounter <= shiftCounter + 11'd1;
 	end
 end
 
