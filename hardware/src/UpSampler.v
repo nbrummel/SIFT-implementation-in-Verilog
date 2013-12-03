@@ -36,13 +36,13 @@ reg [2:0] NextState;
 reg [10:0] rowCounter;
 
 assign dout = (CurrentState == STATE_WRITE) ? din : (CurrentState == STATE_SKIP) ? din : shift_out;
-assign valid_out = (CurrentState != STATE_IDLE);
-assign shift_en = (CurrentState != STATE_IDLE);
-assign rd_en = (CurrentState == STATE_WRITE);
+assign valid_out = (valid & CurrentState == STATE_WRITE) | (CurrentState != STATE_WRITE);
+assign shift_en = valid;
+assign rd_en = (CurrentState == STATE_SKIP);
 
 always@(posedge clk) begin
 	if (rst) begin
-		CurrentState <= STATE_IDLE;
+		CurrentState <= STATE_WRITE;
 		rowCounter <= 11'd0;
 	end
 	else begin
@@ -57,12 +57,6 @@ end
 
 always @(*) begin
 	case (CurrentState)
-		STATE_IDLE: begin
-			if (valid)
-				NextState = STATE_WRITE;
-			else
-				NextState = STATE_IDLE;
-		end
 		STATE_WRITE: begin
 			if (valid)
 				NextState = STATE_SKIP;

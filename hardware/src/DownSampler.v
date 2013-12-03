@@ -33,63 +33,23 @@ DOWN_SAMPLE_FIFO dsf(
 	.dout(dout),
 	.valid(valid_out));
 
-localparam 	STATE_IDLE = 2'd0,
-			STATE_WRITE = 2'd1,
-			STATE_SKIP = 2'd2,
-			STATE_ROW = 2'd3;
-
-reg [1:0] CurrentState;
-reg [1:0] NextState;
 reg [10:0] rowCounter;
 
-assign ready = ~full_signal;
-assign down_sample_valid = (CurrentState == STATE_WRITE);
+assign ready = 1'b1;
+assign down_sample_valid = valid & (rowCounter < 11'd799) & (rowCounter % 2 == 0);
 
 always@(posedge wr_clk) begin
 	if (rst) begin
-		CurrentState <= STATE_IDLE;
 		rowCounter <= 11'd0;
 	end
 	else begin
-		CurrentState <= NextState;
-		if (valid)
+		if (valid) begin
 			if (rowCounter == 11'd1599)
 				rowCounter <= 11'd0;
 			else
 				rowCounter <= rowCounter + 11'd1;
+		end
 	end
 end
-
-always @(*) begin
-	case (CurrentState)
-		STATE_IDLE: begin
-			if (valid)
-				NextState = STATE_WRITE;
-			else
-				NextState = STATE_IDLE;
-		end
-		STATE_WRITE: begin
-			if (valid)
-				NextState = STATE_SKIP;
-			else
-				NextState = STATE_WRITE; //will check valid before asserting everything
-		end
-		STATE_SKIP: begin
-			if ((rowCounter < 11'd799) & valid)
-				NextState = STATE_WRITE;
-			else if (valid)
-				NextState = STATE_ROW;
-			else
-				NextState = STATE_SKIP;
-		end
-		STATE_ROW: begin
-			if (valid && (rowCounter == 11'd1599))
-				NextState = STATE_WRITE;
-			else
-				NextState = STATE_ROW;
-		end
-	endcase
-end
-
 
 endmodule
