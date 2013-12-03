@@ -12,11 +12,10 @@ module GaussianWrapper(
 	output empty,
 	input rd_en_up);
 
-localparam shift_value = 10'd806;
+localparam shift_value = 10'd4;
 
 wire [7:0] gauss_in;
 wire [7:0] gauss_out;
-reg [8:0] counter;
 reg [9:0] shiftCounter;
 wire write_gauss;
 wire write_FIFO;
@@ -40,7 +39,7 @@ DOWN_SAMPLE_FIFO dsf(
 	.wr_en(write_FIFO), //my logic
 	.full(), //need to take care of this
 	//To Gaussian Module
-	.empty(empty),
+	.empty(),
 	.rd_clk(clk),
 	.rd_en(rd_en_up),
 	.dout(dout),
@@ -48,16 +47,11 @@ DOWN_SAMPLE_FIFO dsf(
 
 always@(posedge clk) begin
 	if (rst) begin
-		counter <= 9'd0;
 		shiftCounter <= 10'd0;
 	end
 	else begin
-		if (counter == 9'd400)
-			counter <= 9'd0;
-		if ((shiftCounter < shift_value) & write_gauss)
+		if ((shiftCounter < shift_value) & valid)
 			shiftCounter <= shiftCounter + 10'd1;
-		//else if (NextState != STATE_IDLE)
-			//counter <= counter + 9'd1;
 	end
 end
 
