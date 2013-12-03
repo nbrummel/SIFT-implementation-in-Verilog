@@ -266,7 +266,7 @@ module FPGA_TOP_ML505(
     .valid_out(ds_valid),
     .dout(ds_out),
     .empty(),
-    .rd_en(us_rd_en)); //us_rd_en / gauss_rd_en
+    .rd_en(gauss_rd_en)); //us_rd_en / gauss_rd_en
 
   `endif
 
@@ -299,8 +299,8 @@ module FPGA_TOP_ML505(
   UpSampler us(
     .rst(reset),
     .clk(stc_img_clock),
-    .valid(ds_valid), //ds_valid / gauss_valid
-    .din(ds_out), //ds_out / gauss_out
+    .valid(gauss_valid), //ds_valid / gauss_valid
+    .din(gauss_out), //ds_out / gauss_out
     .empty(),
     .rd_en(us_rd_en),
     .dout(us_out),
