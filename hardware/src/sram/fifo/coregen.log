@@ -6,5 +6,3 @@ Opening project file
 Recustomize and Generate (Under Original Project Settings)INFO:sim:172 - Generating IP...
 WARNING:sim - Verilog simulation file type 'Behavioral' is not valid for this
    core. Overriding with simulation file type 'Structural'.
-Cancelled executing Tcl generator.
-Closed project file.

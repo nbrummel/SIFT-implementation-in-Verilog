@@ -23,7 +23,7 @@ SET_PREFERENCE implementationfiletype Ngc
 SET_PREFERENCE foundationsym false
 SET_PREFERENCE createndf false
 SET_PREFERENCE removerpms false
-SET_PARAMETER Component_Name ShiftReg_8x400
+SET_PARAMETER Component_Name shift_ram_400
 SET_PARAMETER ShiftRegType Fixed_Length
 SET_PARAMETER OptGoal Resources
 SET_PARAMETER RegLastBit true
