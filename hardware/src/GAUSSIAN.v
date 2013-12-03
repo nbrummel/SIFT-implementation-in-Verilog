@@ -1,73 +1,79 @@
-module GAUSSIAN(
+module GAUSSIAN (
 	input clk,
-	input [7:0] din,
 	input rst,
+	input [7:0] din,
 	input clk_en,
-	output [7:0] dout);
 
-localparam 	h0 = 8'd6,
-			h1 = 8'd58,
-			h2 = 8'd128;
+	output [7:0] dout
+);
+    //shift_ram
 
-reg [7:0] reg1;
-reg [7:0] reg2;
-reg [7:0] reg3;
-reg [7:0] reg4;
-wire [15:0] sum1;
+    //k values
+    parameter k1 = 6;
+    parameter k2 = 58;
+    parameter k3 = 128;
 
-assign sum1 = h0*din + h1*reg1 + h2*reg2 + h1*reg3 + h0*reg4;
+    //Row Major Variables
+    reg [7:0] s1, s2, s3, s4;
+    wire [15:0] result1;
+    wire [7:0] column_input;
 
-always @(posedge clk)
-	if (rst) begin
-		reg1 <= 8'd0;
-		reg2 <= 8'd1;
-		reg3 <= 8'd2;
-		reg4 <= 8'd3;
+    //Column Major Variables
+    wire [7:0] c0,c1,c2,c3,c4;
+    wire [15:0] result2;
+
+    //shift_register instantiation
+    //delay of 1
+
+    shift_ram_400 sr1(
+	    .clk(clk), 
+	    .ce(clk_en), 
+	    .sclr(rst), 
+	    .q(c1),
+	    .d(c0)
+    );
+    shift_ram_400 sr2(
+	    .clk(clk), 
+	    .ce(clk_en), 
+	    .sclr(rst), 
+	    .q(c2),
+	    .d(c1)
+    );
+    shift_ram_400 sr3(
+	    .clk(clk), 
+	    .ce(clk_en), 
+	    .sclr(rst), 
+	    .q(c3),
+	    .d(c2)
+    );
+    shift_ram_400 sr4(
+	    .clk(clk), 
+	    .ce(clk_en), 
+	    .sclr(rst), 
+	    .q(c4),
+	    .d(c3)
+    );
+
+    always @(posedge clk) begin
+        if (rst) begin
+		    s1 <= 0;
+		    s2 <= 0;
+		    s3 <= 0;
+		    s4 <= 0;
+	    end
+	    else if (clk_en) begin
+		    s1 <= din;
+		    s2 <= s1;
+		    s3 <= s2;
+		    s4 <= s3;
+	    end 
 	end
-	else begin
-		reg1 <= din;
-		reg2 <= reg1;
-		reg3 <= reg2;
-		reg4 <= reg3;
-	end
 
-wire [7:0] in_sr1;
-wire [7:0] in_sr2;
-wire [7:0] in_sr3;
-wire [7:0] in_sr4;
-wire [7:0] out_sr4;
-wire [15:0] sum2;
+    assign result1 = k1*din + k2*s1 + k3*s2 + k2*s3 + k1*s4;
+    assign column_input = result1[15:8];
 
-assign in_sr1 = sum1[15:8];
-assign sum2 = h0*in_sr1 + h1*in_sr2 + h2*in_sr3 + h1*in_sr4 + h0*out_sr4;
-assign dout = sum2[15:8];
-
-ShiftReg_8x400 sr1 (
-	.clk(clk),
-	.ce(clk_en),
-	.sclr(rst),
-	.d(in_sr1),
-	.q(in_sr2));
-
-ShiftReg_8x400 sr2 (
-	.clk(clk),
-	.ce(clk_en),
-	.sclr(rst),
-	.d(in_sr2),
-	.q(in_sr3));
-
-ShiftReg_8x400 sr3 (
-	.clk(clk),
-	.ce(clk_en),
-	.sclr(rst),
-	.d(in_sr3),
-	.q(in_sr4));
-
-ShiftReg_8x400 sr4 (
-	.clk(clk),
-	.ce(clk_en),
-	.sclr(rst),
-	.d(in_sr4),
-	.q(out_sr4));
+    assign c0 = column_input;
+    assign result2 = k1*column_input + k2*c1 + k3*c2 + k2*c3 + k1*c4;
+    assign dout = result2[15:8];
 
 endmodule

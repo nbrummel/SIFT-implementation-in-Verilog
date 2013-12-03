@@ -1,4 +1,4 @@
-module GaussianWrapper(
+module GaussianWrapperTwo(
 	//Global
 	input rst,
 	input clk,
@@ -33,9 +33,16 @@ assign write_gauss = (CurrentState != STATE_IDLE) & valid;// & (shiftCounter == 
 assign write_FIFO = write_gauss & (shiftCounter == shift_value);// & (counter > 8'd2);
 wire [7:0] mid_gauss;
 
-GAUSSIAN g1(
+GAUSSIAN g2(
 	.clk(clk),
 	.din(gauss_in),
+	.rst(rst),
+	.clk_en(write_gauss), //only shifts through if valid
+	.dout(mid_gauss));
+
+GAUSSIAN g3(
+	.clk(clk),
+	.din(mid_gauss),
 	.rst(rst),
 	.clk_en(write_gauss), //only shifts through if valid
 	.dout(gauss_out));
