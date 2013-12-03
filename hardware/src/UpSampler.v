@@ -36,7 +36,7 @@ reg [2:0] NextState;
 reg [10:0] rowCounter;
 
 assign dout = (CurrentState == STATE_WRITE) ? din : (CurrentState == STATE_SKIP) ? din : shift_out;
-assign valid_out = (valid & CurrentState == STATE_WRITE) | (CurrentState != STATE_WRITE);
+assign valid_out = valid;
 assign shift_en = valid;
 assign rd_en = (CurrentState == STATE_SKIP);
 
