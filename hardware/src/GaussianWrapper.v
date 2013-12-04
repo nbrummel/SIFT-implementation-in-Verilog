@@ -12,25 +12,23 @@ module GaussianWrapper(
 	output empty,
 	input rd_en_up);
 
+localparam shift_value = 11'd1612;
+
 wire [7:0] gauss_in;
 wire [7:0] gauss_out;
-reg [19:0] shiftCounter;
+reg [10:0] shiftCounter;
 wire write_gauss;
 wire write_FIFO;
-wire reset_gauss;
-wire gauss_valid_out;
 assign rd_en_down = valid;
 assign gauss_in = din;
-assign write_gauss = valid & (shiftCounter < 20'd120000);
-assign write_FIFO = gauss_valid_out & valid;
-assign reset_gauss = rst | (shiftCounter == 20'd120000);
+assign write_gauss = valid;
+assign write_FIFO = write_gauss;
+wire [7:0] mid_gauss;
 
 GAUSSIAN g1(
 	.clk(clk),
 	.din(gauss_in),
-	.valid_in(write_gauss),
-	.valid_out(gauss_valid_out),
-	.rst(reset_gauss),
+	.rst(rst),
 	.clk_en(write_gauss), //only shifts through if valid
 	.dout(gauss_out));
 
@@ -50,13 +48,11 @@ DOWN_SAMPLE_FIFO dsf(
 
 always@(posedge clk) begin
 	if (rst) begin
-		shiftCounter <= 20'd0;
+		shiftCounter <= 11'd0;
 	end
 	else begin
-		if ((shiftCounter < 20'd120000) & valid)
-			shiftCounter <= shiftCounter + 20'd1;
-		else if (valid)
-			shiftCounter <= 20'd0;
+		if ((shiftCounter < shift_value) & valid)
+			shiftCounter <= shiftCounter + 11'd1;
 	end
 end
 

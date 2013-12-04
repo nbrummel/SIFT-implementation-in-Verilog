@@ -3,9 +3,6 @@ module GAUSSIAN (
 	input rst,
 	input [7:0] din,
 	input clk_en,
-	input valid_in,
-
-	output valid_out,
 	output [7:0] dout
 );
     //shift_ram
@@ -17,7 +14,7 @@ module GAUSSIAN (
 
     //Row Major Variables
     reg [7:0] s1, s2, s3, s4;
-    reg v1, v2;
+    reg v1, v2, v3, v4, v5, v6;
     wire [15:0] result1;
     wire [7:0] column_input;
 
@@ -60,17 +57,12 @@ module GAUSSIAN (
 		    s2 <= 0;
 		    s3 <= 0;
 		    s4 <= 0;
-		    v1 <= 0;
-		    v2 <= 0;
 	    end
 	    else if (clk_en) begin
 		    s1 <= din;
 		    s2 <= s1;
 		    s3 <= s2;
 		    s4 <= s3;
-
-		    v1 <= valid_in;
-		    v2 <= v1;
 	    end 
 	end
 
@@ -79,7 +71,6 @@ module GAUSSIAN (
 
     assign c0 = column_input;
     assign result2 = k1*column_input + k2*c1 + k3*c2 + k2*c3 + k1*c4;
-    assign dout = result1[15:8];
-    assign valid_out = v2;
+    assign dout = result2[15:8];
 
 endmodule
