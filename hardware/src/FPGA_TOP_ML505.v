@@ -201,25 +201,25 @@ module FPGA_TOP_ML505(
 
   wire [7:0] ds_out;
   wire ds_valid;
-  wire [7:0] us_out;
-  wire us_valid;
-  wire us_rd_en;
+
+  wire [7:0] us_out_DOG;
+  wire us_valid_DOG;
+  wire us_rd_en_DOG;
   wire gauss_rd_en;
-  wire gauss_valid;
-  wire [7:0] gauss_out;
-  reg was_valid;
-  wire combo_valid;
+  wire gauss_valid_DOG;
+  wire [7:0] gauss_out_DOG;
 
-  wire [7:0] ds_out_2;
-  wire ds_valid_2;
-  wire [7:0] us_out_2;
-  wire us_valid_2;
-  wire us_rd_en_2;
-  wire gauss_rd_en_2;
-  wire gauss_valid_2;
-  wire [7:0] gauss_out_2;
+  wire [7:0] us_out_g1;
+  wire us_valid_g1;
+  wire us_rd_en_g1;
+  wire gauss_valid_g1;
+  wire [7:0] gauss_out_g1;
 
-  assign combo_valid = was_valid & gauss_valid;
+  wire [7:0] us_out_g2;
+  wire us_valid_g2;
+  wire us_rd_en_g2;
+  wire gauss_valid_g2;
+  wire [7:0] gauss_out_g2;
 
   // -- |Image Buffer Writer| --------------------------------------------------
   `define IMAGE_WRITER_ENABLE
@@ -256,8 +256,8 @@ module FPGA_TOP_ML505(
 
       .vga_start(vga_start),
       .vga_start_ack(GPIO_DIP[0] ? stc_img_start_ack : vga_start_ack),
-      .vga_video(GPIO_DIP[0] ? GPIO_DIP[2] ? stc_img_video : us_out : vga_video),
-      .vga_video_valid(GPIO_DIP[0] ? GPIO_DIP[2] ? stc_img_valid : us_valid : vga_video_valid));
+      .vga_video(GPIO_DIP[0] ? GPIO_DIP[2] ? GPIO_DIP[3] ? GPIO_DIP[4] ? us_out_DOG : us_out_g2 : us_out_g1 : stc_img_video : vga_video),
+      .vga_video_valid(GPIO_DIP[0] ? GPIO_DIP[2] ? GPIO_DIP[3] ? GPIO_DIP[4] ? us_valid_DOG : us_valid_g2 : us_valid_g1: stc_img_valid : vga_video_valid));
 
   `endif // IMAGE_WRITER_ENABLE
 
@@ -290,14 +290,16 @@ module FPGA_TOP_ML505(
     .valid(ds_valid),
     .din(ds_out),
     .rd_en_down(gauss_rd_en),
-    .valid_out(gauss_valid),
-    .dout(gauss_out),
     .empty(),
-    .rd_en_up(us_rd_en));
-
-  always@(posedge stc_img_clock) begin
-      was_valid <= gauss_valid;
-  end
+    .valid_out_DOG(gauss_valid_DOG),
+    .dout_DOG(gauss_out_DOG),
+    .rd_en_up_DOG(us_rd_en_DOG),
+    .valid_out_g1(gauss_valid_g1),
+    .dout_g1(gauss_out_g1),
+    .rd_en_up_g1(us_rd_en_g1),
+    .valid_out_g2(gauss_valid_g2),
+    .dout_g2(gauss_out_g2),
+    .rd_en_up_g2(us_rd_en_g2));
 
   `endif
 
@@ -305,15 +307,35 @@ module FPGA_TOP_ML505(
   `define UP_SAMPLE_ENABLE
 
   `ifdef UP_SAMPLE_ENABLE
-  UpSampler us(
+  UpSampler us_DOG(
     .rst(reset),
     .clk(stc_img_clock),
-    .valid(gauss_valid), //ds_valid / gauss_valid
-    .din(gauss_out), //ds_out / gauss_out
+    .valid(gauss_valid_DOG), //ds_valid / gauss_valid
+    .din(gauss_out_DOG), //ds_out / gauss_out
     .empty(),
-    .rd_en(us_rd_en),
-    .dout(us_out),
-    .valid_out(us_valid));
+    .rd_en(us_rd_en_DOG),
+    .dout(us_out_DOG),
+    .valid_out(us_valid_DOG));
+
+  UpSampler us_g1(
+    .rst(reset),
+    .clk(stc_img_clock),
+    .valid(gauss_valid_g1), //ds_valid / gauss_valid
+    .din(gauss_out_g1), //ds_out / gauss_out
+    .empty(),
+    .rd_en(us_rd_en_g1),
+    .dout(us_out_g1),
+    .valid_out(us_valid_g1));
+
+  UpSampler us_g2(
+    .rst(reset),
+    .clk(stc_img_clock),
+    .valid(gauss_valid_g2), //ds_valid / gauss_valid
+    .din(gauss_out_g2), //ds_out / gauss_out
+    .empty(),
+    .rd_en(us_rd_en_g2),
+    .dout(us_out_g2),
+    .valid_out(us_valid_g2));
 
   `endif
 
