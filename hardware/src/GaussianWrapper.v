@@ -12,31 +12,47 @@ module GaussianWrapper(
 	output empty,
 	input rd_en_up);
 
-localparam shift_value = 11'd1612;
+localparam shift_value = 11'd806;
 
-wire [7:0] gauss_in;
+assign rd_en_down = valid;
 wire [7:0] gauss_out;
 reg [10:0] shiftCounter;
+wire [7:0] mid_gauss;
+wire [7:0] shift_output;
+wire [7:0] into_fifo;
+wire [7:0] c1, c2;
 wire write_gauss;
 wire write_FIFO;
-assign rd_en_down = valid;
-assign gauss_in = din;
-assign write_gauss = valid;
-assign write_FIFO = write_gauss;
-wire [7:0] mid_gauss;
+assign write_FIFO = valid & (shiftCounter == shift_value);
 
 GAUSSIAN g1(
 	.clk(clk),
-	.din(gauss_in),
+	.din(din),
 	.rst(rst),
-	.clk_en(write_gauss), //only shifts through if valid
+	.clk_en(valid), //only shifts through if valid
+	.dout(mid_gauss));
+
+shift_ram_800 sr (
+	.clk(clk),
+	.ce(valid),
+	.sclr(rst),
+	.d(mid_gauss),
+	.q(shift_output));
+
+GAUSSIANTWO g2(
+	.clk(clk),
+	.din(mid_gauss),
+	.rst(rst),
+	.clk_en(valid), //only shifts through if valid
 	.dout(gauss_out));
+
+assign into_fifo = shift_output - gauss_out + 128;
 
 DOWN_SAMPLE_FIFO dsf(
 	//From ImageBufferWriter
 	.rst(rst),
 	.wr_clk(clk),
-	.din(gauss_out),
+	.din(into_fifo),
 	.wr_en(write_FIFO), //my logic
 	.full(), //need to take care of this
 	//To Gaussian Module

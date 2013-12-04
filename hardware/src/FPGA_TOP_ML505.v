@@ -256,8 +256,8 @@ module FPGA_TOP_ML505(
 
       .vga_start(vga_start),
       .vga_start_ack(GPIO_DIP[0] ? stc_img_start_ack : vga_start_ack),
-      .vga_video(GPIO_DIP[0] ? GPIO_DIP[2] ? GPIO_DIP[3] ? stc_img_video : us_out_2 : us_out : vga_video),
-      .vga_video_valid(GPIO_DIP[0] ? GPIO_DIP[2] ? GPIO_DIP[3] ? stc_img_valid : us_valid_2 : us_valid : vga_video_valid));
+      .vga_video(GPIO_DIP[0] ? GPIO_DIP[2] ? stc_img_video : us_out : vga_video),
+      .vga_video_valid(GPIO_DIP[0] ? GPIO_DIP[2] ? stc_img_valid : us_valid : vga_video_valid));
 
   `endif // IMAGE_WRITER_ENABLE
 
@@ -314,60 +314,6 @@ module FPGA_TOP_ML505(
     .rd_en(us_rd_en),
     .dout(us_out),
     .valid_out(us_valid));
-
-  `endif
-
-  /// SECOND GAUSSIAN //
-
-   // -- |Down Sample| ---------------------------------------------------------
-  `define DOWN_SAMPLE_ENABLE
-
-  `ifdef DOWN_SAMPLE_ENABLE
-  DownSampler ds2(
-    .rst(reset),
-    .wr_clk(stc_img_clock),
-    .rd_clk(stc_img_clock),
-    .din(stc_img_video),
-    .valid(stc_img_valid),
-    .ready(),
-    .valid_out(ds_valid_2),
-    .dout(ds_out_2),
-    .empty(),
-    .rd_en(gauss_rd_en_2)); //us_rd_en / gauss_rd_en
-
-  `endif
-
-  // -- |Gaussian Wrapper| ---------------------------------------------------------
-  `define GAUSSIAN_WRAPPER_ENABLE
-
-  `ifdef GAUSSIAN_WRAPPER_ENABLE
-
-  GaussianWrapperTwo gw2(
-    .rst(reset),
-    .clk(stc_img_clock),
-    .valid(ds_valid_2),
-    .din(ds_out_2),
-    .rd_en_down(gauss_rd_en_2),
-    .valid_out(gauss_valid_2),
-    .dout(gauss_out_2),
-    .empty(),
-    .rd_en_up(us_rd_en_2));
-
-  `endif
-
-  // -- |Up Sample| ---------------------------------------------------------
-  `define UP_SAMPLE_ENABLE
-
-  `ifdef UP_SAMPLE_ENABLE
-  UpSampler us2(
-    .rst(reset),
-    .clk(stc_img_clock),
-    .valid(gauss_valid_2), //ds_valid / gauss_valid
-    .din(gauss_out_2), //ds_out / gauss_out
-    .empty(),
-    .rd_en(us_rd_en_2),
-    .dout(us_out_2),
-    .valid_out(us_valid_2));
 
   `endif
 
