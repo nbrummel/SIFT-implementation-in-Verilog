@@ -25,6 +25,7 @@ wire [7:0] gauss_out;
 reg [10:0] shiftCounter;
 wire [7:0] mid_gauss;
 wire [7:0] mid_gauss_2;
+wire [7:0] mid_gauss_3;
 wire [7:0] shift_output;
 wire [7:0] into_fifo;
 wire [7:0] c1, c2;
@@ -41,14 +42,14 @@ GAUSSIAN g1(
 	.clk_en(valid), //only shifts through if valid
 	.dout(mid_gauss));
 
-shift_ram_800 sr(
+shift_ram_800 sr2(
 	.clk(clk),
 	.ce(valid),
 	.sclr(rst),
 	.d(mid_gauss),
 	.q(mid_gauss_2));
 
-shift_ram_400 sr2(
+shift_ram_400 sr3(
 	.clk(clk),
 	.ce(valid),
 	.sclr(rst),
@@ -62,7 +63,7 @@ GAUSSIANTWO g2(
 	.clk_en(valid), //only shifts through if valid
 	.dout(gauss_out));
 
-assign into_fifo = (delay_2 - gauss_out)*8 + 64;
+assign into_fifo = (mid_gauss - gauss_out)*8;
 
 DOWN_SAMPLE_FIFO dsf_DOG(
 	//From ImageBufferWriter
