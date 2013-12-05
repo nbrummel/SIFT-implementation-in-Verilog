@@ -41,6 +41,20 @@ GAUSSIAN g1(
 	.clk_en(valid), //only shifts through if valid
 	.dout(mid_gauss));
 
+shift_ram_800 sr(
+	.clk(clk),
+	.ce(valid),
+	.sclr(rst),
+	.d(mid_gauss),
+	.q(mid_gauss_2));
+
+shift_ram_400 sr2(
+	.clk(clk),
+	.ce(valid),
+	.sclr(rst),
+	.d(mid_gauss_2),
+	.q(shift_output));
+
 GAUSSIANTWO g2(
 	.clk(clk),
 	.din(mid_gauss),
@@ -99,7 +113,7 @@ always@(posedge clk) begin
 		delay_2 <= 8'd0;
 	end
 	else begin
-		delay_1 <= mid_gauss;
+		delay_1 <= shift_output;
 		delay_2 <= delay_1;
 		if ((shiftCounter < shift_value) & valid)
 			shiftCounter <= shiftCounter + 11'd1;

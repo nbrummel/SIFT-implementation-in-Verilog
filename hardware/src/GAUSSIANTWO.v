@@ -71,6 +71,6 @@ module GAUSSIANTWO (
 
     assign c0 = column_input;
     assign result2 = k1*column_input + k2*c1 + k3*c2 + k2*c3 + k1*c4;
-    assign dout = result1[15:8];
+    assign dout = c4;
 
 endmodule
