@@ -2,6 +2,11 @@
   <h1>
       Project Report
   </h1>
+  <h5>
+    <i>
+      Nathan Brummel (cs150-ba) & Tyler McAtee (cs150-ar)
+    </i>
+  </h5>
 </head>  
 
 <body>
@@ -56,58 +61,40 @@
     <li><a href=http://www-inst.eecs.berkeley.edu/~cs150/fa13/resources/I2C_BUS_SPECIFICATION_3.pdf>I2C Bus</li>
     <li><a href=http://www-inst.eecs.berkeley.edu/~cs150/fa13/resources/MAX3233E-MAX3235E.pdf>RS-232</li>
   </ul>
-  <h4>
-  Logins
-  </h4>
-  <p>
-  Nathan Brummel, cs150-ba
-  <br>
-  Tyler McAtee, cs150-ar
-  </p>
-  Checkpoint Progress
-  ===
+  <h2>
+    Checkpoint Progress
+  </h2>
   <h3>
   Checkpoint 1:
   </h3>
   <a href=http://www-inst.eecs.berkeley.edu/~cs150/fa13/project/checkpoint1.pdf> Checkpoint 1 PDF</a>
-  <p>
+  <br>
   PatternGenerator.v and PatternGeneratorTest.v up to date and working
   <br>
   All tests for PatternGenerator in sim folder working
-  </p>
   <h3>
   Checkpoint 2:
   </h3>
   <a href=http://www-inst.eecs.berkeley.edu/~cs150/fa13/project/checkpoint2.pdf> Checkpoint 2 PDF pdf</a>
-  
-  <p>
+  <br>
   Finished and working. 
-  </p>
   
   <h3>
   Checkpoint 3:
   </h3>
   <a href=http://www-inst.eecs.berkeley.edu/~cs150/fa13/project/checkpoint3.pdf> Checkpoint 3 PDF pdf</a>
-  <p>
+  <br>
   Finished the block diagrams.
+  <br>
   Working.
-  </p>
   
   <h3>
   Checkpoint 4:
   </h3>
   <a href=http://www-inst.eecs.berkeley.edu/~cs150/fa13/project/checkpoint4-1.pdf> Checkpoint 4 PDF pdf</a>
-  <p>
-  Working. DOG and Gaussian filters working.  
-  <br>Can switch between all views.  
-  <br>Can easily be implimented to work with entire octive and SIFT algorithm. 
-  </p>
-  
-  Rules
-  ===
-  <p>
-  Please keep commits to a minimum and ONLY commit working compilable code. 
   <br>
-  Please write detailed and useful commit messages that explain everything that is included in the new working update.
-  </p>
+  Working. DOG and Gaussian filters working.  
+  Can switch between all views.  
+  SIFT algorithm can easily be implimented to work with entire octave. 
+  
 </body>  
