@@ -1,8 +1,6 @@
 <head>
   <h1>
-    <b>
       Project Report
-    </b>
   </h1>
 </head>  
 
@@ -28,18 +26,35 @@
   </h3>
   
   <ul>
+    <li>
+      Bonato, V.; Marques, E.; Constantinides, G.A.,
+      <br>
+       "A Parallel Hardware
+      Architecture for Scale and Rotation Invariant Feature Detection,"
+      <br>
+      Circuits and Systems for Video Technology, IEEE Transactions on ,
+      vol.18, no.12, pp.1703,1712, Dec. 2008 
+      <br> doi: 10.1109/TCSVT.2008.2004936
+      <br>
+      <a href="http://cas.ee.ic.ac.uk/people/gac1/pubs/VanderleiTCASVT08.pdf">
+       pdf </a>
+      <br> 
+      <a href="http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=4675857"> 
+      Link to paper on IEEE 
+    </a>
+    </li>
     <li><a href=http://www.verilog.com>Verilog</li>
     <li><a href=http://www-inst.eecs.berkeley.edu/~cs150/fa13/resources/#virtex-5-fpga-documentation>Virtex-5 FPGA Documentation</a></li>
-    <li><a href="ChipScope.pdf">ChipScope</a></li>
-    <li><a href="ModelSim.pdf">ModelSim</a></li>
-    <li><a href="ReadyValidInterface.pdf">Ready/Valid handshake</a></li>
+    <li><a href=http://www.xilinx.com/tools/cspro.htm>ChipScope</a></li>
+    <li><a href=http://www.mentor.com/products/fpga/model>ModelSim</a></li>
+    <li><a href=http://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&ved=0CDcQFjAB&url=http%3A%2F%2Fwww.xilinx.com%2Ftraining%2Fdownloads%2Fhow-to-use-the-3-axi-configurations.pptx&ei=h72sUpOaAsH6oASFmoKwCw&usg=AFQjCNHITN9sGdcBJN6cxMPk8MK6Y2RVbQ&sig2=nxVBt5tR3KRZARs2ScqFaw&bvm=bv.57967247,d.cGU>Ready/Valid handshake</a></li>
   </ul>
   <h3 id="protocols-standards">Protocols &amp; Standards</h3>
   <ul>
-    <li><a href="http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=1620780">IEEE Verilog</a></li>
-    <li><a href="ac97_r23.pdf">AC97 Audio</a></li>
-    <li><a href="I2C_BUS_SPECIFICATION_3.pdf">I2C Bus</a></li>
-    <li><a href="MAX3233E-MAX3235E.pdf">RS-232</a></li>
+    <li>IEEE Verilog</li>
+    <li><a href=http://www-inst.eecs.berkeley.edu/~cs150/fa13/resources/ac97_r23.pdf>AC97 Audio</li>
+    <li><a href=http://www-inst.eecs.berkeley.edu/~cs150/fa13/resources/I2C_BUS_SPECIFICATION_3.pdf>I2C Bus</li>
+    <li><a href=http://www-inst.eecs.berkeley.edu/~cs150/fa13/resources/MAX3233E-MAX3235E.pdf>RS-232</li>
   </ul>
   <h4>
   Logins
