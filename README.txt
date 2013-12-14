@@ -1,6 +1,6 @@
 <p align="center"><img title="Final Project" src="https://raw.github.com/EECS150/fa13_team06/master/Proposal/PiIthGW.png?token=5061271__eyJzY29wZSI6IlJhd0Jsb2I6RUVDUzE1MC9mYTEzX3RlYW0wNi9tYXN0ZXIvUHJvcG9zYWwvUGlJdGhHVy5wbmciLCJleHBpcmVzIjoxMzg1MDAyODU4fQ%3D%3D--3de2c89a4f562c9efbbbc10e14edf808a4cef721"/></p>
 
-<iframe src="http://docs.google.com/gview?url=https://github.com/nbrummel/fa13_team06/blob/master/final_reportcs150/cs150report.pdf&embedded=true" style="width:718px; height:700px;" frameborder="0"></iframe>
+<iframe src="http://docs.google.com/gview?url=https://drive.google.com/file/d/0Bz6DRVnxP1BUUmF6TXc5TXp1azg/edit?usp=sharing&embedded=true" style="width:718px; height:700px;" frameborder="0"></iframe>
 
 
 Logins
