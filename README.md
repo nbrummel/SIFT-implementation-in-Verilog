@@ -1,7 +1,8 @@
-<p align="center"><img title="Final Project" src="https://raw.github.com/EECS150/fa13_team06/master/Proposal/PiIthGW.png?token=5061271__eyJzY29wZSI6IlJhd0Jsb2I6RUVDUzE1MC9mYTEzX3RlYW0wNi9tYXN0ZXIvUHJvcG9zYWwvUGlJdGhHVy5wbmciLCJleHBpcmVzIjoxMzg1MDAyODU4fQ%3D%3D--3de2c89a4f562c9efbbbc10e14edf808a4cef721"/></p>
 
+<h1>
 <b>Project Report</b>
 ==============
+</h1>
 
 <h2>abstract</h2>
 <p>
@@ -20,19 +21,31 @@ Tyler McAtee, cs150-ar
 
 Checkpoint Progress
 ===
-
+<h3>
 Checkpoint 1:
+</h3>
+<a href=http://www-inst.eecs.berkeley.edu/~cs150/fa13/project/checkpoint1.pdf> Checkpoint 1 PDF</a>
 PatternGenerator.v and PatternGeneratorTest.v up to date and working
 All tests for PatternGenerator in sim folder working
-Make for checkpoint 1 no longer working due to new files.
 
+<h3>
 Checkpoint 2:
-Finished and working. Does the Overlay work?
+</h3>
+<a href=http://www-inst.eecs.berkeley.edu/~cs150/fa13/project/checkpoint2.pdf> Checkpoint 2 PDF pdf</a>
+Finished and working. 
 
+<h3>
 Checkpoint 3:
-Finished the block diagrams. Basically there is some minimal work left to do 
-to list all the control signals (not all of them are shown).
-I will explain it all to you when I see you next. We are presenting tomorrow at 7pm ish.
+</h3>
+<a href=http://www-inst.eecs.berkeley.edu/~cs150/fa13/project/checkpoint3.pdf> Checkpoint 3 PDF pdf</a>
+Finished the block diagrams.
+Working.
+<p align="center"><img title="Final Project" src="https://raw.github.com/EECS150/fa13_team06/master/Proposal/PiIthGW.png?token=5061271__eyJzY29wZSI6IlJhd0Jsb2I6RUVDUzE1MC9mYTEzX3RlYW0wNi9tYXN0ZXIvUHJvcG9zYWwvUGlJdGhHVy5wbmciLCJleHBpcmVzIjoxMzg1MDAyODU4fQ%3D%3D--3de2c89a4f562c9efbbbc10e14edf808a4cef721"/></p>
+<h3>
+Checkpoint 4:
+</h3>
+<a href=http://www-inst.eecs.berkeley.edu/~cs150/fa13/project/checkpoint4-1.pdf> Checkpoint 4 PDF pdf</a>
+Working. DOG and Gaussian filters working.  Can switch between all views.  Can easily be implimented to work with entire octive and SIFT algorithm. 
 
 Rules
 ===
