@@ -1,6 +1,14 @@
 <p align="center"><img title="Final Project" src="https://raw.github.com/EECS150/fa13_team06/master/Proposal/PiIthGW.png?token=5061271__eyJzY29wZSI6IlJhd0Jsb2I6RUVDUzE1MC9mYTEzX3RlYW0wNi9tYXN0ZXIvUHJvcG9zYWwvUGlJdGhHVy5wbmciLCJleHBpcmVzIjoxMzg1MDAyODU4fQ%3D%3D--3de2c89a4f562c9efbbbc10e14edf808a4cef721"/></p>
 
-<iframe src="https://drive.google.com/file/d/0Bz6DRVnxP1BUUmF6TXc5TXp1azg/edit?usp=sharing&embedded=true" style="width:718px; height:700px;" frameborder="0"></iframe>
+<b>Project Report</b>
+==============
+
+<h2>abstract</h2>
+<p>
+This paper discusses our process for adding a hardware acceleration module to the Scale Invariant Feature Transform (SIFT) algorithm. When running an algorithm often about 90 percent of program runtime energy is consumed by 10 percent of the code. These parts of the code are frequently data processing intensive, and by adding custom hardware to speed up these sections, the overall algorithm speeds up drastically. 
+</p><p>	
+The SIFT algorithm is a computer vision algorithm used to detect and describe local features in images. We described several hardware modules using Verilog to aid in expediting the process of this algorithm. The first major module discussed in this paper is the SRAM Arbiter, which efficiently services two write ports and two read ports that are trying to connect to an external SRAM module. The second major module discussed is the Difference of Gaussians calculation module, which takes in a byte stream of pixel data, down samples it to a more manageable size (due to on-board FPGA memory constraints), runs a Difference of Gaussians calculation, and up samples it to the original size again.
+</p><a href=https://drive.google.com/file/d/0Bz6DRVnxP1BUUmF6TXc5TXp1azg/edit?usp=sharing> The REPORT </a>
 
 
 Logins
