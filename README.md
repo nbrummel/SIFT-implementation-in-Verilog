@@ -40,14 +40,9 @@
       Circuits and Systems for Video Technology, IEEE Transactions on ,
       vol.18, no.12, pp.1703,1712, Dec. 2008 
       <br> doi: 10.1109/TCSVT.2008.2004936
-      <br>
-      <a href="http://cas.ee.ic.ac.uk/people/gac1/pubs/VanderleiTCASVT08.pdf">
-       pdf </a>
-      <br> 
-      <a href="http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=4675857"> 
-      Link to paper on IEEE 
-    </a>
-    </li>
+        <ul>
+          <li><a href="http://cas.ee.ic.ac.uk/people/gac1/pubs/VanderleiTCASVT08.pdf">PDF of paper</a> or <a href="http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=4675857">Link to paper on IEEE</a></li>
+        </ul></li>
     <li><a href=http://www.verilog.com>Verilog</li>
     <li><a href=http://www-inst.eecs.berkeley.edu/~cs150/fa13/resources/#virtex-5-fpga-documentation>Virtex-5 FPGA Documentation</a></li>
     <li><a href=http://www.xilinx.com/tools/cspro.htm>ChipScope</a></li>
